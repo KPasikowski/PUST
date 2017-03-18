@@ -13,6 +13,6 @@ mkDirectory(dirPathTxtDist);
 delta_u = [0.4 0.8 -0.4 -0.8];
 delta_z = [0.4 0.8 -0.4 -0.8];
 
-runStepResponse(delta_u, Kk, dirPathFigures, dirPathTxtControl, 'sterowanie');
-runStepResponse(delta_z, Kk, dirPathFigures, dirPathTxtDist, 'zaklocenie');
+runStepResponse(delta_u, Kk, dirPathFigures, dirPathTxtControl, 1, 'sterowanie');
+runStepResponse(delta_z, Kk, dirPathFigures, dirPathTxtDist, 1, 'zaklocenie');
 
