@@ -46,8 +46,8 @@ function [ y ] = runStepResponse( deltas , Kk, dirPathFigures, dirPathTxt, toSav
             rysujWykres((1 : length(in)), in, -1, 'k', plotYLabel, '', plotInSignalTitle);
             hold on
 
-            zapiszDoPliku([dirPathTxt '/wyjscie_skok_'  int2str(deltas(i)) '.txt'], y);
-            zapiszDoPliku([dirPathTxt inSignalSubPath int2str(deltas(i)) '.txt'], in);
+            zapiszDoPliku([dirPathTxt '/wyjscie_skok_'  num2str(deltas(i)) '.txt'], y);
+            zapiszDoPliku([dirPathTxt inSignalSubPath num2str(deltas(i)) '.txt'], in);
         end
     end
 
