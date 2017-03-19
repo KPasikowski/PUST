@@ -35,9 +35,9 @@ for i = 1 : length(lambdas)
     rysujWykres((1 : length(y2)), y2, -1, 'k', 'y', '', ['Wyjscie obiektu z mierzonym zakloceniem i bez, lambda = ' num2str(lambdas(i))]);
 
     subplot(2,1,2);
-    rysujWykres((1 : length(u1)), u1, -1, 'k', 'u', '', ['Sterowanie z mierzonym zakloceniem i bez ' num2str(lambdas(i))]);
+    rysujWykres((1 : length(u1)), u1, -1, 'k', 'u', '', ['Sterowanie z mierzonym zakloceniem i bez, lambda =  ' num2str(lambdas(i))]);
     hold on
-    rysujWykres((1 : length(u2)), u2, -1, 'k', 'u', '', ['Sterowanie z mierzonym zakloceniem i bez ' num2str(lambdas(i))]);
+    rysujWykres((1 : length(u2)), u2, -1, 'k', 'u', '', ['Sterowanie z mierzonym zakloceniem i bez, lambda =  ' num2str(lambdas(i))]);
     
     legend('bez pomiaru zaklocenia', 'z pomiarem zaklocenia');
     savefig([dirPathFigures '/sterowanie_wyjscie_lambda_ ' num2str(lambdas(i)) '.fig']);
