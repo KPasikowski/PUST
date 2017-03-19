@@ -17,7 +17,7 @@ figure;
 for i = 1 : length(lambdas)
     
     lambda = lambdas(i);
-    [y, u, E] = policzDMC(D, 0, N, Nu, lambda, Kk, z, 0);
+    [y, u, E] = policzDMC(D, 0, N, Nu, lambda, Kk, z, 0, @(z) z);
     
     zapiszDoPliku([dirPathTxt '/wyjscie_lambda_'  num2str(lambdas(i)) '.txt'], y);
     zapiszDoPliku([dirPathTxt '/sterowanie_lambda_'  num2str(lambdas(i)) '.txt'], u);

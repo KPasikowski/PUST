@@ -1,4 +1,4 @@
-function [ y, u, E ] = policzDMC( D_, Dz_, N_, Nu_, lambda_, Kk_, z, dist_measure)
+function [ y, u, E ] = policzDMC( D_, Dz_, N_, Nu_, lambda_, Kk_, z, dist_measure, noise)
 Upp = 0;
 Zpp = 0;
 Ypp = 0;
@@ -89,7 +89,7 @@ for k = 7:Kk
         end
     end
     
-    dz(k) = z(k) - z(k-1);
+    dz(k) = noise( (z(k) - z(k-1)) );
     sum2 = 0;
     for j = 1:Dz-1
         if(k-j > 0)

@@ -19,8 +19,8 @@ E2s = zeros(1, length(lambdas));
 for i = 1 : length(lambdas)
     
     lambda = lambdas(i);
-    [y1, u1, E1] = policzDMC(D, Dz, N, Nu, lambda, Kk, z, 0);
-    [y2, u2, E2] = policzDMC(D, Dz, N, Nu, lambda, Kk, z, 1);
+    [y1, u1, E1] = policzDMC(D, Dz, N, Nu, lambda, Kk, z, 0, @(z) z);
+    [y2, u2, E2] = policzDMC(D, Dz, N, Nu, lambda, Kk, z, 1, @(z) z);
     
     zapiszDoPliku([dirPathTxt '/wyjscie_bez_pom_lambda_'  num2str(lambdas(i)) '.txt'], y1);
     zapiszDoPliku([dirPathTxt '/sterowanie_bez_pom_lambda_'  num2str(lambdas(i)) '.txt'], u1);
