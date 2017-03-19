@@ -1,11 +1,12 @@
-function [ y, u, E ] = policzDMC( D_, N_, Nu_, lambda_ )
+function [ y, u, E ] = policzDMC( D_, Dz_, N_, Nu_, lambda_, Kk_, z, dist_measure)
 Upp = 0;
 Zpp = 0;
 Ypp = 0;
 
-Kk = 300;
+Kk = Kk_;
 
 D = D_;
+Dz = Dz_;
 N = N_;
 Nu = Nu_;
 lambda = lambda_;
@@ -17,18 +18,18 @@ s = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_ster_0.4.txt');
 s = s(:, 2);
 s(length(s) : 400) = s(length(s));
 
+s_z = load('wykresy_pliki/zad3/skok_zaklocenia/odp_skok_zakl_0.4.txt');
+s_z = s_z(:, 2);
+s_z(length(s_z) : 400) = s_z(length(s_z));
+
 %sygnal sterujacy
 u = Upp + zeros(1,Kk);
 
-%sygnal zaklocenia
-z = Zpp + zeros(1, Kk);
-%uchyb
-e = zeros(1,N) ;
 %wyjscie ukladu
 y = zeros(1,Kk) + Ypp ;
 
-%obliczanie odpowiedzi skokowej
 du = (zeros(1,Kk))' ;
+dz = (zeros(1,D-1))' ;
 
 M = zeros(N, Nu) ;
 for i = 1:N
@@ -52,6 +53,18 @@ for i = 1:N
     end
 end
 
+Mpz = zeros(N, Dz-1) ;
+for i = 1:N
+    for j = 1:(Dz-1)
+        if(i+j <= N)
+            Mpz(i,j) = s_z(i+j) - s_z(j) ;
+        else
+            Mpz(i,j) = s_z(N) - s_z(j) ;
+        end
+    end
+end
+
+
 K = (M'*M + lambda*eye(Nu))^-1 * M' ;
 
 %liczenie ke
@@ -61,6 +74,8 @@ for i = 1:N
 end
 
 kju = K(1,:)*Mp;
+
+kz = K(1,:)*Mpz;
 
 for k = 7:Kk
    
@@ -74,9 +89,22 @@ for k = 7:Kk
         end
     end
     
-    du(k) = ke * (yzad-y(k)) - sum ;
+    dz(k) = z(k) - z(k-1);
+    sum2 = 0;
+    for j = 1:Dz-1
+        if(k-j > 0)
+            sum2 = sum2 + kz(j)*dz(k-j);
+        end
+    end
+    
+    du(k) = ke * (yzad-y(k)) - sum;
+    
+    if dist_measure == 1 
+        du(k) = du(k) - sum2;
+    end
     
     u(k) = u(k-1) + du(k);
+    
     
 end
 
