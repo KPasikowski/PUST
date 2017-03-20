@@ -20,10 +20,10 @@
 }
 
 
-\newcommand{\szer}{16cm}
+\newcommand{\szer}{8.5cm}
 \newcommand{\wys}{5.6cm}
 \newcommand{\odstepionowy}{1.2cm}
-\newcommand{\odstepoziomy}{2.0cm}
+\newcommand{\odstepoziomy}{1.5cm}
 
 
 
@@ -38,19 +38,18 @@
 width=\szer,height=\wys]
 %%1
 \nextgroupplot
-[xmin=1,xmax=300,ymin=0,ymax=2,
+[xmin=1,xmax=270,ymin=0,ymax=2,
 xtick={0, 50, 100, 150, 200, 250, 300},
 ytick={0, 0.5, 1, 1.5, 2},
 ylabel={$y(k)$},
 xlabel={$k$}]
 \addplot[const plot,color=red,semithick] file {zad5/wyjscie_bez_pom_lambda_1.txt};
 \addplot[const plot,color=red,densely dashed] file {zad5/wyjscie_pom_lambda_1.txt};
-\legend{$\lambda = 1 $,$\lambda = 1 z zak.$}
 %%2
 \nextgroupplot
-[xmin=1,xmax=300,ymin=0,ymax=2,
+[xmin=1,xmax=270,ymin=-1.5,ymax=2,
 xtick={0, 50, 100, 150, 200, 250, 300},
-ytick={0, 0.5, 1, 1.5, 2},
+ytick={-1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2},
 ylabel={$u(k)$},
 xlabel={$k$}]
 \addplot[const plot,color=red,semithick] file {zad5/sterowanie_bez_pom_lambda_1.txt};
@@ -59,19 +58,18 @@ xlabel={$k$}]
 
 %%1
 \nextgroupplot
-[xmin=1,xmax=300,ymin=0,ymax=2,
+[xmin=1,xmax=270,ymin=0,ymax=2,
 xtick={0, 50, 100, 150, 200, 250, 300},
 ytick={0, 0.5, 1, 1.5, 2},
 ylabel={$y(k)$},
 xlabel={$k$}]
 \addplot[const plot,color=blue,semithick] file {zad5/wyjscie_bez_pom_lambda_10.txt};
 \addplot[const plot,color=blue,densely dashed] file {zad5/wyjscie_pom_lambda_10.txt};
-\legend{$\lambda = 10$,$\lambda = 10 z zak.$}
 %%2
 \nextgroupplot
-[xmin=1,xmax=300,ymin=0,ymax=2,
+[xmin=1,xmax=270,ymin=-1.5,ymax=2,
 xtick={0, 50, 100, 150, 200, 250, 300},
-ytick={0, 0.5, 1, 1.5, 2},
+ytick={-1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2},
 ylabel={$u(k)$},
 xlabel={$k$}]
 \addplot[const plot,color=blue,semithick] file {zad5/sterowanie_bez_pom_lambda_10.txt};
@@ -81,19 +79,18 @@ xlabel={$k$}]
 
 %%1
 \nextgroupplot
-[xmin=1,xmax=300,ymin=0,ymax=2,
+[xmin=1,xmax=270,ymin=0,ymax=2,
 xtick={0, 50, 100, 150, 200, 250, 300},
 ytick={0, 0.5, 1, 1.5, 2},
 ylabel={$y(k)$},
 xlabel={$k$}]
 \addplot[const plot,color=green,semithick] file {zad5/wyjscie_bez_pom_lambda_50.txt};
 \addplot[const plot,color=green,densely dashed] file {zad5/wyjscie_pom_lambda_50.txt};
-\legend{$\lambda = 50$,$\lambda = 50 z zak.$,}
 %%2
 \nextgroupplot
-[xmin=1,xmax=300,ymin=0,ymax=2,
+[xmin=1,xmax=270,ymin=-1.5,ymax=2,
 xtick={0, 50, 100, 150, 200, 250, 300},
-ytick={0, 0.5, 1, 1.5, 2},
+ytick={-1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2},
 ylabel={$u(k)$},
 xlabel={$k$}]
 \addplot[const plot,color=green,semithick] file {zad5/sterowanie_bez_pom_lambda_50.txt};
