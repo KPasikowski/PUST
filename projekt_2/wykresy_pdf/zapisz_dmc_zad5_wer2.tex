@@ -1,0 +1,107 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+\newcommand{\odstepoziomy}{2.0cm}
+
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[Regulator DMC z pomiarem zakłócenia]
+\tikzsetnextfilename{zad5_dmc_zbiorczy_wer2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 3,vertical sep=\odstepionowy, horizontal sep=\odstepoziomy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {zad5/wyjscie_bez_pom_lambda_1.txt};
+\addplot[const plot,color=red,densely dashed] file {zad5/wyjscie_pom_lambda_1.txt};
+\legend{$\lambda = 1 $,$\lambda = 1 z zak.$}
+%%2
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {zad5/sterowanie_bez_pom_lambda_1.txt};
+\addplot[const plot,color=red,densely dashed] file {zad5/sterowanie_pom_lambda_1.txt};
+\legend{$\lambda = 1 $,$\lambda = 1 z zak.$}
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad5/wyjscie_bez_pom_lambda_10.txt};
+\addplot[const plot,color=blue,densely dashed] file {zad5/wyjscie_pom_lambda_10.txt};
+\legend{$\lambda = 10$,$\lambda = 10 z zak.$}
+%%2
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad5/sterowanie_bez_pom_lambda_10.txt};
+\addplot[const plot,color=blue,densely dashed] file {zad5/sterowanie_pom_lambda_10.txt};
+\legend{$\lambda = 10$,$\lambda = 10 z zak.$}
+
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=green,semithick] file {zad5/wyjscie_bez_pom_lambda_50.txt};
+\addplot[const plot,color=green,densely dashed] file {zad5/wyjscie_pom_lambda_50.txt};
+\legend{$\lambda = 50$,$\lambda = 50 z zak.$,}
+%%2
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=green,semithick] file {zad5/sterowanie_bez_pom_lambda_50.txt};
+\addplot[const plot,color=green,densely dashed] file {zad5/sterowanie_pom_lambda_50.txt};
+\legend{$\lambda = 50$,$\lambda = 50 z zak.$,}
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

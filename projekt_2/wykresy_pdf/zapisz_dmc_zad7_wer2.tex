@@ -1,0 +1,127 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+\newcommand{\odstepoziomy}{2cm}
+
+
+
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[Regulator DMC z pomiarem zakłócenia]
+\tikzsetnextfilename{zad7_dmc_zbiorczy_wer2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 3,vertical sep=\odstepionowy, horizontal sep=\odstepoziomy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad7/wyjscie_szum_11.txt};
+\addplot[const plot,color=red,semithick] file {zad7/wyjscie_szum_12.txt};
+\addplot[const plot,color=red,densely dashed] file {zad7/wyjscie_szum_13.txt};
+\addplot[const plot,color=green,semithick] file {zad7/wyjscie_szum_14.txt};
+\addplot[const plot,color=green,densely dashed] file {zad7/wyjscie_szum_15.txt};
+\legend{$brak$,$z+z*rand[0:0.5]$,$z+z*rand[0:1]$,$z+rand[-0.05:0.05]$,$z+rand[-0.25:0.25]$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad7/sterowanie_szum_11.txt};
+\addplot[const plot,color=red,semithick] file {zad7/sterowanie_szum_12.txt};
+\addplot[const plot,color=red,densely dashed] file {zad7/sterowanie_szum_13.txt};
+\addplot[const plot,color=green,semithick] file {zad7/sterowanie_szum_14.txt};
+\addplot[const plot,color=green,densely dashed] file {zad7/sterowanie_szum_15.txt};
+\legend{$brak$,$z+z*rand[0:0.5]$,$z+z*rand[0:1]$,$z+rand[-0.05:0.05]$,$z+rand[-0.25:0.25]$}
+
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad7/wyjscie_szum_21.txt};
+\addplot[const plot,color=red,semithick] file {zad7/wyjscie_szum_22.txt};
+\addplot[const plot,color=red,densely dashed] file {zad7/wyjscie_szum_23.txt};
+\addplot[const plot,color=green,semithick] file {zad7/wyjscie_szum_24.txt};
+\addplot[const plot,color=green,densely dashed] file {zad7/wyjscie_szum_25.txt};
+\legend{$brak$,$z+z*rand[0:0.5]$,$z+z*rand[0:1]$,$z+rand[-0.05:0.05]$,$z+rand[-0.25:0.25]$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad7/sterowanie_szum_21.txt};
+\addplot[const plot,color=red,semithick] file {zad7/sterowanie_szum_22.txt};
+\addplot[const plot,color=red,densely dashed] file {zad7/sterowanie_szum_23.txt};
+\addplot[const plot,color=green,semithick] file {zad7/sterowanie_szum_24.txt};
+\addplot[const plot,color=green,densely dashed] file {zad7/sterowanie_szum_25.txt};
+\legend{$brak$,$z+z*rand[0:0.5]$,$z+z*rand[0:1]$,$z+rand[-0.05:0.05]$,$z+rand[-0.25:0.25]$}
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad7/wyjscie_szum_31.txt};
+\addplot[const plot,color=red,semithick] file {zad7/wyjscie_szum_32.txt};
+\addplot[const plot,color=red,densely dashed] file {zad7/wyjscie_szum_33.txt};
+\addplot[const plot,color=green,semithick] file {zad7/wyjscie_szum_34.txt};
+\addplot[const plot,color=green,densely dashed] file {zad7/wyjscie_szum_35.txt};
+\legend{$brak$,$z+z*rand[0:0.5]$,$z+z*rand[0:1]$,$z+rand[-0.05:0.05]$,$z+rand[-0.25:0.25]$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=300,ymin=0,ymax=2,
+xtick={0, 50, 100, 150, 200, 250, 300},
+ytick={0, 0.5, 1, 1.5, 2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {zad7/sterowanie_szum_31.txt};
+\addplot[const plot,color=red,semithick] file {zad7/sterowanie_szum_32.txt};
+\addplot[const plot,color=red,densely dashed] file {zad7/sterowanie_szum_33.txt};
+\addplot[const plot,color=green,semithick] file {zad7/sterowanie_szum_34.txt};
+\addplot[const plot,color=green,densely dashed] file {zad7/sterowanie_szum_35.txt};
+\legend{$brak$,$z+z*rand[0:0.5]$,$z+z*rand[0:1]$,$z+rand[-0.05:0.05]$,$z+rand[-0.25:0.25]$}
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

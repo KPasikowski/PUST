@@ -23,7 +23,7 @@ for i = 1 : length(errors)
         noise = noises{j};
         [y(j,:), u(j,:), E(j,:)] = policzDMC(D, Dz, N, Nu, lambda, Kk, z, 1, noise);
         zapiszDoPliku([dirPathTxt '/wyjscie_szum_'  num2str(i) num2str(j) '.txt'], y(j,:));
-        zapiszDoPliku([dirPathTxt '/sterowanie_szum_'  num2str(i) num2str(j) '.txt'], y(j,:));
+        zapiszDoPliku([dirPathTxt '/sterowanie_szum_'  num2str(i) num2str(j) '.txt'], u(j,:));
     end
         
     figure;
