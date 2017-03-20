@@ -6,9 +6,9 @@ mkDirectory(dirPathFigures);
 mkDirectory(dirPathTxt);
 
 x = (1 : 1 : Kk);
-f = 500;
+f = 200;
 fs = 12000;
-z = sin(2*pi*f/fs*x);
+z = 0.5*sin(2*pi*f/fs*x);
 
 D = 200;
 Dz = 200;
