@@ -1,0 +1,9 @@
+\chapter{Zadanie 5.}
+Wyniki symulacji, podczas której nastêpuje skokowa zmiana sygna³u zak³ócenia widaæ na rysunku ~\ref{dmc_skok_zakl}. Zmiana nast¹pi³a w momencie ustabilizowania siê uk³adu po skoku wartoœci sterowania. Na wykresach widaæ, ¿e algorytm, uwzglêdniaj¹cy zak³ócenia (linia przerywana) radzi sobie lepiej, ni¿ klasyczny dmc, gdy¿ powrót do wartoœci zadanej nastêpuje du¿o szybciej. Parametr $D^{z}$, tj. chwila, w której uk³ad stabilizuje siê po skoku wartoœci zak³ócenia wynosi ok. $ 80 $, jednak w zale¿noœci od parametru $ \lambda $ mo¿e byæ du¿o ni¿szy.
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{../wykresy_pdf/zad5_dmc_zbiorczy.pdf}
+\caption {Symulacja algorytmu DMC dla skoku zak³ócenia}
+\label{dmc_skok_zakl}
+\end{figure}

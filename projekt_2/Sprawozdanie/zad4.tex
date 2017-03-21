@@ -1,0 +1,18 @@
+\chapter{Zadanie 4.}
+Na rysunku ~\ref{dmc_rozne_parametry} przedstawiono wyniki symulacji algorytmu DMC dla ró¿nych wartoœci parametrów $\lambda$ przy $D = N = N_{u} = 200$, gdy¿ dla takich horyzontów jakoœæ regulacji powinna byæ teoretycznie najlepsza. Jakoœæ regulacji by³a oceniania na podstawie rysunków oraz poprzez wyznaczenie wskaŸnika regulacji:
+$$ E = \sum\limits_{k=1}^{k_{konc}}(y^{zad}(k)-y(k))^{2} = (Y_{zad} - Y)(Y_{zad} - Y)' $$
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{../wykresy_pdf/zad4_dmc.pdf}
+\caption {Symulacja algorytmu DMC dla ró¿nych wartoœci parametrów}
+\label{dmc_rozne_parametry}
+\end{figure}
+
+WskaŸnik regulacji dla ró¿nych parametrów wspó³czynnika $\lambda$ wynosi³ odpowiednio: 
+\begin{itemize}
+\item {\color{red}$ \lambda = 1 \Rightarrow E = \num{13.7338} $}
+\item {\color{blue}$ \lambda = 10 \Rightarrow E = \num{16.5938} $ }
+\item {\color{green}$ \lambda = 50 \Rightarrow E = \num{19.9102} $}
+\end{itemize}
+Jak widaæ, regulator o parametrze $\lambda = 1$ mia³ najmniejszy b³¹d oraz najszybciej dochodzi³ do wartoœci zadanej, mia³ jednak bardzo du¿y skok sterowania w przeciwieñstwie do regulatora o $\lambda = 50$, którego wydatek energetyczny by³ niewielki, jednak b³¹d oraz czas regulacji doœæ du¿e. Kompromisem miêdzy tymi regulatorami by³o ustawienie wartoœci $ \lambda = 10 $. W zale¿noœci od po¿¹danej cechy obiektu nale¿a³oby dobraæ regulator, który jak najbardziej spe³nia wymagania. Gdyby zale¿a³o nam na jak najszybszej regulacji, wybralibyœmy regulator o $ \lambda = 1 $, jednak gdyby priorytetem by³o stabilne sterowanie, bez nag³ych skoków, lepszym wyborem by³by ten o $ \lambda = 50 $.

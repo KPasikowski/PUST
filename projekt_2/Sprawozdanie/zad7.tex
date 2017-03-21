@@ -1,0 +1,23 @@
+\chapter{Zadanie 7.}
+Odpornoœæ algorytmu przy parametrach $ D = D^{z} = N = N_{u} = 200 $ oraz $ \lambda = 5 $ zbadano dla zerowego zak³ócenia(rysunek ~\ref{dmc_szum_0}), sta³ej niezerowej wartoœci zak³ócenia, w tym przyk³adzie równej $ \num{0.2} $(rysunek ~\ref{dmc_szum_stale}) oraz zak³ócenia rosn¹cego liniowo(rysunek ~\ref{dmc_szum_lin}). Zbadano te¿ ró¿ne rodzaje szumów. Jak widaæ regulator nie radzi sobie tylko przy du¿ym bezwzglêdnym szumie.
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1.4]{../wykresy_pdf/zad7_dmc_blad1.pdf}
+\caption {Symulacja algorytmu DMC dla przy szumie pomiarowym i zerowym zak³óceniu}
+\label{dmc_szum_0}
+\end{figure}
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1.4]{../wykresy_pdf/zad7_dmc_blad2.pdf}
+\caption {Symulacja algorytmu DMC dla przy szumie pomiarowym i sta³ym niezerowym zak³óceniu}
+\label{dmc_szum_stale}
+\end{figure}
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1.4]{../wykresy_pdf/zad7_dmc_blad3.pdf}
+\caption {Symulacja algorytmu DMC dla przy szumie pomiarowym i zak³óceniu rosn¹cym liniowo}
+\label{dmc_szum_lin}
+\end{figure}

@@ -1,0 +1,9 @@
+\chapter{Zadanie 6.}
+Dzia³anie algorytmów przy zak³óceniu zmiennym sinusoidalnie widaæ na rysunku ~\ref{dmc_zakl_sin}. Jest to zak³ócenie bardzo trudne do wyrównania, st¹d oba algorytmy nie nad¹¿a³y z powrotem do wartoœci zadanej. Widaæ jednak, ¿e uwzglêdnienie zak³óceñ w algorytmie spowodowa³o znaczn¹ poprawê regulacji - co prawda wykres wyjœcia jest dalej sinusoid¹, jednak o wyraŸnie ni¿szej amplitudzie. Œwiadczy to o tym, ¿e, w przypadku gdy obiekt jest nara¿ony na zak³ócenia, warto zastosowaæ ten regulator zamiast klasycznego DMC.
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{../wykresy_pdf/zad6_dmc_zbiorczy.pdf}
+\caption {Symulacja algorytmu DMC dla skoku zak³ócenia}
+\label{dmc_zakl_sin}
+\end{figure}
