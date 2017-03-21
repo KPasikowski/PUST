@@ -1,0 +1,40 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+tick label style={font=\tiny},
+label style={font=\footnotesize},
+legend style={font=\footnotesize},
+title style={font=\footnotesize}
+}
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[tb]
+\tikzsetnextfilename{proj1/charakterystyka_statyczna}
+\begin{tikzpicture}
+\begin{axis}[
+width=0.5\textwidth,
+xmin=1.2,xmax=2.8,ymin=0,ymax=2,
+xlabel={$ u $},
+ylabel={$ y $},
+xtick={1, 1.5, 2, 2.5},
+ytick={0,0.5, 1, 1.5, 2},
+legend pos=south east,
+y tick label style={/pgf/number format/1000 sep=},
+]
+\addplot[red,semithick] file {char_stat};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

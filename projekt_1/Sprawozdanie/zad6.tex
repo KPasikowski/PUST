@@ -1,0 +1,61 @@
+\chapter{Zadanie 6.}
+
+\section{PID}
+Optymalizacja wskaŸnika jakoœci w przypadku algorytmu PID zosta³a dokonana za pomoc¹ dwóch funkcji programu Matlab:
+\begin{itemize}
+\item fmincon -- znajduj¹ca minimum ograniczonej funkcji nieliniowej wielu zmiennych
+\item ga -- znajduj¹ca minimum funkcji u¿ywaj¹c algorytmu genetycznego
+\end{itemize}
+
+Funkcje te zosta³y wywo³ane w poni¿szy sposób:
+\begin{lstlisting}[style=Matlab-editor]
+[paramsPID1, ~, ~] = fmincon(@policzPID, [2 10 3.2], [], ...
+ [], [], [], [0 0.1 0], []); 
+[paramsPID2, ~, ~] = ga(@policzPID, 3, [], [], ...
+ [], [], [0 0.1 0], []);
+\end{lstlisting}
+
+Szukane parametry regulatora ( $ K $, $ T_{i} $ oraz $ T_{d} $) zosta³y ograniczone z do³u, $ K $ oraz $ T_{d} $ zosta³y ustawione jako nieujemne, natomiast $ T_{i} $ nie mniejsze od 0.1, aby nie by³o ono zerowe, co skutkowa³oby dzieleniem przez zero w algorytmie.
+Parametry wyliczone przez funkcje oraz jakoœæ regulacji widaæ na wykresach ~\ref{fig:PID_fmincon} oraz ~\ref{fig:PID_ga}.
+B³êdy regulacji dla parametrów wyznaczonych danymi funkcjami wynosz¹:
+\begin{itemize}
+\item fmincon: $ E = 6,2202 $
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{rysunki/zapisz_pdf/proj1/PID_fmincon.pdf}
+\caption {Regulacja PID dla nastaw, obliczonych funkcj¹ fmincon}
+\label{fig:PID_fmincon}
+\FloatBarrier
+\end{figure}
+\item ga: $ E = 6,2618 $
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{rysunki/zapisz_pdf/proj1/PID_ga.pdf}
+\caption {Regulacja PID dla nastaw, obliczonych funkcj¹ ga}
+\FloatBarrier
+\label{fig:PID_ga}
+\end{figure}
+\end{itemize}
+W przypadku obu funkcji, parametry regulatora PID by³y dostateczne, obiekt by³ stabilny, jednak zbyt wolny i gorszy od regulatora z parametrami, wyznaczonymi metod¹ eksperymentaln¹. Funkcja fmincon poradzi³a sobie trochê lepiej, obiekt szybciej osi¹ga³ wartoœæ zadan¹ i cechowa³ siê mniejszym b³êdem, jednak by³a to niewielka ró¿nica.
+
+\newpage
+\section{DMC}
+Optymalizacja wskaŸnika jakoœci w przypadku algorytmu DMC zosta³a dokonana za pomoc¹ funkcji ga, gdy¿ pozwala³a ona na ograniczenie szukanych parametrów $ N $ oraz $ N_{u} $  do liczb ca³kowitych. Trzeci szukany parametr -- $ \lambda $ -- jest liczb¹ rzeczywist¹.
+Funkcja ga zosta³a wywo³ana w poni¿szy sposób:
+\begin{lstlisting}[style=Matlab-editor]
+[paramsDMC, ~, ~] = ga(@policzDMC, 3, [], [], [], [], ...
+ [1 1 0], [Kk Kk Inf], [], [1 2]);
+\end{lstlisting}
+
+Parametry wyznaczone przez funkcjê ga wynosz¹:
+$$ N = 759; N_{u} = 4; \lambda = 0,6096 $$
+Jakoœæ regulacji widaæ na wykresie ~\ref{fig:DMC_ga}
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{rysunki/zapisz_pdf/proj1/DMC_ga.pdf}
+\caption {Regulacja DMC dla parametrów, obliczonych funkcj¹ ga}
+\label{fig:DMC_ga}
+\FloatBarrier
+\end{figure}
+
+W tym przypadku b³¹d regulacji wynosi $	5,5934 $, jest on wiêc mniejszy ni¿ w przypadku regulatorów, wyznaczonych metod¹ eksperymentaln¹. Jak widaæ, regulator bardzo dobrze poradzi³ sobie ze zmianami wartoœci zadanej, osi¹ga³ je szybko, choæ nieco wolniej ni¿ ten z parametrami, wyznaczonymi w zadaniu 5.

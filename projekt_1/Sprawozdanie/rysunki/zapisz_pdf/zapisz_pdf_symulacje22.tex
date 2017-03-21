@@ -1,0 +1,54 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+tick label style={font=\tiny},
+label style={font=\footnotesize},
+legend style={font=\footnotesize},
+title style={font=\footnotesize}
+}
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[tb]
+\tikzsetnextfilename{proj1/PID_ga}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=0,xmax=1600,ymin=0,ymax=2,
+xtick={0,500, 1000, 1500},ytick={0,0.5,1, 1.5, 2},
+xlabel=$ k $,ylabel=$ y $,legend cell align=left,legend pos=south east]
+\addplot[const plot,color=blue,semithick, densely dashed] file {PID_ga};
+%\addplot[const plot,color=red,semithick, densely dashdotted] file {PID_3_10_0};
+%\addplot[const plot,color=yellow,semithick, densely dashdotdotted] file {PID_3_10_3,2};
+%\addplot[const plot,color=green,semithick, densely dotted] file {PID_3_inf_0};
+\addplot[const plot,color=black,semithick] file {PID_zad};
+\legend{{}{$K=5,94, T_{i}=5,64, T_{d}=3,16$}, {}{$y_{zad}$}}
+%%2
+\nextgroupplot
+[xmin=0,xmax=1600,ymin=0,ymax=3,
+xtick={0,500, 1000, 1500},ytick={0,0.5,1, 1.5, 2, 2.5, 3},
+xlabel=$ k $,ylabel=$ u $,legend cell align=left,legend pos=south east]
+\addplot[const plot,color=blue,semithick, densely dashed] file {PID_ga_u};
+%\addplot[const plot,color=red,semithick, densely dashdotted] file {PID_3_10_0_u};
+%\addplot[const plot,color=yellow,semithick, densely dashdotdotted] file {PID_3_10_3,2_u};
+%\addplot[const plot,color=green,semithick, densely dotted] file {PID_3_inf_0_u};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

@@ -1,0 +1,45 @@
+\chapter{Zadanie 5.}
+\section{PID}
+Nastawy regulatora PID zosta³y dobrane poprzez dodawanie kolejnych cz³onów do regulatora P, co prowadzi³o do polepszenia jakoœci regulacji. Jakoœæ regulacji by³a oceniana jakoœciowo -- na podstawie wykresów -- oraz iloœciowo -- poprzez wskaŸnik regulacji, obliczany wzorem:
+$$ E = \sum\limits_{k=1}^{k_{konc}}(y^{zad}(k)-y(k))^{2} = (Y_{zad} - Y)(Y_{zad} - Y)' $$
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{rysunki/zapisz_pdf/proj1/PID.pdf}
+\caption {Regulacja PID dla ró¿nych nastaw}
+\end{figure}
+
+WskaŸnik jakoœci regulacji dla ka¿dych nastaw wynosi³ odpowiednio:
+\begin{itemize}
+\item {\color{green}$ K_{p} = 3; T_{i} = \infty; T_{d} = 0 \Rightarrow E = 17,2257 $}
+\item {\color{red}$ K_{p} = 3; T_{i} = 10; T_{d} = 0 \Rightarrow E = 6,0947 $ }
+\item {\color{blue}$ K_{p} = 3; T_{i} = 8; T_{d} = 3,5 \Rightarrow E = 6,9931 $}
+\item {\color{yellow}$ K_{p} = 3; T_{i} = 10; T_{d} = 3,2 \Rightarrow E = 7,3477 $ }
+\end{itemize}
+Jak widaæ, regulator PI cechowa³ siê najmniejszym b³êdem, jednak regulator PID prowadzi³ do mniejszych oscylacji podczas d¹¿enia do wartoœci zadanej. 
+
+\section{DMC}
+Dobieranie parametrów regulatora DMC polega³o na eksperymentalnym doborze parametru $ \lambda $ przy wartoœciach $D = N = N_{u} = 125$ i porównywaniu wyników. Horyzonty zosta³y obliczone na podstawie odpowiedzi skokowej(jest to moment, w którym odpowiedŸ siê ustabilizowa³a)
+
+\begin{figure}[b]
+\centering
+\includegraphics[scale=1]{rysunki/zapisz_pdf/proj1/DMC.pdf}
+\caption {Regulacja DMC dla ró¿nych wartoœci parametru $ \lambda $}
+\end{figure}
+
+WskaŸnik jakoœci regulacji dla ró¿nych wartoœci parametru $\lambda$ wynosi³ odpowiednio:
+\begin{itemize}
+\item {\color{blue}$ \lambda = 1,5 \Rightarrow E = 5,6471 $}
+\item {\color{red}$ \lambda = 7 \Rightarrow E = 6,2316 $ }
+\item {\color{yellow}$ \lambda = 10 \Rightarrow E = 6,4707 $}
+\item {\color{green}$ \lambda = 20 \Rightarrow E = 7,0259 $ }
+\end{itemize}
+
+Regulator o $\lambda = 1,5$ mia³ najmniejszy b³¹d i nie wprowadza³ przeregulowania, jednak najwolniej d¹¿y³ do wartoœci zadanej. Jeœli po¿¹dan¹ cech¹ obiektu jest jak najszybsze osi¹ganie $y_{zad}$ z mo¿liwoœci¹ lekkiego przeregulowania, najlepszym regulatorem jest ten z $\lambda = 7$, jednak jeœli zale¿y nam na jak najmniejszym przeregulowaniu, zastosowalibyœmy ten z najni¿sz¹ wartoœci¹ parametru $\lambda$.
+
+
+
+
+
+
+

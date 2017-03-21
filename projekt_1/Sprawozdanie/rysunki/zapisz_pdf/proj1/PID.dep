@@ -1,0 +1,9 @@
+proj1/PID.pdf: PID_3_8_3,5
+proj1/PID.pdf: PID_3_10_0
+proj1/PID.pdf: PID_3_10_3,2
+proj1/PID.pdf: PID_3_inf_0
+proj1/PID.pdf: PID_zad
+proj1/PID.pdf: PID_3_8_3,5_u
+proj1/PID.pdf: PID_3_10_0_u
+proj1/PID.pdf: PID_3_10_3,2_u
+proj1/PID.pdf: PID_3_inf_0_u
