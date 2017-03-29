@@ -1,0 +1,20 @@
+
+for Td = 1:29
+    [wynik, e, ~] = fmincon(@(x)(aproksymuj([x(1) x(2) x(3) Td])), [1 2 3], [], [], [], [], [0 0 0], []); 
+    W(Td,:) = wynik;
+    E(Td) = e;
+end
+
+fileTitle = ['zad3_aproks.txt'];
+filename = fopen(fileTitle,'w');
+for i=1:29
+    fprintf(filename,'%5d ',i);
+    fprintf(filename,'%5d\n',W(i,:));
+end
+fclose(filename);
+
+for i=1:29
+    fprintf(filename,'%5d ',i);
+    fprintf(filename,'%5d\n',E(i));
+end
+fclose(filename);

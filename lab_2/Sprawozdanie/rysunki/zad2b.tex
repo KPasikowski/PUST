@@ -1,0 +1,49 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[Odpowiedzi skokowe toru zakłócenie-wyjście]
+\tikzsetnextfilename{zad2_charstat}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=0,xmax=30,ymin=30,ymax=40,
+xtick={0, 10, 15, 30},
+ytick={30, 32, 34, 36, 38, 40},
+ylabel={$y(z)$},
+xlabel={$z$}]
+    \addplot coordinates { (0,34.5) (10,36.3) (15,37) (30,39.5)}; 
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

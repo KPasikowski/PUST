@@ -1,0 +1,5 @@
+\contentsline {chapter}{\numberline {1\relax .\kern .5em }Zad. 1}{2}
+\contentsline {chapter}{\numberline {2\relax .\kern .5em }Zad. 2}{3}
+\contentsline {chapter}{\numberline {3\relax .\kern .5em }Zad. 3}{4}
+\contentsline {chapter}{\numberline {4\relax .\kern .5em }Zad. 4}{7}
+\contentsline {chapter}{\numberline {5\relax .\kern .5em }Zad. 5}{11}
