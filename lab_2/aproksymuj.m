@@ -1,9 +1,9 @@
 function [ E, S, Sapr ] = aproksymuj( in )
 
-%s=load('odp_skok_y');
-s = load('zad2_odpskok_z_30');
-%Ysk = (s.Y - 35) / 10;
-Ysk = (s.Y - 35) / 30;
+s=load('odp_skok_y');
+%s = load('zad2_odpskok_z_30');
+Ysk = (s.Y - 35) / 10;
+%Ysk = (s.Y - 35) / 30;
 S = Ysk(32:end);
 
 Usk = ones(1,400);
