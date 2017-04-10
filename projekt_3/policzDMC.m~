@@ -13,11 +13,8 @@ s21=z3Y2U1(:,2);
 s22=z3Y2U2(:,2);
 
 kk=Kk_;
-dist1(1 : kk - 300) = 0;
-dist1(kk - 299 : kk) = 0.5;
-
-dist2(1 : kk - 150) = 0;
-dist2(kk - 149 : kk) = 0.3;
+dist(1 : kk - 100) = 0;
+dist(kk - 99 : kk) = 0.5;
 
 ny=2;
 nu=2;
@@ -99,8 +96,7 @@ for k=10:kk
     y(2,k)=symulacja_obiektu6y2(u(1,k-5),u(1,k-6),u(2,k-6),u(2,k-7),y(2,k-1),y(2,k-2));
     
     if nrZad == 7
-        y(1,k) = y(1,k) + dist1(k);
-        y(2,k) = y(2,k) + dist2(k);
+        
     end
     
     du(:,k)=[ke1 ke2;ke3 ke4]*(yzad(:,k)-y(:,k))-ku*cell2mat(dUP);
