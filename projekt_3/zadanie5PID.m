@@ -11,12 +11,12 @@ mkDirectory(subDirPathPID);
 mkDirectory(subDirPathPIDConf);
 mkDirectory(dirPathFiguresConf);
 
-Kp1s = [0.5 1 1.5];
-Kp2s = [1 0.5 1.5];
-Ti1s = [20 25 30];
-Ti2s = [25 30 20];
-Td1s = [3 5 7];
-Td2s = [5 6 3];
+Kp1s = [1 0.6 0.8];
+Kp2s = [1 0.6 0.8];
+Ti1s = [15 10 8];
+Ti2s = [15 10 8];
+Td1s = [0.8 0.005 0.007];
+Td2s = [0.8 0.005 0.007];
 % Ti1s = [0 0 0];
 % Ti2s = [0 0 0];
 % Td1s = [0 0 0];

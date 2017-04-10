@@ -52,10 +52,8 @@ for k = 12 : Kk
         yzad2 = yzads2(index2);
     end
     yzadVec2(k) = yzad2;
-    
     y1(k)=symulacja_obiektu6y1(u1(k-6),u1(k-7),u2(k-3),u2(k-4),y1(k-1),y1(k-2));
     y2(k)=symulacja_obiektu6y2(u1(k-5),u1(k-6),u2(k-6),u2(k-7),y2(k-1),y2(k-2));
-    
     e1(k) = yzad1 - y1(k) ;
     e2(k) = yzad2 - y2(k) ;  
     
