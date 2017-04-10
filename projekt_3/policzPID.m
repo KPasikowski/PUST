@@ -1,4 +1,4 @@
-function [ y, u, E, yzad ] = policzPID( Kp1_, Ti1_, Td1_, Kp2_, Ti2_, Td2_, Kk_, config)
+function [ y, u, E, yzad ] = policzPID( Kp1_, Ti1_, Td1_, Kp2_, Ti2_, Td2_, Kk_, config, nrZad)
 Kp1 = Kp1_;
 Ti1 = Ti1_;
 Td1 = Td1_;
@@ -18,6 +18,12 @@ r1_2 = Kp2 * ( (Tp/(2*Ti2)) - 2*(Td2/Tp) - 1 ) ;
 r0_2 = Kp2 * ( 1 + Tp/(2*Ti2) + Td2/Tp ) ;
 
 % warunki poczatkowe
+dist1(1 : Kk - 300) = 0;
+dist1(Kk - 299 : Kk) = 0.5;
+
+dist2(1 : Kk - 150) = 0;
+dist2(Kk - 149 : Kk) = 0.3;
+
 u1(1:11) = 0 ;
 y1(1:11) = 0 ;
 e1(1:11) = 0 ;
@@ -26,8 +32,15 @@ y2(1:11) = 0 ;
 e2(1:11) = 0 ;
 index1 = 1;
 index2 = 1;
-yzads1 = [1.05 0.8 1.1 0.9];
-yzads2 = [0.9 0.8 1.1 1];
+
+if nrZad == 5
+    yzads1 = [1.05 0.8 1.1 0.9];
+    yzads2 = [0.9 0.8 1.1 1];
+else
+    yzads1 = [1.05 1.05 1.05 1.05];
+    yzads2 = [0.9 0.9 0.9 0.9];    
+end
+
 yzad1 = yzads1(index1);
 yzad2 = yzads2(index2);
 yzadVec1(1:Kk) = yzad1;
@@ -54,6 +67,12 @@ for k = 12 : Kk
     yzadVec2(k) = yzad2;
     y1(k)=symulacja_obiektu6y1(u1(k-6),u1(k-7),u2(k-3),u2(k-4),y1(k-1),y1(k-2));
     y2(k)=symulacja_obiektu6y2(u1(k-5),u1(k-6),u2(k-6),u2(k-7),y2(k-1),y2(k-2));
+    
+    if nrZad == 7
+        y1(k) = y1(k) + dist1(k);
+        y2(k) = y2(k) + dist2(k);
+    end
+    
     e1(k) = yzad1 - y1(k) ;
     e2(k) = yzad2 - y2(k) ;  
     
