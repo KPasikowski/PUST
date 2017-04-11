@@ -28,7 +28,7 @@ Es = zeros(1, length(Kp1s));
 figure;
 for i = 1 : length(Kp1s)
     
-    [y, u, E, yzad] = policzPID(Kp1s(i), Ti1s(i), Td1s(i), Kp2s(i), Ti2s(i), Td2s(i), Kk, 1);
+    [y, u, E, yzad] = policzPID(Kp1s(i), Ti1s(i), Td1s(i), Kp2s(i), Ti2s(i), Td2s(i), Kk, 1, 5, @() 0);
     
     zapiszDoPliku([subDirPathPIDConf '/wyjscie1_Kp1='  num2str(Kp1s(i)) '_Ti1=' num2str(Ti1s(i)) '_Td1=' num2str(Td1s(i)) '_Kp2=' num2str(Kp2s(i)) '_Ti2=' num2str(Ti2s(i)) 'Td2=' num2str(Td2s(i)) '.txt'], y(1,:));
     zapiszDoPliku([subDirPathPIDConf '/sterowanie1_Kp1='  num2str(Kp1s(i)) '_Ti1=' num2str(Ti1s(i)) '_Td1=' num2str(Td1s(i)) '_Kp2=' num2str(Kp2s(i)) '_Ti2=' num2str(Ti2s(i)) 'Td2=' num2str(Td2s(i)) '.txt'], u(1,:));

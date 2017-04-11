@@ -16,7 +16,7 @@ N = D;
 Nu = D;
 lambda = 1;
 
-[y, u, E, yzad] = policzDMC(D, N, Nu, lambda, 600, 7);
+[y, u, E, yzad] = policzDMC(D, N, Nu, lambda, 600, 7, @() 0);
     
 zapiszDoPliku([subDirPathDMC '/wyjscie1_lambda_'  num2str(lambda) '.txt'], y(1,:));
 zapiszDoPliku([subDirPathDMC '/sterowanie1_lambda_'  num2str(lambda) '.txt'], u(1,:));

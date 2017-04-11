@@ -1,4 +1,4 @@
-function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_, lambda, Kk_, nrZad)
+function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_, lambda, Kk_, nrZad, zakl)
 N = N_;
 Nu = Nu_;
 D=D_;
@@ -98,6 +98,11 @@ for k=10:kk
     y(1,k)=symulacja_obiektu6y1(u(1,k-6),u(1,k-7),u(2,k-3),u(2,k-4),y(1,k-1),y(1,k-2));
     y(2,k)=symulacja_obiektu6y2(u(1,k-5),u(1,k-6),u(2,k-6),u(2,k-7),y(2,k-1),y(2,k-2));
     
+    if nrZad == 6
+        y(1,k) = y(1,k) + zakl();
+        y(2,k) = y(2,k) + zakl();
+    end
+
     if nrZad == 7
         y(1,k) = y(1,k) + dist1(k);
         y(2,k) = y(2,k) + dist2(k);

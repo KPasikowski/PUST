@@ -1,4 +1,4 @@
-function [ y, u, E, yzad ] = policzPID( Kp1_, Ti1_, Td1_, Kp2_, Ti2_, Td2_, Kk_, config, nrZad)
+function [ y, u, E, yzad ] = policzPID( Kp1_, Ti1_, Td1_, Kp2_, Ti2_, Td2_, Kk_, config, nrZad, zakl)
 Kp1 = Kp1_;
 Ti1 = Ti1_;
 Td1 = Td1_;
@@ -72,6 +72,12 @@ for k = 12 : Kk
         y1(k) = y1(k) + dist1(k);
         y2(k) = y2(k) + dist2(k);
     end
+    
+    if nrZad == 6
+        y1(k) = y1(k) + zakl();
+        y2(k) = y2(k) + zakl();
+    end
+
     
     e1(k) = yzad1 - y1(k) ;
     e2(k) = yzad2 - y2(k) ;  
