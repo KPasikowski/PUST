@@ -1,0 +1,55 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[]
+\tikzsetnextfilename{zad1_punkt_pracy}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1, xmax=400, ymin=20, ymax=40,
+xtick={0, 50, 100, 150, 200, 250, 300, 350, 400},
+ytick={0,0.1,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad1/wyjscie1.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad1/wyjscie2.txt};
+\legend{$y_1$,$y_2$}
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

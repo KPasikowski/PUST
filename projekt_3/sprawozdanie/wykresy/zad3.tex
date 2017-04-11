@@ -1,0 +1,102 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[Odpowiedź skokowa toru u1 - y1]
+\tikzsetnextfilename{zad3_u1y1}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=293,ymin=-0.5,ymax=3,
+xtick={0,50,...,300},
+ytick={-3,-2,...,4},
+ylabel={$s^{1,1}(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad3/skok_sterowania/odp_skok_y1_u1_ster_0.4.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[Odpowiedź skokowa toru u1 - y2]
+\tikzsetnextfilename{zad3_u1y2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=293,ymin=-0.5,ymax=3,
+xtick={0,50,...,300},
+ytick={-3,-2,...,4},
+ylabel={$s^{1,2}(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad3/skok_sterowania/odp_skok_y2_u1_ster_0.4.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[Odpowiedź skokowa toru u2 - y1]
+\tikzsetnextfilename{zad3_u2y1}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=293,ymin=-0.5,ymax=3,
+xtick={0,50,...,300},
+ytick={-3,-2,...,4},
+ylabel={$s^{2,1}(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad3/skok_sterowania/odp_skok_y1_u2_ster_0.4.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[Odpowiedź skokowa toru u2 - y2]
+\tikzsetnextfilename{zad3_u2y2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=293,ymin=-0.5,ymax=3,
+xtick={0,50,...,300},
+ytick={-3,-2,...,4},
+ylabel={$s^{2,2}(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad3/skok_sterowania/odp_skok_y2_u2_ster_0.4.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

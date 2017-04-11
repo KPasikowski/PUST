@@ -1,0 +1,319 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[Regulator PID 1]
+\tikzsetnextfilename{zad6_P1}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/PID/wartosc_zadana1_PID.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/PID/wyjscie1_szum=1.txt};
+\legend{$y_{1_{zad}}$,$y_1$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/PID/sterowanie1_szum=1.txt};
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/PID/wartosc_zadana2_PID.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/PID/wyjscie2_szum=1.txt};
+\legend{$y_{2_{zad}}$,$y_2$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/PID/sterowanie2_szum=1.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+\begin{figure}[Regulator PID 2]
+\tikzsetnextfilename{zad6_P2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/PID/wartosc_zadana1_PID.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/PID/wyjscie1_szum=2.txt};
+\legend{$y_{1_{zad}}$,$y_1$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/PID/sterowanie1_szum=2.txt};
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/PID/wartosc_zadana2_PID.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/PID/wyjscie2_szum=2.txt};
+\legend{$y_{2_{zad}}$,$y_2$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/PID/sterowanie2_szum=2.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[Regulator PID 3]
+\tikzsetnextfilename{zad6_P3}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/PID/wartosc_zadana1_PID.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/PID/wyjscie1_szum=3.txt};
+\legend{$y_{1_{zad}}$,$y_1$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/PID/sterowanie1_szum=3.txt};
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/PID/wartosc_zadana2_PID.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/PID/wyjscie2_szum=3.txt};
+\legend{$y_{2_{zad}}$,$y_2$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/PID/sterowanie2_szum=3.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[Regulator DMC 1]
+\tikzsetnextfilename{zad6_D1}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/DMC/wartosc_zadana1_DMC.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/DMC/wyjscie1_szum=1.txt};
+\legend{$y_{1_{zad}}$,$y_1$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/DMC/sterowanie1_szum=1.txt};
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/DMC/wartosc_zadana2_DMC.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/DMC/wyjscie2_szum=1.txt};
+\legend{$y_{2_{zad}}$,$y_2$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/DMC/sterowanie2_szum=1.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+\begin{figure}[Regulator DMC 2]
+\tikzsetnextfilename{zad6_D2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/DMC/wartosc_zadana1_DMC.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/DMC/wyjscie1_szum=2.txt};
+\legend{$y_{1_{zad}}$,$y_1$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/DMC/sterowanie1_szum=2.txt};
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/DMC/wartosc_zadana2_DMC.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/DMC/wyjscie2_szum=2.txt};
+\legend{$y_{2_{zad}}$,$y_2$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/DMC/sterowanie2_szum=2.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[Regulator DMC 3]
+\tikzsetnextfilename{zad6_D3}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/DMC/wartosc_zadana1_DMC.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/DMC/wyjscie1_szum=3.txt};
+\legend{$y_{1_{zad}}$,$y_1$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_1(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/DMC/sterowanie1_szum=3.txt};
+
+%%1
+\nextgroupplot
+[xmin=1,xmax=600,ymin=-0.5,ymax=2,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$y_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad7/DMC/wartosc_zadana2_DMC.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad6/DMC/wyjscie2_szum=3.txt};
+\legend{$y_{2_{zad}}$,$y_2$}
+\nextgroupplot
+%%2
+[xmin=1,xmax=600,ymin=-0.5,ymax=1.5,
+xtick={0,50,...,800},
+ytick={-0.5,0,...,4},
+ylabel={$u_2(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/DMC/sterowanie2_szum=3.txt};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\end{document}
