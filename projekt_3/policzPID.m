@@ -92,8 +92,8 @@ for k = 12 : Kk
 
 end
 
-E1 = (yzadVec1 - y1)*(yzadVec1 - y1)';
-E2 = (yzadVec2 - y2)*(yzadVec2 - y2)';
+E1 = (yzadVec1 - y1) * (yzadVec1 - y1)';
+E2 = (yzadVec2 - y2) * (yzadVec2 - y2)';
 E = E1 + E2;
 
 yzad = zeros(2, Kk);

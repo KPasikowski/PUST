@@ -1,12 +1,12 @@
 parametry;
 
 dirPathFigures = 'wykresy_figury/zad5';
-dirPathFiguresConf = [dirPathFigures '/config_podstawowy'];
-% dirPathFiguresConf = [dirPathFigures '/config_odwrotny'];
+%dirPathFiguresConf = [dirPathFigures '/config_podstawowy'];
+dirPathFiguresConf = [dirPathFigures '/config_odwrotny'];
 dirPathTxt = 'wykresy_pliki/zad5';
 subDirPathPID = [dirPathTxt '/PID'];
-subDirPathPIDConf = [subDirPathPID '/config_podstawowy'];
-% subDirPathPIDConf = [subDirPathPID '/config_odwrotny'];
+%subDirPathPIDConf = [subDirPathPID '/config_podstawowy'];
+subDirPathPIDConf = [subDirPathPID '/config_odwrotny'];
 mkDirectory(subDirPathPID);
 mkDirectory(subDirPathPIDConf);
 mkDirectory(dirPathFiguresConf);

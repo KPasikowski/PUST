@@ -26,4 +26,4 @@ end
 
 figure;
 rysujWykres(z, u, ys, 'zaklocenie', 'sterowanie', 'y', 'Charakterystyka statyczna procesu y(u,z)');
-savefig([dirPathFigures '/zad2_char_stat.fig']);
+%savefig([dirPathFigures '/zad2_char_stat.fig']);

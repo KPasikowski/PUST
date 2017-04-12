@@ -3,14 +3,14 @@ N = N_;
 Nu = Nu_;
 D=D_;
 
-z3Y1U1 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y1_u1_ster_0.4.txt');
-z3Y1U2 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y1_u2_ster_0.4.txt');
-z3Y2U1 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y2_u1_ster_0.4.txt');
-z3Y2U2 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y2_u2_ster_0.4.txt');
-s11=z3Y1U1(:,2);
-s12=z3Y1U2(:,2);
-s21=z3Y2U1(:,2);
-s22=z3Y2U2(:,2);
+Su1y1 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y1_u1_ster_0.4.txt');
+Su2y1 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y1_u2_ster_0.4.txt');
+Su1y2 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y2_u1_ster_0.4.txt');
+Su2y2 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y2_u2_ster_0.4.txt');
+s11=Su1y1(:,2);
+s12=Su2y1(:,2);
+s21=Su1y2(:,2);
+s22=Su2y2(:,2);
 
 kk=Kk_;
 dist1(1 : kk - 300) = 0;
@@ -52,8 +52,8 @@ for i=1:N
          M(i,j)={[s11(i-j+1) s12(i-j+1); s21(i-j+1) s22(i-j+1)]};
       else
           M(i,j)={zeros(nu,ny)};
-      end;
-   end;
+      end
+   end
 end
 
 MP=cell(N,D-1);
@@ -63,9 +63,9 @@ for i=1:N
          MP(i,j)={[s11(i+j)-s11(j) s12(i+j)-s12(j); s21(i+j)-s21(j) s22(i+j)-s22(j)]};
       else
          MP(i,j)={[s11(D)-s11(j) s12(D)-s12(j); s21(D)-s21(j) s22(D)-s22(j)]};
-      end;      
-   end;
-end;
+      end
+   end
+end
 
 K=(cell2mat(M)'*cell2mat(M)+diag(ones(1,Nu*nu)*lambda))^(-1)*cell2mat(M)';
 ku=K(1:nu,:)*cell2mat(MP);
@@ -120,8 +120,8 @@ for k=10:kk
 end
 
 for k=1:kk
-    E1=E1+((yzad(1,k)-y(1,k))^2);
-    E2=E2+((yzad(2,k)-y(2,k))^2);
+    E1= E1 + ((yzad(1,k) - y(1,k))^2);
+    E2= E2 + ((yzad(2,k) - y(2,k))^2);
 end
 
 E=E1+E2;
