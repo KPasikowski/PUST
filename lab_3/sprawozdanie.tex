@@ -1,0 +1,229 @@
+\documentclass[a4paper,titlepage,11pt,twosides,floatssmall]{mwrep}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[OT1]{fontenc}
+\usepackage{polski}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,decorations.markings,math,arrows.meta}
+\usepackage{rotating}
+\usepackage[percent]{overpic}
+\usepackage[cp1250]{inputenc}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+\usepackage{listings}
+\usepackage{matlab-prettifier}
+\definecolor{szary}{rgb}{0.95,0.95,0.95}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+%konfiguracje pakietu listings
+\lstset{
+	backgroundcolor=\color{szary},
+	frame=single,
+	breaklines=true,
+}
+\lstdefinestyle{customlatex}{
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\small\ttfamily,
+}
+\lstdefinestyle{customc}{
+	breaklines=true,
+	frame=tb,
+	language=C,
+	xleftmargin=0pt,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+\lstdefinestyle{custommatlab}{
+	captionpos=t,
+	breaklines=true,
+	frame=tb,
+	xleftmargin=0pt,
+	language=matlab,
+	showstringspaces=false,
+	%basicstyle=\footnotesize\ttfamily,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+%wymiar tekstu (bez ¿ywej paginy)
+\textwidth 160mm \textheight 247mm
+
+%ustawienia pakietu pgfplots
+\pgfplotsset{
+tick label style={font=\scriptsize},
+label style={font=\small},
+legend style={font=\small},
+title style={font=\small}
+}
+
+\def\figurename{Rys.}
+\def\tablename{Tab.}
+
+%konfiguracja liczby p³ywaj¹cych elementów
+\setcounter{topnumber}{0}%2
+\setcounter{bottomnumber}{3}%1
+\setcounter{totalnumber}{5}%3
+\renewcommand{\textfraction}{0.01}%0.2
+\renewcommand{\topfraction}{0.95}%0.7
+\renewcommand{\bottomfraction}{0.95}%0.3
+\renewcommand{\floatpagefraction}{0.35}%0.5
+
+\begin{document}
+\frenchspacing
+\pagestyle{uheadings}
+
+%strona tytu³owa
+\title{\bf Sprawozdanie z æwiczenia laboratoryjnego nr 3 \vskip 0.1cm}
+\author{Mateusz Koroœ, Ksawery Pasikowski, Mateusz Morusiewicz}
+\date{2017}
+
+\makeatletter
+\renewcommand{\maketitle}{\begin{titlepage}
+\begin{center}{\LARGE {\bf
+Wydzia³ Elektroniki i Technik Informacyjnych}}\\
+\vspace{0.4cm}
+{\LARGE {\bf Politechnika Warszawska}}\\
+\vspace{0.3cm}
+\end{center}
+\vspace{5cm}
+\begin{center}
+{\bf \LARGE Projektowanie uk³adów sterowania\\ (projekt grupowy) \vskip 0.1cm}
+\end{center}
+\vspace{1cm}
+\begin{center}
+{\bf \LARGE \@title}
+\end{center}
+\vspace{2cm}
+\begin{center}
+{\bf \Large \@author \par}
+\end{center}
+\vspace*{\stretch{6}}
+\begin{center}
+\bf{\large{Warszawa, \@date\vskip 0.1cm}}
+\end{center}
+\end{titlepage}
+}
+\makeatother
+
+\maketitle
+
+\tableofcontents
+\chapter{Zad. 1}
+Mo¿liwoœæ sterowania i pomiaru w komunikacji ze stanowiskiem zosta³a sprawdzona poprzez funkcjê readMeasurements() oraz sendControls(u1, u2). Sygna³y steruj¹ce, które by³y obs³ugiwane to moc na grza³kach $G1$ i $G2$ oraz moc wiatraków $ W1 $ i $ W2 $, natomiast mierzona by³a temperatura $ T1 $ w otoczeniu grza³ki $ G1 $ oraz temperatura $ T2 $ w punkcie pomiêdzy grza³kami $ G1 $ i $ G2 $. W punkcie pracy, tzn. dla $ (W1, W2, G1, G2) = (50, 50, 29, 34) $ pomiar temperatury $ T1 $ wyniós³ $ \ang{36.5}C $, natomiast pomiar temperatury $ T2 $ wyniós³ $ \ang{38.5}C. 
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad1_punkt_pracy.pdf}
+	\caption{Dochodzenie uk³adu do punktu pracy przy sterowaniu $ u = 29 \quad z = 0$}
+	\label{zad1_punkt_pracy}
+\end{figure}
+
+\chapter{Zad. 2}
+Skroœne odpowiedzi skokowe zosta³y przedstawione na wykresie ~\ref{zaklocenia}. Skoki sterowania wynosi³y odpowiednio:
+\begin{itemize}
+	\item {\color{red} $ \Delta u = 10 $}
+	\item {\color{blue} $ \Delta u = 20 $}
+	\item {\color{green} $ \Delta u = 40 $}
+\end{itemize}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad2_odpskok.pdf}
+	\caption{Odpowiedzi skokowe toru zak³ócenie-wyjœcie}
+	\label{zaklocenia}
+\end{figure}
+
+W³aœciwoœci statyczne obiektu mo¿na okreœliæ jako liniowe, gdy¿ zmiana zak³ócenia powoduje liniow¹ zmianê sygna³u wyjœciowego. Charakterystyki statyczne zosta³y przedstawione na wykresach ~\ref{char_stat_z}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad2_charstat.pdf}
+	\caption{Charatkterystyka statyczna toru zak³ócenie-wyjœcie}
+	\label{char_stat_z}
+\end{figure}
+Wzmocnienie statyczne procesu zosta³o obliczone ze wzoru:
+$$ K_{st} = \frac{\Delta y}{\Delta z} \approx \num{0.19}$$
+
+\chapter{Zad. 3}
+Najlepiej nadaj¹cymi siê odpowiedziami skokowymi sygna³u steruj¹cego by³y te dla skoku sterowania $ \Delta u = 40 $. Odpowiedzi te zosta³y przekszta³cone do postaci wykorzystywanej w algorytmie DMC w nastêpuj¹cy sposób:
+\begin{lstlisting}[style=Matlab-editor]
+Ysk = (s.Y1 - 36.5) / 40;
+S = Ysk((Td+3):end);
+\end{lstlisting}
+
+Analogicznie zosta³a przekszta³cona odpowiedŸ skokowa drugiego czujnika:
+\begin{lstlisting}[style=Matlab-editor]
+Ysk = (s.Y2 - 38.5) / 40;
+S = Ysk((Td+3):end);
+\end{lstlisting}
+Nastêpnie zosta³a wykonana aproksymacja odpowiedzi skokowych, do której zosta³ u¿yty cz³on inercyjny drugiego rzêdu z opóŸnieniem, opisany transmitancj¹:
+$$ G(z) = \frac{b_{1}z^{-1} + b_{2}z^{-2}}{1+a_{1}z^{-1}+a_{2}z^{-2}}z^{-T_{d}} $$
+Gdzie:
+\begin{align}
+\begin{aligned}
+ a_{1} &= - \alpha_{1} - \alpha_{2} \\
+ a_{2} &= \alpha_{1} \alpha_{2} \\
+ \alpha_{1} &= e^{-\frac{1}{T_{1}}} \\
+ \alpha_{2} &= e^{-\frac{1}{T_{2}}} \\
+ b_{1} &= \frac{K}{T_{1} - T_{2}}[T_{1}(1- \alpha_{1}) - T_{2}(1- \alpha_{2})] \\
+ b_{2} &= \frac{K}{T_{1} - T_{2}}[\alpha_{1}T_{2}(1- \alpha_{2}) - \alpha_{2}T_{1}(1- \alpha_{1})]
+\end{aligned}
+\end{align}
+
+Po przekszta³ceniu powy¿szego równania otrzymujemy równanie ró¿nicowe postaci:
+$$ y(k) = b_{1}u(k-T_{D}-1) + b_{2}u(k-T_{d}-2) - a_{1}y(k-1) - a_{2}y(k-2) $$
+
+W celu doboru parametrów modelu zosta³a u¿yta funkcja wewnêtrzna œrodowiska MATLAB: fmincon(). Parametry modelu, zwrócone przez ow¹ funkcjê dla odpowiedzi skokowej sterowania to: $$ T1 = \num{3.60917} \quad T2 = \num{61.23879} \quad K = \num{0.30164} $$ oraz dla odpowiedzi skokowej zak³ócenia:
+$$ T1 = \num{81.44247} \quad T2 = \num{0.60811} \quad K = \num{0.15047} $$
+Parametry te zosta³y dobrane w taki sposób, aby b³¹d œredniokwadratowy miêdzy odpowiedzi¹ aproksymowan¹, a t¹ rzeczywist¹ by³ jak najmniejszy. Wartoœæ b³êdu w zale¿noœci od parametru $ T_{d} $ dla odpowiedzi skokowej sterowania widaæ na rysunku ~\ref{E_fmincon_u}, natomiast dla odpowiedzi skokowej zak³ócenia na rysunku ~\ref{E_fmincon_z}.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad3_E_u.pdf}
+	\caption{B³¹d œredniokwadratowy odpowiedzi skokowej sterowania w zale¿noœci od $ T_{d} $}
+	\label{E_fmincon_u}
+\end{figure} 
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad3_E.pdf}
+	\caption{B³¹d œredniokwadratowy odpowiedzi skokowej zak³ócenia w zale¿noœci od $ T_{d} $}
+	\label{E_fmincon_z}
+\end{figure} 
+Dla powy¿szych parametrów wyniós³ on $ \num{0.0137} $ dla odpowiedzi skokowej sterowania oraz $ \num{0.0173} $ dla odpowiedzi skokowej zak³ócenia.
+Odpowiedzi skokowe sygna³u steruj¹cego i zak³ócenia wraz z ich aproksymacj¹ widaæ na wykresie ~\ref{odp_skok}. Jak widaæ na wykresach, funkcja aproksymuj¹ca jest bardzo dobrym przybli¿eniem oryginalnego przebiegu. Sumaryczny b³¹d jest niewielki.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad3_odpskok.pdf}
+	\caption{Odpowiedzi skokowe sygna³u steruj¹cego i zak³ócenia}
+	\label{odp_skok}
+\end{figure}
+
+\chapter{Zad. 4}
+\section{PID}
+\begin{lstlisting}[style=Matlab-editor]
+
+\end{lstlisting}
+
+\section{DMC}
+\begin{lstlisting}[style=Matlab-editor]
+
+\end{lstlisting}
+\chapter{Zad. 5}
+Regulatory zosta³y przetestowane poprzez zmianê wartoœci zadanej z punktu pracy do zadanej wartoœci. Dla obu regulatorów by³a to zmiana najpierw na jednym czujniku, nastêpnie na drugim a ostateczn¹ prób¹ by³ skok jednej wartoœci do wiêkszej ni¿ punkt pracy, natomiast drugiej do mniejszej. Oba regulatory poradzi³y sobie z dojœciem do wartoœci zadanych, jednak regulator DMC okaza³ siê du¿o lepszy .
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{rysunki/zad5_dmc.pdf}
+	\caption{Regulacja algorytmu DMC przy skoku zak³ócenia}
+	\label{zad5_z_uwzglednione}
+\end{figure} 
+\end{document}
+

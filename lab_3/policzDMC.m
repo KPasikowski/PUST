@@ -2,44 +2,44 @@ addpath ('F:\SerialCommunication'); % add a path
 initSerialControl COM14 % initialise com port
 N = 200;
 Nu = 50;
+D=200;
+kk=250;
 lambda = 2;
 Upp1 = 29;
 Upp2 = 34;
 U_max = 100;
 U_min = 0;
-N=round(N);
-Nu=round(Nu);
-z3Y1U1 = load('Sapr_T1_G1');
-z3Y1U2 = load('Sapr_T1_G2');
-z3Y2U1 = load('Sapr_T2_G1');
-z3Y2U2 = load('Sapr_T2_G2');
-s11=z3Y1U1.Sapr;
-s12=z3Y1U2.Sapr;
-s21=z3Y2U1.Sapr;
-s22=z3Y2U2.Sapr;
-D=200;
-kk=250;
-startk1=1;
-startk2=1;
+
+Sapru1y1 = load('Sapr_T1_G1');
+Sapru2y1 = load('Sapr_T1_G2');
+Sapru1y2 = load('Sapr_T2_G1');
+Sapru2y2 = load('Sapr_T2_G2');
+s11=Sapru1y1.Sapr;
+s12=Sapru2y1.Sapr;
+s21=Sapru1y2.Sapr;
+s22=Sapru2y2.Sapr;
+
+
 ny=2;
 nu=2;
 y=zeros(ny,kk);
 yzad=zeros(ny,kk);
-yzad(1,startk1:kk)=40;
-yzad(2,startk2:kk)=37;
+yzad(1,1:kk)=40;
+yzad(2,1:kk)=37;
 u=zeros(nu,kk);
 du=zeros(nu,kk);
 dUP=cell(D-1,1);
 dUP(1:D-1)={zeros(2,1)};
 M=cell(N,Nu);
+
 for i=1:N
    for j=1:Nu
       if (i>=j)
          M(i,j)={[s11(i-j+1) s12(i-j+1); s21(i-j+1) s22(i-j+1)]};
       else
           M(i,j)={zeros(nu,ny)};
-      end;
-   end;
+      end
+   end
 end
 MP=cell(N,D-1);
 for i=1:N
@@ -48,9 +48,9 @@ for i=1:N
          MP(i,j)={[s11(i+j)-s11(j) s12(i+j)-s12(j); s21(i+j)-s21(j) s22(i+j)-s22(j)]};
       else
          MP(i,j)={[s11(D)-s11(j) s12(D)-s12(j); s21(D)-s21(j) s22(D)-s22(j)]};
-      end;      
-   end;
-end;
+      end  
+   end
+end
 K=(cell2mat(M)'*cell2mat(M)+diag(ones(1,Nu*nu)*lambda))^(-1)*cell2mat(M)';
 ku=K(1:nu,:)*cell2mat(MP);
 ke1=sum(K(1,1:2:(N*ny)));
