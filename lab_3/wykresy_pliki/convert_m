@@ -1,0 +1,10 @@
+LS = ls
+for j = 1 : length(LS)
+	vector = struct2cell(load(deblank(LS(j,:)))){1};
+	fileVar = fopen(deblank(regexprep(LS(j,:),'(\S).mat','$1.txt')), 'w');
+	for j = 1 : length(vector)
+		fprintf(fileVar,'%5d ',i);
+		fprintf(fileVar,'%5d\n',vector(i));
+	end
+	fclose(fileVar);
+end
