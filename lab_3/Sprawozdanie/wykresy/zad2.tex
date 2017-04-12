@@ -62,8 +62,8 @@ ytick={0,5,...,100},
 ylabel={$T_2(t)$},
 xlabel={$t$}]
 \addplot[const plot,color=blue,semithick] file {datadir/T2_G1_39.txt};
-\addplot[const plot,color=red,semithick] file {datadir/T2_G1_39.txt};
-\addplot[const plot,color=green,semithick] file {datadir/T2_G1_39.txt};
+\addplot[const plot,color=red,semithick] file {datadir/T2_G1_49.txt};
+\addplot[const plot,color=green,semithick] file {datadir/T2_G1_69.txt};
 \legend{$G1 = 39$,$G1 = 49$,$G1 = 69$}
 \end{groupplot}
 \end{tikzpicture}
@@ -127,7 +127,7 @@ xlabel={$G$}]
     \addplot coordinates { (29,38.50000) (39,40.370000) (49,42.120000) (69,46.250000) }; 
     \addplot coordinates { (34,36.50000) (44,37.370000) (54,38.180000) (74,39.620000) }; 
     \addplot coordinates { (34,38.50000) (44,40.810000) (54,42.250000) (74,46.750000) }; 
-	\legend{ $T_1(G_1)$, $T_2(G_1)$, $T_2(G_1)$, $T_2(G_2)$ }
+	\legend{ $T_1(G_1)$, $T_2(G_1)$, $T_1(G_2)$, $T_2(G_2)$ }
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
