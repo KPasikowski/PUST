@@ -125,18 +125,38 @@ Wydzia³ Elektroniki i Technik Informacyjnych}}\\
 Mo¿liwoœæ sterowania i pomiaru w komunikacji ze stanowiskiem zosta³a sprawdzona poprzez funkcjê readMeasurements oraz sendControls. Sygna³y steruj¹ce, które by³y obs³ugiwane to moc na grza³kach $G1$ i $G2$ oraz moc wiatraków $ W1 $ i $ W2 $, natomiast mierzona by³a temperatura $ T1 $ w otoczeniu grza³ki $ G1 $ oraz temperatura $ T2 $ w punkcie pomiêdzy grza³kami $ G1 $ i $ G2 $. W punkcie pracy, tzn. dla $ (W1, W2, G1, G2) = (50, 50, 29, 34) $ pomiar temperatury $ T1 $ wyniós³ $ \ang{36.5}C $, natomiast pomiar temperatury $ T2 $ wyniós³ $ \ang{38.5}C. $
 
 \chapter{Zad. 2}
-Skroœne odpowiedzi skokowe czujnika $ T1 $ i grza³ki $ G2 $ zosta³y przedstawione na wykresie ~\ref{zad2_odpskok} Skoki sterowania wynosi³y odpowiednio:
+Skoki sterowania wynosi³y odpowiednio:
 \begin{itemize}
 	\item {\color{blue} $ \Delta u = 10 $}
 	\item {\color{red} $ \Delta u = 20 $}
 	\item {\color{green} $ \Delta u = 40 $}
 \end{itemize}
+Odpowiedzi skokowe widaæ na wykresach ~\ref{zad2_odpskok_u1y1}, ~\ref{zad2_odpskok_u2y1}, ~\ref{zad2_odpskok_u1y2} i ~\ref{zad2_odpskok_u2y2}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u1y1.pdf}
+	\caption{Skroœne odpowiedzi skokowe czujnika $T1$ dla ró¿nych skoków sterowania grza³ki $ G1 $ }
+	\label{zad2_odpskok_u1y1}
+\end{figure}
 \begin{figure}[b]
 	\centering
 	\includegraphics[scale=1]{wykresy/zad2_u2y1.pdf}
-	\caption{Skroœne odpowiedzi skokowe dla ró¿nych skoków sterowania grza³ki $ G2 $ }
-	\label{zad2_odpskok}
+	\caption{Skroœne odpowiedzi skokowe czujnika $T1$ dla ró¿nych skoków sterowania grza³ki $ G2 $ }
+	\label{zad2_odpskok_u2y1}
 \end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u1y2.pdf}
+	\caption{Skroœne odpowiedzi skokowe czujnika $T2$ dla ró¿nych skoków sterowania grza³ki $ G1 $ }
+	\label{zad2_odpskok_u1y2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u2y2.pdf}
+	\caption{Skroœne odpowiedzi skokowe czujnika $T2$ dla ró¿nych skoków sterowania grza³ki $ G2 $ }
+	\label{zad2_odpskok_u2y2}
+\end{figure}
+
 
 W³aœciwoœci statyczne obiektu mo¿na okreœliæ jako liniowe, gdy¿ zmiana sterowania powoduje liniow¹ zmianê sygna³u wyjœciowego. Charakterystyki statyczne zosta³y przedstawione na wykresie ~\ref{char_stat}
 \begin{figure}[b]
@@ -145,8 +165,15 @@ W³aœciwoœci statyczne obiektu mo¿na okreœliæ jako liniowe, gdy¿ zmiana sterowani
 	\caption{Charatkterystyki statyczne}
 	\label{char_stat}
 \end{figure}
-Wzmocnienie statyczne procesu zosta³o obliczone ze wzoru:
-$$ K_{st} = \frac{\Delta y}{\Delta u} \approx \num{0.19}$$
+Wzmocnienie statyczne procesu dla ka¿dego z torów zosta³o obliczone ze wzoru:
+\begin{equation*}
+\begin{split}
+K_{11} &= \frac{\Delta y_{1}}{\Delta u_{1}} \approx \num{0.26}\\
+K_{12} &= \frac{\Delta y_{1}}{\Delta u_{2}} \approx \num{0.08}\\
+K_{21} &= \frac{\Delta y_{2}}{\Delta u_{1}} \approx \num{0.20}\\
+K_{22} &= \frac{\Delta y_{2}}{\Delta u_{2}} \approx \num{0.21}
+\end{split}
+\end{equation*}
 
 \chapter{Zad. 3}
 Najlepiej nadaj¹cymi siê odpowiedziami skokowymi sygna³u steruj¹cego by³y te dla skoku sterowania $ \Delta u = 40 $. Odpowiedzi te zosta³y przekszta³cone do postaci wykorzystywanej w algorytmie DMC w nastêpuj¹cy sposób:
