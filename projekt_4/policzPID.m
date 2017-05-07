@@ -6,7 +6,6 @@ Kp = Kp_;
 Ti = Ti_;
 Td = Td_;
 
-
 Kk = Kk_;
 Tp = 0.5;
 
@@ -35,7 +34,7 @@ for k = 7 : Kk
     end
     yzadVec(k) = yzad;
 
-    y(k)=symulacja_obiektu6y(u(k-5), u(k-6), y(k-1), y(k-2));
+    y(k) = symulacja_obiektu6y(u(k-5), u(k-6), y(k-1), y(k-2));
 
     e(k) = yzad - y(k) ;
     

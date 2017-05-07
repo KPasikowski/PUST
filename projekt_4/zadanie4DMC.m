@@ -8,7 +8,7 @@ mkDirectory(subDirPathDMC);
 D = 200;
 N = D;
 Nu = D;
-lambdas = [10];
+lambdas = [1000];
 Es = zeros(1, length(lambdas));
 
 

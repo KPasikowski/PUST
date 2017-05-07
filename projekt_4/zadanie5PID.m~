@@ -1,0 +1,47 @@
+parametry;
+
+dirPathFigures = 'wykresy_figury/zad5';
+dirPathTxt = 'wykresy_pliki/zad5';
+mkDirectory(dirPathFigures);
+mkDirectory(dirPathTxt);
+
+Kps = [1.5 1 0 0 0 ; 1.5 1 1.5 0 0 ; 1.5 1 1.5 1 0 ; 1.5 1 1.5 1 1];
+Tis = [8 10 0 0 0 ; 8 10 12 0 0 ; 8 10 12 12 0 ; 8 10 12 12 12];
+Tds = [0.05 0.03 0 0 0 ; 0.05 0.03 0.05 0 0 ; 0.05 0.03 0.05 0.05 0 ; 0.05 0.03 0.05 0.05 0.05];
+d = [1 2];
+c = [5 6];
+
+
+Es = zeros(1, length(Kps));
+
+
+figure;
+
+for k = 1 : 
+for i = 1 : length(Kps)
+    
+    [y, u, E, yzad] = policzPIDzad5(Kps, Tis, Tds, d, c, Kk);
+    
+    zapiszDoPliku([subDirPathPID '/wyjscie_Kp='  num2str(Kps(i)) '_Ti=' num2str(Tis(i)) '_Td=' num2str(Tds(i)) '.txt'], y);
+    zapiszDoPliku([subDirPathPID '/sterowanie_Kp='  num2str(Kps(i)) '_Ti=' num2str(Tis(i)) '_Td=' num2str(Tds(i)) '.txt'], u);
+    
+    subplot(2,1,1);
+    rysujWykres((1 : length(y)), y, -1, 'k', 'y', '', 'Wyjscie obiektu');
+    hold on
+    rysujWykres((1 : length(yzad)), yzad, -1, 'k', 'y', '', 'Wyjscie obiektu');
+    hold on
+    
+    subplot(2,1,2);
+    rysujWykres((1 : length(u)), u, -1, 'k', 'u', '', 'Sterowanie obiektu');
+    hold on
+    
+    Es(i) = E;
+
+end
+
+zapiszDoPliku([subDirPathPID '/wartosc_zadana.txt'], yzad);
+
+savefig([dirPathFigures '/sterowanie_wyjscie_PID.fig']);
+zapiszDoPliku([subDirPathPID '/bledy.txt'], Es);
+
+
