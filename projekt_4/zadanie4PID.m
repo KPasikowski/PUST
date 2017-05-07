@@ -3,6 +3,7 @@ parametry;
 dirPathFigures = 'wykresy_figury/zad4';
 dirPathTxt = 'wykresy_pliki/zad4';
 subDirPathPID = [dirPathTxt '/PID'];
+mkDirectory(dirPathFigures);
 mkDirectory(subDirPathPID);
 
 Kps = [1.5];
