@@ -1,4 +1,4 @@
-function [ y, u, ] = policzPIDzad5(Kp_, Ti_, Td_, d_, c_, Kk_)
+function [ y, u, E, yzadVec] = policzPIDzad5(Kp_, Ti_, Td_, d_, c_, Kk_)
 U_min = -1;
 U_max = 1;
 
@@ -19,7 +19,7 @@ u(1:Kk) = 0 ;
 y(1:Kk) = 0 ;
 e(1:Kk) = 0 ;
 index = 1;
-yzads = [-1 -2.5 -1 0];
+yzads = [-1 -2.5 -1 0.08];
 yzad = yzads(index);
 yzadVec(1:Kk) = yzad;
 
@@ -55,23 +55,25 @@ for k = 7 : Kk
     end
     
     if numOfControllers == 2
-       mi(1) = 1 - 1 / (1 + exp(-d(1) * (Y(k) - c(1))));
-       mi(2) = 1 / (1 + exp(-d(1) * (Y(k) - c(1))));
+       mi(1) = 1 - 1 / (1 + exp(-d(1) * (y(k) - c(1))));
+       mi(2) = 1 / (1 + exp(-d(1) * (y(k) - c(1))));
+       disp('m1 = ');
+       disp(m)
     elseif numOfControllers == 3
-       mi(1) = 1 - 1 / (1 + exp(-d(1) * (Y(k) - c(1))));
-       mi(2) = 1 / (1 + exp(-d(1) * (Y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (Y(k) - c(2))));
-       mi(3) = 1 / (1 + exp(-d(2) * (Y(k) - c(2))));
+       mi(1) = 1 - 1 / (1 + exp(-d(1) * (y(k) - c(1))));
+       mi(2) = 1 / (1 + exp(-d(1) * (y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (y(k) - c(2))));
+       mi(3) = 1 / (1 + exp(-d(2) * (y(k) - c(2))));
     elseif numOfControllers == 4
-       mi(1) = 1 - 1 / (1 + exp(-d(1) * (Y(k) - c(1))));
-       mi(2) = 1 / (1 + exp(-d(1) * (Y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (Y(k) - c(2))));
-       mi(2) = 1 / (1 + exp(-d(2) * (Y(k) - c(2)))) - 1 / (1 + exp(-d(3) * (Y(k) - c(3))));
-       mi(4) = 1 / (1 + exp(-d(3) * (Y(k) - c(3))));
+       mi(1) = 1 - 1 / (1 + exp(-d(1) * (y(k) - c(1))));
+       mi(2) = 1 / (1 + exp(-d(1) * (y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (y(k) - c(2))));
+       mi(2) = 1 / (1 + exp(-d(2) * (y(k) - c(2)))) - 1 / (1 + exp(-d(3) * (y(k) - c(3))));
+       mi(4) = 1 / (1 + exp(-d(3) * (y(k) - c(3))));
     elseif numOfControllers == 5
-       mi(1) = 1 - 1 / (1 + exp(-d(1) * (Y(k) - c(1))));
-       mi(2) = 1 / (1 + exp(-d(1) * (Y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (Y(k) - c(2))));
-       mi(3) = 1 / (1 + exp(-d(2) * (Y(k) - c(2)))) - 1 / (1 + exp(-d(3) * (Y(k) - c(3))));
-       mi(4) = 1 / (1 + exp(-d(3) * (Y(k) - c(3)))) - 1 / (1 + exp(-d(4) * (Y(k) - c(4))));
-       mi(5) = 1 / (1 + exp(-d(4) * (Y(k) - c(4))));
+       mi(1) = 1 - 1 / (1 + exp(-d(1) * (y(k) - c(1))));
+       mi(2) = 1 / (1 + exp(-d(1) * (y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (y(k) - c(2))));
+       mi(3) = 1 / (1 + exp(-d(2) * (y(k) - c(2)))) - 1 / (1 + exp(-d(3) * (y(k) - c(3))));
+       mi(4) = 1 / (1 + exp(-d(3) * (y(k) - c(3)))) - 1 / (1 + exp(-d(4) * (y(k) - c(4))));
+       mi(5) = 1 / (1 + exp(-d(4) * (y(k) - c(4))));
     end
     
     u(k) = sum(u_n * mi') / sum(mi);
@@ -84,6 +86,7 @@ for k = 7 : Kk
     
 end
 
+E = (yzadVec - y) * (yzadVec - y)';
 
 end
 

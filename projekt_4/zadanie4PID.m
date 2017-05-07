@@ -6,9 +6,9 @@ subDirPathPID = [dirPathTxt '/PID'];
 mkDirectory(dirPathFigures);
 mkDirectory(subDirPathPID);
 
-Kps = [1.5];
-Tis = [8];
-Tds = [0.05];
+Kps = [0.5];
+Tis = [15];
+Tds = [0.5];
 
 
 Es = zeros(1, length(Kps));

@@ -5,19 +5,20 @@ dirPathTxt = 'wykresy_pliki/zad5';
 mkDirectory(dirPathFigures);
 mkDirectory(dirPathTxt);
 
-Kps = [1.5 4 0 0 0 ; 1.5 1 1.5 0 0 ; 1.5 1 1.5 1 0 ; 1.5 1 1.5 1 1];
+Kps = [0.5 1.5 0 0 0 ; 1.5 1 1.5 0 0 ; 1.5 1 1.5 1 0 ; 1.5 1 1.5 1 1];
 Tis = [15 10 0 0 0 ; 8 10 12 0 0 ; 8 10 12 12 0 ; 8 10 12 12 12];
-Tds = [0.05 0.1 0 0 0 ; 0.05 0.03 0.05 0 0 ; 0.05 0.03 0.05 0.05 0 ; 0.05 0.03 0.05 0.05 0.05];
-d = [10 2 3 4];
-c = [4.5 6 4 10];
+Tds = [0.5 0.5 0 0 0 ; 0.05 0.03 0.05 0 0 ; 0.05 0.03 0.05 0.05 0 ; 0.05 0.03 0.05 0.05 0.05];
+d = [8 2 3 4];
+c = [0.0005 6 4 10];
 
 
 Es = zeros(1, length(4));
 
 for k = 1 : 4
+        
 
         [y, u, E, yzad] = policzPIDzad5(Kps(k, 1 : k+1), Tis(k, 1 : k+1), Tds(k, 1 : k+1), d, c, Kk);
-
+        
         zapiszDoPliku([dirPathTxt '/wyjscie_lr_'  num2str(k+1) '.txt'], y);
         zapiszDoPliku([dirPathTxt '/sterowanie_lr_'  num2str(k+1) '.txt'], u);
 

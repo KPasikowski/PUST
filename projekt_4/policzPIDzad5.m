@@ -19,7 +19,7 @@ u(1:Kk) = 0 ;
 y(1:Kk) = 0 ;
 e(1:Kk) = 0 ;
 index = 1;
-yzads = [-1 -2.5 -1 0];
+yzads = [-1 -2.5 -1 0.08];
 yzad = yzads(index);
 yzadVec(1:Kk) = yzad;
 
@@ -57,6 +57,14 @@ for k = 7 : Kk
     if numOfControllers == 2
        mi(1) = 1 - 1 / (1 + exp(-d(1) * (y(k) - c(1))));
        mi(2) = 1 / (1 + exp(-d(1) * (y(k) - c(1))));
+       if(yzad == yzads(4))
+       disp('y = ');
+       disp(y(k));    
+       disp('m1 = ');
+       disp(mi(1));
+       disp('m2 = ');
+       disp(mi(2));
+       end
     elseif numOfControllers == 3
        mi(1) = 1 - 1 / (1 + exp(-d(1) * (y(k) - c(1))));
        mi(2) = 1 / (1 + exp(-d(1) * (y(k) - c(1)))) - 1 / (1 + exp(-d(2) * (y(k) - c(2))));
