@@ -1,0 +1,64 @@
+parametry;
+
+dirPathFigures = 'wykresy_figury/zad6';
+dirPathTxt = 'wykresy_pliki/zad6';
+subDirPathResponses = [dirPathTxt '/odpowiedzi'];
+mkDirectory(dirPathFigures);
+mkDirectory(dirPathTxt);
+mkDirectory(subDirPathResponses);
+
+% ----- odpowiedzi skokowe -----
+u1 = [-1 0.75 -0.6 -0.6 -0.4 -0.70 -0.4 -0.26];
+u2 = [0.75 1 -0.23 -0.4 -0.23 -0.4 -0.26 -0.09];
+
+for i = 1 : 8
+    u(1 : 6) = u1(i);
+    u(7 : Kk) = u2(i);
+    y = zeros(Kk, 1);
+    
+    for k = 7 : Kk
+           y(k) = symulacja_obiektu6y(u(k - 5), u(k - 6), y(k - 1), y(k - 2));
+    end
+    
+    y = (y(7 : length(y)) - y(6)) / (abs(u1(i) - u2(i)));
+    y(length(y) : 400) = y(length(y));
+    
+    zapiszDoPliku([subDirPathResponses '/wyjscie_skok_'  num2str(u1(i)) '_' num2str(u2(i)) '.txt'], y);
+     
+end
+% ------------------------------
+
+D = 200;
+N = D;
+Nu = D;
+lambdas = [1000 1000 0 0 0 ; 1000 1000 1000 0 0 ; 1000 1000 1000 1000 0 ; 1000 1000 1000 1000];
+Es = zeros(1, 4);
+
+
+figur
+for i = 1 : 4
+    
+    lambda = lambdas(i);
+    [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, Kk);
+    
+    zapiszDoPliku([subDirPathDMC '/wyjscie_lambda_'  num2str(lambdas(i)) '.txt'], y);
+    zapiszDoPliku([subDirPathDMC '/sterowanie_lambda_'  num2str(lambdas(i)) '.txt'], u);
+    
+    subplot(2,1,1);
+    rysujWykres((1 : length(y)), y, -1, 'k', 'y', '', 'Wyjscie y obiektu');
+    hold on
+    rysujWykres((1 : length(yzad)), yzad, -1, 'k', 'y', '', 'Wyjscie y obiektu');
+    hold on
+
+    subplot(2,1,2);
+    rysujWykres((1 : length(u)), u, -1, 'k', 'u', '', 'Sterowanie u');
+    hold on
+    
+    Es(i) = E;
+
+end
+
+zapiszDoPliku([subDirPathDMC '/wartosc_zadana_lambda_'  num2str(lambdas(i)) '.txt'], yzad);
+
+savefig([dirPathFigures '/sterowanie_wyjscie.fig']);
+zapiszDoPliku([subDirPathDMC '/bledy.txt'], Es);

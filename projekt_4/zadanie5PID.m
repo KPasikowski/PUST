@@ -12,7 +12,7 @@ d = [8 2 3 4];
 c = [0.0005 6 4 10];
 
 
-Es = zeros(1, length(4));
+Es = zeros(1, 4);
 
 for k = 1 : 4
         
