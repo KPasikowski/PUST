@@ -9,9 +9,9 @@ mkDirectory(subDirPathPID);
 % Kps = [0.5];
 % Tis = [10];
 % Tds = [0.5];
-Kps = [10];
-Tis = [1.5];
-Tds = [0.1];
+Kps = [0.11];
+Tis = [3];
+Tds = [0.];
 
 
 Es = zeros(1, length(Kps));
@@ -37,7 +37,7 @@ for i = 1 : length(Kps)
     hold on
     
     Es(i) = E;
-    E
+
 end
 
 zapiszDoPliku([subDirPathPID '/wartosc_zadana.txt'], yzad);
