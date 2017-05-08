@@ -31,7 +31,7 @@ end
 D = 200;
 N = D;
 Nu = D;
-lambdas = [1000 1000 0 0 0 ; 1000 1000 1000 0 0 ; 1000 1000 1000 1000 0 ; 1000 1000 1000 1000 1000];
+lambdas = [10 10 0 0 0 ; 10 10 10 0 0 ; 10 10 10 10 0 ; 10 10 10 10 10];
 d = [12 2 3 4];
 c = [-0.7 6 4 10];
 Es = zeros(1, 4);
@@ -40,8 +40,8 @@ for i = 1 : 4
     
     [y, u, E, yzad] = policzDMCzad6(D, N, Nu, lambdas(i, 1 : i+1), d, c, Kk);
     
-    zapiszDoPliku([dirPathTxt '/wyjscie_lr_'  num2str(k+1) '.txt'], y);
-    zapiszDoPliku([dirPathTxt '/sterowanie_lr_'  num2str(k+1) '.txt'], u);
+    zapiszDoPliku([dirPathTxt '/wyjscie_lr_'  num2str(i+1) '.txt'], y);
+    zapiszDoPliku([dirPathTxt '/sterowanie_lr_'  num2str(i+1) '.txt'], u);
     
     figure;
     subplot(2,1,1);
@@ -52,7 +52,7 @@ for i = 1 : 4
     subplot(2,1,2);
     rysujWykres((1 : length(u)), u, -1, 'k', 'u', '', 'Sterowanie u');
     
-    savefig([dirPathFigures '/sterowanie_wyjscie_PID_lr_' num2str(k+1) '.fig']);
+    savefig([dirPathFigures '/sterowanie_wyjscie_PID_lr_' num2str(i+1) '.fig']);
     
     Es(i) = E;
 

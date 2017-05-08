@@ -13,21 +13,21 @@ r2 = (Kp * Td) / Tp ;
 r1 = Kp * ( (Tp/(2*Ti)) - 2*(Td/Tp) - 1 ) ;
 r0 = Kp * ( 1 + Tp/(2*Ti) + Td/Tp ) ;
 
-% warunki poczatkowe
-% u(1:11) = 0 ;
-% y(1:11) = 0 ;
-% e(1:11) = 0 ;
-% index = 1;
-% yzads = [-1 -2.5 -1 0.06];
-% yzad = yzads(index);
-% yzadVec(1:Kk) = yzad;
-u(1:11) = 0.34 ;
-y(1:11) = 0.073 ;
+%warunki poczatkowe
+u(1:11) = 0 ;
+y(1:11) = 0 ;
 e(1:11) = 0 ;
 index = 1;
-yzads = [0.084];
+yzads = [-1 -2.5 -1 0.06];
 yzad = yzads(index);
 yzadVec(1:Kk) = yzad;
+% u(1:11) = 0.34 ;
+% y(1:11) = 0.073 ;
+% e(1:11) = 0 ;
+% index = 1;
+% yzads = [0.084];
+% yzad = yzads(index);
+% yzadVec(1:Kk) = yzad;
 
 
 % glowna petla symulacji
