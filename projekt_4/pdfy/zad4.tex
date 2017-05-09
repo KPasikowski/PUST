@@ -36,22 +36,22 @@
 width=\szer,height=\wys]
 %%1
 \nextgroupplot
-[xmin=1,xmax=800,ymin=-5,ymax=1,
+[xmin=1,xmax=200,ymin=-5,ymax=1,
 xtick={0,50,...,800},
 ytick={-5,-4.5,...,3},
 ylabel={$y(k)$},
 xlabel={$k$}]
-\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_20.txt};
-\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_20.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_1000.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_1000.txt};
 \legend{$y(k)$,$y_{zad}(k)$};
 
 \nextgroupplot
-[xmin=1,xmax=800,ymin=-2,ymax=1,
+[xmin=1,xmax=200,ymin=-2,ymax=1,
 xtick={0,50,...,800},
 ytick={-2,-1.5,...,1},
 ylabel={$u(k)$},
 xlabel={$k$}]
-\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_20.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_1000.txt};
 \legend{$u(k)$};
 \end{groupplot}
 \end{tikzpicture}
