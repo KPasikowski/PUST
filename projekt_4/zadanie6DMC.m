@@ -15,7 +15,7 @@ ys = [-3.403 0.0813 -1.444  -1.444 -0.7051 -1.885 -0.7051 -0.3355];
 for i = 1 : 8
     u(1 : 6) = u1(i);
     u(7 : Kk) = u2(i);
-    y = zeros(Kk, 1);
+    y = zeros(Kk, 1) + ys(i);
     
     for k = 7 : Kk
            y(k) = symulacja_obiektu6y(u(k - 5), u(k - 6), y(k - 1), y(k - 2));
