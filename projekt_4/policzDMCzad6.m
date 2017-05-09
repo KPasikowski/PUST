@@ -8,7 +8,7 @@ lambda=lambda_;
 d = d_;
 c = c_;
 
-s_1 = load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_-1_0.75.txt');
+s_1 = load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_-1_-0.75.txt');
 s_last = load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_0.75_1.txt');
 Upp=0;
 Ypp=0;

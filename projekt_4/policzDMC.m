@@ -4,20 +4,32 @@ D=D_;
 N=N_;
 Nu=Nu_;
 lambda=lambda_;
-s = load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_-0.7_-0.4.txt');
+
+% testowanie i dobieranie parametr?w z zadania 6 i 7
+s = load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_-1_-0.75.txt');
 s = s(:, 2);
-s = (s(7 : length(s)) - s(6)) / 0.3;
-s(length(s) : 400) = s(length(s));
+
+% s = load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_-0.7_-0.4.txt');
+% s = s(:, 2);
+% s = (s(7 : length(s)) - s(6)) / 0.3;
+% s(length(s) : 400) = s(length(s));
 Upp=0;
 Ypp=0;
 Umin=-1;
 Umax=1;
 
+% testowanie i dobieranie parametr?w z zadania 6 i 7
 index = 1;
-yzads = [-1 -2.5 -1 0];
+yzads = [-2.264];
 yzad = yzads(index);
 yzadVec(1:Kk_) = yzad;
 Yzad = yzadVec - Ypp;
+
+% index = 1;
+% yzads = [-1 -2.5 -1 0];
+% yzad = yzads(index);
+% yzadVec(1:Kk_) = yzad;
+% Yzad = yzadVec - Ypp;
 %inicjalizacja sta?ych
 kk=Kk_;
                             %DMC
@@ -49,8 +61,12 @@ K=((M'*M+lambda*I)^-1)*M';
 ku=K(1,:)*MP;
 ke=sum(K(1,:));
 
-U(1:kk)=Upp;
-Y(1:kk)=Ypp;
+% U(1:kk)=Upp;
+% Y(1:kk)=Ypp;
+
+% testowanie i dobieranie parametr?w z zadania 6 i 7
+U(1:kk)=-0.96;
+Y(1:kk)=-3.187;
 
 e=zeros(1,kk);
 
