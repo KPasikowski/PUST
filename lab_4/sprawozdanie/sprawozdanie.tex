@@ -1,0 +1,383 @@
+\documentclass[a4paper,titlepage,11pt,twosides,floatssmall]{mwrep}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[OT1]{fontenc}
+\usepackage{polski}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,decorations.markings,math,arrows.meta}
+\usepackage{rotating}
+\usepackage[percent]{overpic}
+\usepackage[cp1250]{inputenc}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+\usepackage{listings}
+\usepackage{matlab-prettifier}
+\definecolor{szary}{rgb}{0.95,0.95,0.95}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+%konfiguracje pakietu listings
+\lstset{
+	backgroundcolor=\color{szary},
+	frame=single,
+	breaklines=true,
+}
+\lstdefinestyle{customlatex}{
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\small\ttfamily,
+}
+\lstdefinestyle{customc}{
+	breaklines=true,
+	frame=tb,
+	language=C,
+	xleftmargin=0pt,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+\lstdefinestyle{custommatlab}{
+	captionpos=t,
+	breaklines=true,
+	frame=tb,
+	xleftmargin=0pt,
+	language=matlab,
+	showstringspaces=false,
+	%basicstyle=\footnotesize\ttfamily,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+%wymiar tekstu (bez ¿ywej paginy)
+\textwidth 160mm \textheight 247mm
+
+%ustawienia pakietu pgfplots
+\pgfplotsset{
+tick label style={font=\scriptsize},
+label style={font=\small},
+legend style={font=\small},
+title style={font=\small}
+}
+
+\def\figurename{Rys.}
+\def\tablename{Tab.}
+
+%konfiguracja liczby p³ywaj¹cych elementów
+\setcounter{topnumber}{0}%2
+\setcounter{bottomnumber}{3}%1
+\setcounter{totalnumber}{5}%3
+\renewcommand{\textfraction}{0.01}%0.2
+\renewcommand{\topfraction}{0.95}%0.7
+\renewcommand{\bottomfraction}{0.95}%0.3
+\renewcommand{\floatpagefraction}{0.35}%0.5
+
+\begin{document}
+\frenchspacing
+\pagestyle{uheadings}
+
+%strona tytu³owa
+\title{\bf Sprawozdanie z æwiczenia laboratoryjnego nr 4 \vskip 0.1cm}
+\author{Mateusz Koroœ, Ksawery Pasikowski, Mateusz Morusiewicz}
+\date{2017}
+
+\makeatletter
+\renewcommand{\maketitle}{\begin{titlepage}
+\begin{center}{\LARGE {\bf
+Wydzia³ Elektroniki i Technik Informacyjnych}}\\
+\vspace{0.4cm}
+{\LARGE {\bf Politechnika Warszawska}}\\
+\vspace{0.3cm}
+\end{center}
+\vspace{5cm}
+\begin{center}
+{\bf \LARGE Projektowanie uk³adów sterowania\\ (projekt grupowy) \vskip 0.1cm}
+\end{center}
+\vspace{1cm}
+\begin{center}
+{\bf \LARGE \@title}
+\end{center}
+\vspace{2cm}
+\begin{center}
+{\bf \Large \@author \par}
+\end{center}
+\vspace*{\stretch{6}}
+\begin{center}
+\bf{\large{Warszawa, \@date\vskip 0.1cm}}
+\end{center}
+\end{titlepage}
+}
+\makeatother
+
+\maketitle
+
+\tableofcontents
+\chapter{Zad. 1}
+Mo¿liwoœæ sterowania i pomiaru w komunikacji ze stanowiskiem zosta³a sprawdzona poprzez funkcjê readMeasurements, sendControls oraz sendNonLinearControls. Sygna³y steruj¹ce, które by³y obs³ugiwane to moc na grza³ce $G1$(wys³ana za pomoc¹ funkcji sendNonLinearControls) oraz moc wiatraka $ W1 $(wys³ana za pomoc¹ sendControls), natomiast mierzona by³a temperatura $ T1 $ w otoczeniu grza³ki $ G1 $. W punkcie pracy, tzn. dla $ (W1, G1) = (50, 29) $ pomiar temperatury $ T1 $ wyniós³ $ \ang{34}C $.
+
+\chapter{Zad. 2}
+\chapter{Zad. 2}
+Skoki sterowania wynosi³y odpowiednio:
+\begin{itemize}
+	\item {\color{blue} $ \Delta u = 5 $}
+	\item {\color{red} $ \Delta u = 10 $}
+	\item {\color{green} $ \Delta u = -5 $}
+	\item {\color{lime} $ \Delta u = -10 $}
+	\item {\color{cyan} $ \Delta u = 21 $}
+	\item {\color{magenta} $ \Delta u = 41 $}
+	\item {\color{teal} $ \Delta u = 51 $}
+\end{itemize}
+Odpowiedzi skokowe widaæ na wykresach
+
+
+
+W³aœciwoœci statycznych obiektu nie mo¿na okreœliæ jako liniowych, gdy¿ zmiana sterowania nie powoduje liniowej zmiany sygna³u wyjœciowego. Nie da siê wiêc obliczyæ wzmocnienia statycznego obiektu. Charakterystyka jest jednak (w przybli¿eniu) lokalnie liniowa, co widaæ na wykresie.
+
+\chapter{Zad.3}
+Najlepiej nadaj¹c¹ siê odpowiedzi¹ skokow¹ by³a ta, o wartoœci $ \Delta u = 21 $. Zosta³a ona przekszta³cona do tej, u¿ywanej w algorytmie DMC w nastêpuj¹cy sposób:
+\begin{lstlisting}[style=Matlab-editor]
+Ysk = (s - 32) / 21;
+\end{lstlisting}
+
+Nastêpnie zosta³a wykonana aproksymacja odpowiedzi skokowej, do której zosta³ u¿yty cz³on inercyjny drugiego rzêdu z opóŸnieniem, opisany transmitancj¹:
+$$ G(z) = \frac{b_{1}z^{-1} + b_{2}z^{-2}}{1+a_{1}z^{-1}+a_{2}z^{-2}}z^{-T_{d}} $$
+Gdzie:
+\begin{align}
+\begin{aligned}
+a_{1} &= - \alpha_{1} - \alpha_{2} \\
+a_{2} &= \alpha_{1} \alpha_{2} \\
+\alpha_{1} &= e^{-\frac{1}{T_{1}}} \\
+\alpha_{2} &= e^{-\frac{1}{T_{2}}} \\
+b_{1} &= \frac{K}{T_{1} - T_{2}}[T_{1}(1- \alpha_{1}) - T_{2}(1- \alpha_{2})] \\
+b_{2} &= \frac{K}{T_{1} - T_{2}}[\alpha_{1}T_{2}(1- \alpha_{2}) - \alpha_{2}T_{1}(1- \alpha_{1})]
+\end{aligned}
+\end{align}
+
+Po przekszta³ceniu powy¿szego równania otrzymujemy równanie ró¿nicowe postaci:
+$$ y(k) = b_{1}u(k-T_{D}-1) + b_{2}u(k-T_{d}-2) - a_{1}y(k-1) - a_{2}y(k-2) $$
+
+W celu doboru parametrów modelu zosta³a u¿yta funkcja wewnêtrzna œrodowiska MATLAB: fmincon(). Parametry modelu zosta³y dobrane w taki sposób, aby b³¹d œredniokwadratowy miêdzy odpowiedzi¹ aproksymowan¹, a t¹ rzeczywist¹ by³ jak najmniejszy. W najlepszym przypadku wynosi³ on $ \num{0.0311} $. Oryginaln¹ i aproksymowan¹ odpowiedŸ skokow¹ widaæ na rysunku.
+
+\chapter{Zad. 4}
+\section{PID}
+\begin{lstlisting}[style=Matlab-editor]
+addpath('F:\SerialCommunication');
+initSerialControl COM14
+
+Upp = 29;
+Ypp = 32.5;
+Kk = 800;
+U_min = 0;
+U_max = 100;
+
+% nastawy regulatora PID
+% Kp = 3 ;
+% Ti = 10 ;
+% Td = 3.2 ;
+Kp = 6;%5.94 ;
+Ti = 65;%5.64 ;
+Td = 1.25;%3.16 ;
+Tp = 1;
+
+r2 = (Kp * Td) / Tp ;
+r1 = Kp * ( (Tp/(2*Ti)) - 2*(Td/Tp) - 1 ) ;
+r0 = Kp * ( 1 + Tp/(2*Ti) + Td/Tp ) ;
+
+% warunki poczatkowe
+u(1:31) = Upp ;
+U(1:31) = Upp ;
+y(1:31) = Ypp ;
+y2(1:31) = Ypp ;
+e(1:31) = 0 ;
+delta_u = 0;
+index = 1;
+yzads = [60, 30];
+yzad = yzads(index);   %skok wartosci zadanej
+yzad2 = yzad - Ypp;
+yzadVec(1:800) = yzad;
+sendControls (1,W1);
+
+figure;
+% glowna petla symulacji
+for k = 32 : 800
+if mod(k,400) == 0
+index = index + 1;
+if index > length(yzads)
+index = length(yzads);
+end
+yzad = yzads(index);
+yzad2 = yzad - Ypp;
+end
+yzadVec(k) = yzad;
+
+y(k) = readMeasurements(1);
+
+y2(k) = y(k) - Ypp;
+e(k) = yzad2 - y2(k) ;
+
+u(k) = r2 * e(k-2) + r1 * e(k-1) + r0 * e(k) + u(k-1) ;
+
+delta_u = u(k) - u(k-1);
+
+%if delta_u > dU_max
+%    delta_u = dU_max;
+%elseif delta_u < -dU_max
+%    delta_u = -dU_max;
+%end
+
+u(k) = u(k-1) + delta_u;
+
+if u(k) > U_max - Upp
+u(k) = U_max - Upp;
+elseif u(k) < U_min - Upp
+u(k) = U_min - Upp;
+end
+
+U(k) = u(k) + Upp;
+sendNonlinearControls(U(k));
+
+stairs(y);
+pause(0.01);
+
+waitForNewIteration();
+end
+
+E = (yzadVec - y)*(yzadVec - y)';
+\end{lstlisting}
+
+\section{DMC}
+\begin{lstlisting}[style=Matlab-editor]
+function [ y, u, E ] = DMC( D_, N_, Nu_, lambda_, Kk_)
+Upp = 29;
+Ypp = 34;
+
+Kk = Kk_;
+
+D = D_;
+N = N_;
+Nu = Nu_;
+lambda = lambda_;
+
+U_max = 100;
+U_min = 0;
+
+yzad = 37;   %skok wartosci zadanej
+yzadVec(1:30) = Ypp;
+yzadVec(31:Kk) = yzad;
+
+s = load('Sapr_zad3');
+s = s.Sapr;
+%s(length(s) : 400) = s(length(s));
+
+%sygnal sterujacy
+u = Upp + zeros(1,Kk);
+
+%wyjscie ukladu
+y = zeros(1,Kk) + Ypp ;
+
+du = (zeros(1,Kk))' ;
+
+M = zeros(N, Nu) ;
+for i = 1:N
+for j = 1:Nu
+if (i-j+1 > 0)
+M(i,j) = s(i-j+1) ;
+else
+M(i,j) = 0 ;
+end
+end
+end
+
+Mp = zeros(N, D-1) ;
+for i = 1:N
+for j = 1:(D-1)
+if(i+j <= N)
+Mp(i,j) = s(i+j) - s(j) ;
+else
+Mp(i,j) = s(N) - s(j) ;
+end
+end
+end
+
+K = (M'*M + lambda*eye(Nu))^-1 * M' ;
+
+%liczenie ke
+ke = 0;
+for i = 1:N
+ke = ke + K(1, i);
+end
+
+kju = K(1,:)*Mp;
+
+addpath ('F:\SerialCommunication'); % add a path
+initSerialControl COM14 % initialise com port
+sendControls ([1,5],[50,Upp]);
+
+figure;
+
+for k = 1:30    
+y(k) = readMeasurements(1);
+
+stairs(y);
+pause(0.01);
+
+waitForNewIteration();
+end
+
+for k = 31:Kk
+
+y(k) = readMeasurements(1);
+
+sum = 0;    %suma potrzebna do obliczenia skladowej swobodnej
+for j = 1:D-1
+if(k-j > 0)
+sum = sum + kju(j)*du(k-j);
+%w innym przypadku du = 0 wiec sum sie nie zmienia
+end
+end
+
+du(k) = ke * (yzadVec(k)-y(k)) - sum;
+
+u(k) = u(k-1) + du(k);
+
+if u(k) > U_max - Upp
+u(k) = U_max - Upp;
+elseif u(k) < U_min - Upp
+u(k) = U_min - Upp;
+end
+
+sendNonlinearControls(u(k)+Upp);
+
+stairs(y);
+pause(0.01);
+
+waitForNewIteration();
+
+end
+
+% wskaŸnik jakoœci regulacji
+E = (yzadVec - y)*(yzadVec - y)';
+\end{lstlisting}
+
+\chapter{Zad. 5}
+Regulator PID zosta³ przetestowany poprzez zmianê wartoœci zadanej z punktu pracy do $ \ang{50}C $ a nastêpnie do $ \ang{30}C $. Jak widaæ na wykresie poradzi³ sobie ca³kiem dobrze pomimo nieliniowych w³aœciwoœci obiektu. Parametry regulatora wynosi³y $ K = 6 $, $ T_{i} = 65 $, $ T_{d} = \num{1.25} $. Regulator DMC o parametrze $ \lambda = 5 $w tym przypadku poradzi³ sobie znacznie gorzej, przy zmianie wartoœci zadanej do 37 wykaza³ du¿e przeregulowanie, co widaæ na wykresie. B³¹d wynosi³ wtedy $ \num{1617.5} $.
+
+\chapter{Zad. 6}
+Rozmyty regulator PID zosta³ przetestowany dla wiêkszej iloœci zmian wartoœci zadanej ni¿ zwyk³y, sk³ada³ siê on z dwóch regulatorów, gdzie pierwszy mia³ parametry: $ K = 8 $, $ T_{i} = 50 $, $ T_{d} = \num{0.8} $, natomiast drugi: $ K = 25 $, $ T_{i} = 40 $, $ T_{d} = \num{1.1} $. Rozpoczyna³ on w punkcie pracy a wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie.
+
+\chapter{Zad. 7}
+Rozmyty regulator DMC równie¿ sk³ada³ siê z dwóch regulatorów. Parametr $ \lambda $ pierwszego wynosi³ $ 5 $ a drugiego $ 10 $. Zosta³ on poddany takim samym wymuszeniom jak rozmyty regulator PID, tj. wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie.
+
+\chapter{Zad. 8}
+Sprawdzony zosta³ równie¿ rozmyty regulator DMC o parametrach $ \lambda_{1} = 1 $, $ \lambda_{2} = 2 $. Jak widaæ na wykresie poradzi³ on sobie gorzej ni¿ ten o $ \lambda_{1} = 5 $ i $ \lambda_{2} = 10 $. 
+\end{document}
+
