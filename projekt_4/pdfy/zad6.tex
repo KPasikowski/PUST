@@ -1,0 +1,403 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_LR2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=3,
+xtick={0,50,...,800},
+ytick={-5,-4,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/wyjscie_lr_2.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=2,
+xtick={0,50,...,800},
+ytick={-2,-1,...,2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/sterowanie_lr_2.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_LR3}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=3,
+xtick={0,50,...,800},
+ytick={-5,-4,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/wyjscie_lr_3.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=2,
+xtick={0,50,...,800},
+ytick={-2,-1,...,2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/sterowanie_lr_3.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_LR4}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=3,
+xtick={0,50,...,800},
+ytick={-5,-4,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/wyjscie_lr_4.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=2,
+xtick={0,50,...,800},
+ytick={-2,-1,...,2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/sterowanie_lr_4.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_LR5}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=3,
+xtick={0,50,...,800},
+ytick={-5,-4,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/wyjscie_lr_5.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=2,
+xtick={0,50,...,800},
+ytick={-2,-1,...,2},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/sterowanie_lr_5.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp1}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-1_0.75.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_0.75_1.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp3}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.6_-0.23.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp4}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.6_-0.4.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp5}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.4_-0.23.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp6}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.7_-0.4.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp7}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.4_-0.26.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp8}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.26_-0.09.txt};
+\legend{$y(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp_zbior}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-1_0.75.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_0.75_1.txt};
+\addplot[const plot,color=green,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.6_-0.23.txt};
+\addplot[const plot,color=black,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.6_-0.4.txt};
+\addplot[const plot,color=purple,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.4_-0.23.txt};
+\addplot[const plot,color=magenta,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.7_-0.4.txt};
+\addplot[const plot,color=yellow,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.4_-0.26.txt};
+\addplot[const plot,color=brown,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.26_-0.09.txt};
+\legend{$u_1 = -1 u_2 = 0.75$, $u_1 = 0.75 u_2 = 1$, $u_1 = -0.6 u_2 = 0.23$, $u_1 = -0.6 u_2 = -0.4$, $u_1 = -0.4 u_2 = 0.23$, $u_1 = -0.7 u_2 = -0.4$, $u_1 = -0.4 u_2 = -0.26$, $u_1 = -0.26 u_2 = -0.09$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad6DMC_odp_zbior_oddz}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 4,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-1_0.75.txt};
+\legend{$u_1 = -1 u_2 = 0.75$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_0.75_1.txt};
+\legend{$u_1 = 0.75 u_2 = 1$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=green,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.6_-0.23.txt};
+\legend{$u_1 = -0.6 u_2 = 0.23$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=black,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.6_-0.4.txt};
+\legend{$u_1 = -0.6 u_2 = -0.4$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=purple,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.4_-0.23.txt};
+\legend{$u_1 = -0.4 u_2 = 0.23$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=magenta,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.7_-0.4.txt};
+\legend{$u_1 = -0.7 u_2 = -0.4$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=yellow,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.4_-0.26.txt};
+\legend{$u_1 = -0.4 u_2 = -0.26$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=2,
+xtick={0,50,...,800},
+ytick={-5,-4,...,2},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=brown,semithick] file {datadir/zad6/odpowiedzi/wyjscie_skok_-0.26_-0.09.txt};
+\legend{$u_1 = -0.26 u_2 = -0.09$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\end{document}

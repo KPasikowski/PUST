@@ -1,0 +1,1 @@
+sterowanie_lr_5_lambdas_10_10_10_10_10_.txt

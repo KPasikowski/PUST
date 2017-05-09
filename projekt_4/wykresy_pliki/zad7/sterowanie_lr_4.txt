@@ -1,0 +1,1 @@
+sterowanie_lr_4_lambdas_10_10_10_10_.txt

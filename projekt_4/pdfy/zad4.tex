@@ -1,0 +1,89 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad4DMC}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=1,
+xtick={0,50,...,800},
+ytick={-5,-4.5,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_20.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_20.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=1,
+xtick={0,50,...,800},
+ytick={-2,-1.5,...,1},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_20.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4PID}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-5,ymax=1,
+xtick={0,50,...,800},
+ytick={-5,-4.5,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/wyjscie_Kp=0.5_Ti=10_Td=0.5.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/PID/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=1,
+xtick={0,50,...,800},
+ytick={-2,-1.5,...,1},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/sterowanie_Kp=0.5_Ti=10_Td=0.5.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\end{document}
