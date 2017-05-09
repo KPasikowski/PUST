@@ -1,0 +1,90 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad5_PID}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=20,ymax=60,
+xtick={0,50,...,1000},
+ytick={0,10,...,100},
+ylabel={$T1(t)$},
+xlabel={$t$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad5_pid_y.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad5_PID_yzad.txt};
+\legend{$y(t)$, $y_{zad}(t)$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=101,
+xtick={0,50,...,1000},
+ytick={0,10,...,100},
+ylabel={$G1(t)$},
+xlabel={$t$}]
+\addplot[const plot,color=blue,semithick] file {datadir/zad5_pid_u.txt};
+\legend{$u(t)$}
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad5_DMC}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=20,ymax=60,
+xtick={0,50,...,1000},
+ytick={0,10,...,100},
+ylabel={$T1(t)$},
+xlabel={$t$}]
+\addplot[const plot,color=red,semithick] file {datadir/DMC_y_5.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad5_DMC_yzad.txt};
+\legend{$y(t)$, $y_{zad}(t)$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=100,
+xtick={0,50,...,1000},
+ytick={0,10,...,100},
+ylabel={$G1(t)$},
+xlabel={$t$}]
+\addplot[const plot,color=blue,semithick] file {datadir/DMC_u_5.txt};
+\legend{$u(t)$}
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\end{document}
