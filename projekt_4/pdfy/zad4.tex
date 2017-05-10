@@ -30,19 +30,19 @@
 \tikzsetnextfilename{}
 
 \begin{figure}[DMC]
-\tikzsetnextfilename{zad4DMC}
+\tikzsetnextfilename{zad4DMC_1}
 \begin{tikzpicture}
 \begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
 width=\szer,height=\wys]
 %%1
 \nextgroupplot
-[xmin=1,xmax=200,ymin=-5,ymax=1,
+[xmin=1,xmax=200,ymin=-4,ymax=1,
 xtick={0,50,...,800},
-ytick={-5,-4.5,...,3},
+ytick={-4,-3.5,...,3},
 ylabel={$y(k)$},
 xlabel={$k$}]
-\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_1000.txt};
-\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_1000.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_1.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_30.txt};
 \legend{$y(k)$,$y_{zad}(k)$};
 
 \nextgroupplot
@@ -51,25 +51,83 @@ xtick={0,50,...,800},
 ytick={-2,-1.5,...,1},
 ylabel={$u(k)$},
 xlabel={$k$}]
-\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_1000.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_1.txt};
 \legend{$u(k)$};
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
 
-\begin{figure}[PID]
-\tikzsetnextfilename{zad4PID}
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad4DMC_10}
 \begin{tikzpicture}
 \begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
 width=\szer,height=\wys]
 %%1
 \nextgroupplot
-[xmin=1,xmax=800,ymin=-5,ymax=1,
+[xmin=1,xmax=200,ymin=-4,ymax=1,
 xtick={0,50,...,800},
-ytick={-5,-4.5,...,3},
+ytick={-4,-3.5,...,3},
 ylabel={$y(k)$},
 xlabel={$k$}]
-\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/wyjscie_Kp=0.5_Ti=10_Td=0.5.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_10.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_30.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=200,ymin=-2,ymax=1,
+xtick={0,50,...,800},
+ytick={-2,-1.5,...,1},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_10.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[DMC]
+\tikzsetnextfilename{zad4DMC_30}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=200,ymin=-4,ymax=1,
+xtick={0,50,...,800},
+ytick={-4,-3.5,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/wyjscie_lambda_30.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/DMC/wartosc_zadana_lambda_30.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=200,ymin=-2,ymax=1,
+xtick={0,50,...,800},
+ytick={-2,-1.5,...,1},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/DMC/sterowanie_lambda_30.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4PID_1}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-4,ymax=1,
+xtick={0,50,...,800},
+ytick={-4,-3.5,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/wyjscie_Kp=0.5_Ti=10_Td=0.6.txt};
 \addplot[const plot,color=blue,semithick] file {datadir/zad4/PID/wartosc_zadana.txt};
 \legend{$y(k)$,$y_{zad}(k)$};
 
@@ -79,7 +137,65 @@ xtick={0,50,...,800},
 ytick={-2,-1.5,...,1},
 ylabel={$u(k)$},
 xlabel={$k$}]
-\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/sterowanie_Kp=0.5_Ti=10_Td=0.5.txt};
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/sterowanie_Kp=0.5_Ti=10_Td=0.6.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4PID_2}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-4,ymax=1,
+xtick={0,50,...,800},
+ytick={-4,-3.5,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/wyjscie_Kp=0.6_Ti=10_Td=0.5.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/PID/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=1,
+xtick={0,50,...,800},
+ytick={-2,-1.5,...,1},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/sterowanie_Kp=0.6_Ti=10_Td=0.5.txt};
+\legend{$u(k)$};
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4PID_3}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-4,ymax=1,
+xtick={0,50,...,800},
+ytick={-4,-3.5,...,3},
+ylabel={$y(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/wyjscie_Kp=0.5_Ti=9_Td=0.6.txt};
+\addplot[const plot,color=blue,semithick] file {datadir/zad4/PID/wartosc_zadana.txt};
+\legend{$y(k)$,$y_{zad}(k)$};
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2,ymax=1,
+xtick={0,50,...,800},
+ytick={-2,-1.5,...,1},
+ylabel={$u(k)$},
+xlabel={$k$}]
+\addplot[const plot,color=red,semithick] file {datadir/zad4/PID/sterowanie_Kp=0.5_Ti=9_Td=0.6.txt};
 \legend{$u(k)$};
 \end{groupplot}
 \end{tikzpicture}

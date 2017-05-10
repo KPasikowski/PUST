@@ -1,0 +1,1 @@
+sterowanie_lr_2_lambdas_18_0.9_.txt
