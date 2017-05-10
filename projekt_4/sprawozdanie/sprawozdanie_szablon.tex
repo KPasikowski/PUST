@@ -1,0 +1,341 @@
+\documentclass[a4paper,titlepage,11pt,twosides,floatssmall]{mwrep}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[OT1]{fontenc}
+\usepackage{polski}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,decorations.markings,math,arrows.meta}
+\usepackage{rotating}
+\usepackage[percent]{overpic}
+\usepackage[cp1250]{inputenc}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+\usepackage{listings}
+\usepackage{matlab-prettifier}
+\usepackage{siunitx}
+\usepackage{placeins}
+\definecolor{szary}{rgb}{0.95,0.95,0.95}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+
+%konfiguracje pakietu listings
+\lstset{
+	backgroundcolor=\color{szary},
+	frame=single,
+	breaklines=true,
+}
+\lstdefinestyle{customlatex}{
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\small\ttfamily,
+}
+\lstdefinestyle{customc}{
+	breaklines=true,
+	frame=tb,
+	language=C,
+	xleftmargin=0pt,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+\lstdefinestyle{custommatlab}{
+	captionpos=t,
+	breaklines=true,
+	frame=tb,
+	xleftmargin=0pt,
+	language=matlab,
+	showstringspaces=false,
+	%basicstyle=\footnotesize\ttfamily,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+%wymiar tekstu (bez ¿ywej paginy)
+\textwidth 160mm \textheight 247mm
+
+%ustawienia pakietu pgfplots
+\pgfplotsset{
+tick label style={font=\scriptsize},
+label style={font=\small},
+legend style={font=\small},
+title style={font=\small}
+}
+
+\def\figurename{Rys.}
+\def\tablename{Tab.}
+
+%konfiguracja liczby p³ywaj¹cych elementów
+\setcounter{topnumber}{0}%2
+\setcounter{bottomnumber}{3}%1
+\setcounter{totalnumber}{5}%3
+\renewcommand{\textfraction}{0.01}%0.2
+\renewcommand{\topfraction}{0.95}%0.7
+\renewcommand{\bottomfraction}{0.95}%0.3
+\renewcommand{\floatpagefraction}{0.35}%0.5
+
+\begin{document}
+\frenchspacing
+\pagestyle{uheadings}
+
+%strona tytu³owa
+\title{\bf Sprawozdanie z projektu nr 4, zadanie nr 6\vskip 0.1cm}
+\author{Mateusz Koroœ, Ksawery Pasikowski, Mateusz Morusiewicz}
+\date{2017}
+
+\makeatletter
+\renewcommand{\maketitle}{\begin{titlepage}
+\begin{center}{\LARGE {\bf
+Wydzia³ Elektroniki i Technik Informacyjnych}}\\
+\vspace{0.4cm}
+{\LARGE {\bf Politechnika Warszawska}}\\
+\vspace{0.3cm}
+\end{center}
+\vspace{5cm}
+\begin{center}
+{\bf \LARGE Projektowanie uk³adów sterowania\\ (projekt grupowy) \vskip 0.1cm}
+\end{center}
+\vspace{1cm}
+\begin{center}
+{\bf \LARGE \@title}
+\end{center}
+\vspace{2cm}
+\begin{center}
+{\bf \Large \@author \par}
+\end{center}
+\vspace*{\stretch{6}}
+\begin{center}
+\bf{\large{Warszawa, \@date\vskip 0.1cm}}
+\end{center}
+\end{titlepage}
+}
+\makeatother
+
+\maketitle
+\tableofcontents
+
+\chapter{Zad. 1}
+Poprawnoœæ punktu pracy zosta³a udowodniona poprzez sprawdzenie, czy obiekt, bêd¹cy w punkcie pracy, pozostanie w nim, jeœli wartoœci sterowania pozostanie taka sama. Zosta³o to wykonane za pomoc¹ komendy:
+\begin{lstlisting}[style=Matlab-editor]
+y_ust = symulacja_obiektu6y(0, 0, 0, 0)
+\end{lstlisting}
+Co da³o wynik [0,0], co dowodzi, ¿e punktem pracy rzeczywiœcie jest punkt $ u=y=0 $.
+
+\chapter{Zad. 2}
+Sterowanie zosta³o wzbudzone do wartoœci:
+\begin{itemize}
+	\item {\color{green}$ \num{0.4} $}
+	\item {\color{purple}$ \num{0.8} $}
+	\item {\color{red}$ \num{-0.4} $}
+	\item {\color{blue}$ \num{-0.8} $}
+\end{itemize}
+
+Z charakterystyki widaæ, ¿e w³aœciwoœci statyczne procesu nie s¹ liniowe, dynamiczne równie¿.
+
+\chapter{Zad. 3}
+\section{PID}
+\begin{lstlisting}[style=Matlab-editor]
+function [ y, u, E, yzad ] = policzPID( Kp_, Ti_, Td_, Kk_)
+U_min = -1;
+U_max = 1;
+
+Kp = Kp_;
+Ti = Ti_;
+Td = Td_;
+
+Kk = Kk_;
+Tp = 0.5;
+
+r2 = (Kp * Td) / Tp ;
+r1 = Kp * ( (Tp/(2*Ti)) - 2*(Td/Tp) - 1 ) ;
+r0 = Kp * ( 1 + Tp/(2*Ti) + Td/Tp ) ;
+
+%warunki poczatkowe
+u(1:11) = 0 ;
+y(1:11) = 0 ;
+e(1:11) = 0 ;
+index = 1;
+yzads = [-1 -2.5 -1 0.06];
+yzad = yzads(index);
+yzadVec(1:Kk) = yzad;
+% u(1:11) = 0.34 ;
+% y(1:11) = 0.073 ;
+% e(1:11) = 0 ;
+% index = 1;
+% yzads = [0.084];
+% yzad = yzads(index);
+% yzadVec(1:Kk) = yzad;
+
+
+% glowna petla symulacji
+for k = 7 : Kk
+if mod(k,200) == 0
+index = index + 1;
+if index > length(yzads)
+index = length(yzads);
+end
+yzad = yzads(index);
+end
+yzadVec(k) = yzad;
+
+y(k) = symulacja_obiektu6y(u(k-5), u(k-6), y(k-1), y(k-2));
+
+e(k) = yzad - y(k) ;
+
+u(k) = r2 * e(k-2) + r1 * e(k-1) + r0 * e(k) + u(k-1) ;
+
+if u(k) > U_max
+u(k) = U_max;
+elseif u(k) < U_min
+u(k) = U_min;
+end
+
+
+end
+
+E = (yzadVec - y) * (yzadVec - y)';
+
+yzad = zeros(1, Kk);
+yzad(1, :) = yzadVec;
+
+end
+\end{lstlisting}
+
+\section{DMC}
+\begin{lstlisting}[style=Matlab-editor]
+function [ Y, U, E, yzadVec ] = policzDMC( D_, N_, Nu_, lambda_, Kk_)
+
+D=D_;
+N=N_;
+Nu=Nu_;
+lambda=lambda_;
+
+% testowanie i dobieranie parametr?w z zadania 6 i 7
+s = ...
+ load('wykresy_pliki/zad6/odpowiedzi/wyjscie_skok_-1_-0.75.txt');
+s = s(:, 2);
+
+
+Upp=0;
+Ypp=0;
+Umin=-1;
+Umax=1;
+
+% testowanie i dobieranie parametr?w z zadania 6 i 7
+index = 1;
+yzads = [-2.264];
+yzad = yzads(index);
+yzadVec(1:Kk_) = yzad;
+Yzad = yzadVec - Ypp;
+
+% index = 1;
+% yzads = [-1 -2.5 -1 0];
+% yzad = yzads(index);
+% yzadVec(1:Kk_) = yzad;
+% Yzad = yzadVec - Ypp;
+%inicjalizacja sta?ych
+kk=Kk_;
+%DMC
+%----------------------------------------------------------------
+M=zeros(N,Nu);
+for i=1:N
+for j=1:Nu
+if (i>=j)
+M(i,j)=s(i-j+1);
+end;
+end;
+end;
+
+MP=zeros(N,D-1);
+for i=1:N
+for j=1:D-1
+if i+j<=D
+MP(i,j)=s(i+j)-s(j);
+else
+MP(i,j)=s(D)-s(j);
+end;      
+end;
+end;
+
+% Obliczanie parametr?w regulatora
+
+I=eye(Nu);
+K=((M'*M+lambda*I)^-1)*M';
+ku=K(1,:)*MP;
+ke=sum(K(1,:));
+
+% U(1:kk)=Upp;
+% Y(1:kk)=Ypp;
+
+% testowanie i dobieranie parametr?w z zadania 6 i 7
+U(1:kk)=-0.96;
+Y(1:kk)=-3.187;
+
+e=zeros(1,kk);
+
+u=U-Upp;
+y=Y-Ypp;
+umax = Umax - Upp;
+umin = Umin - Upp;
+
+deltaup=zeros(1,D-1);
+
+for k=7:kk
+if mod(k,200) == 0
+index = index + 1;
+if index > length(yzads)
+index = length(yzads);
+end
+yzad = yzads(index);
+end
+yzadVec(k) = yzad;
+Yzad(k) = yzadVec(k) - Ypp;
+
+%symulacja obiektu
+Y(k)= symulacja_obiektu6y(U(k-5), U(k-6), Y(k-1), Y(k-2));
+y(k) = Y(k) - Ypp;
+%uchyb regulacji
+e(k)=Yzad(k) - y(k);
+
+% Prawo regulacji
+deltauk=ke*e(k)-ku*deltaup';
+
+for n=D-1:-1:2
+deltaup(n)=deltaup(n-1);
+end
+deltaup(1)=deltauk;
+u(k)=u(k-1)+deltaup(1);
+
+if u(k)>umax
+u(k)=umax;
+elseif u(k)<umin
+u(k)=umin;
+end
+U(k)=u(k)+Upp;
+
+end
+
+%obliczenie b??du
+E=0;
+for k=1:kk
+E=E+((Yzad(k)-Y(k))^2);
+end 
+
+end
+\end{lstlisting}
+
+\chapter{Zad. 4}
+Regulatory oceniane by³y na podstawie wykresów oraz wartoœci wskaŸnika jakoœci:
+$$ E= \sum_{k=1}^{k_{konc}}\sum_{m=1}^{2}(y_{m}^{zad}(k)-y(k))^{2}$$
+Najlepszymi znalezionymi wartoœciami parametrów regulatora PID by³y: $K_{p}=\num{0.5}\quad T_{i}=10\quad T_{d}=\num{0.5} $, natomiast najlepsz¹ wartoœci¹ parametru $ \lambda $ dla regulatora DMC by³o $ 1000 $.
+\end{document}
+
+
