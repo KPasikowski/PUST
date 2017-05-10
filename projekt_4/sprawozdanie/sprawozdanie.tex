@@ -448,7 +448,7 @@ Zaimplementowany zosta³ rozmyty regulator PID, sk³adaj¹cy siê z $ 2 $, $ 3 $, $ 
 	\caption{Rozmyty regulator PID, sk³adaj¹cy siê z piêciu regulatorów sk³adowych}
 	\label{zad5_pid5}
 \end{figure}
-Rozmyty regulator PID okaza³ siê du¿o lepszy od tradycyjnego. Wszystkie regulatory osi¹ga³y wartoœæ zadan¹ w bardzo krótkim czasie. Wynika z tego, ¿e w obiektach nieliniowych du¿o korzystniej jest zastosowaæ rozmyty regulator PID zamiast tradycyjnego.
+Rozmyty regulator PID okaza³ siê du¿o lepszy od tradycyjnego. Wszystkie regulatory osi¹ga³y wartoœæ zadan¹ w bardzo krótkim czasie. Wynika z tego, ¿e w obiektach nieliniowych du¿o korzystniej jest zastosowaæ rozmyty regulator PID zamiast tradycyjnego. W teorii im wiêcej regulatorów tym b³¹d powinien byæ mniejszy, jednak wskaŸnik regulacji by³ najlepszy dla dwóch regulatorów. Wynika to z faktu przeregulowania, które powstawa³o wraz z dodawaniem regulatorów. Wiêksza iloœæ regulatorów oznacza te¿ wiêcej parametrów, st¹d pomimo prób manipulowania parametrami nie uda³o siê wyeliminowaæ powsta³ego przeregulowania.
 \FloatBarrier
 
 \chapter{Zad. 6}
@@ -459,6 +459,7 @@ Rozmyty regulator DMC, podobnie jak PID, sk³ada³ siê z $ 2 $, $ 3 $, $ 4 $ i $ 5
 	\item {\color{orange} 4 regulatory: $ \Rightarrow \lambda_{1} = \num{20} \ \lambda_{2} = \num{16} \ \lambda_{3} = \num{9} \ \lambda_{4} = \num{0.7} \quad E = \num{6.545036e+01} $ (wykres ~\ref{zad6_dmc4}) }
 	\item {\color{red} 5 regulatorów: $ \Rightarrow \lambda_{1} = \num{20} \ \lambda_{2} = \num{16} \ \lambda_{3} = \num{10} \ \lambda_{4} = \num{5} \ \lambda_{5} = \num{0.7}    \quad E = \num{6.474870e+01} $ (wykres ~\ref{zad6_dmc5})}
 \end{itemize}
+Jak widaæ, im wiêcej regulatorów tym b³¹d by³ mniejszy, a wiêc jakoœæ regulacji polepsza³a siê. Wynika to z tego, ¿e charakterystykê nieliniow¹ da siê w przybli¿eniu podzieliæ na nieskoñczenie wiele odcinków liniowych, st¹d im wiêcej regulatorów tym bardziej zbli¿amy siê do idealnego przybli¿enia.
 \begin{figure}[b]
 	\centering
 	\includegraphics[scale=1]{../pdfy/zad6DMC_lr_2.pdf}
