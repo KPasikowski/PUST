@@ -132,13 +132,26 @@ Co da³o wynik [0,0], co dowodzi, ¿e punktem pracy rzeczywiœcie jest punkt $ u=y=
 \chapter{Zad. 2}
 Sterowanie zosta³o wzbudzone do wartoœci:
 \begin{itemize}
-	\item {\color{green}$ \num{0.4} $}
-	\item {\color{purple}$ \num{0.8} $}
-	\item {\color{red}$ \num{-0.4} $}
-	\item {\color{blue}$ \num{-0.8} $}
+	\item {\color{red}$ \num{0.4} $}
+	\item {\color{blue}$ \num{0.8} $}
+	\item {\color{green}$ \num{-0.4} $}
+	\item {\color{purple}$ \num{-0.8} $}
 \end{itemize}
-
-Z charakterystyki widaæ, ¿e w³aœciwoœci statyczne procesu nie s¹ liniowe, dynamiczne równie¿.
+Odpowiedzi skokowe widaæ na wykresie ~\ref{zad2_odpskok}.
+Z charakterystyki ~\ref{zad2_charstat} widaæ, ¿e w³aœciwoœci statyczne procesu nie s¹ liniowe, dynamiczne równie¿.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/odpskokster.pdf}
+	\caption{Odpowiedzi skokowe}
+	\label{zad2_odpskok}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/charstat.pdf}
+	\caption{Charakterystyka statyczna}
+	\label{zad2_charstat}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad. 3}
 \section{PID}
@@ -243,8 +256,6 @@ Yzad = yzadVec - Ypp;
 % Yzad = yzadVec - Ypp;
 %inicjalizacja sta?ych
 kk=Kk_;
-%DMC
-%----------------------------------------------------------------
 M=zeros(N,Nu);
 for i=1:N
 for j=1:Nu
@@ -335,41 +346,178 @@ end
 \chapter{Zad. 4}
 Regulatory oceniane by³y na podstawie wykresów oraz wartoœci wskaŸnika jakoœci:
 $$ E= \sum_{k=1}^{k_{konc}}\sum_{m=1}^{2}(y_{m}^{zad}(k)-y(k))^{2}$$
-Najlepszymi znalezionymi wartoœciami parametrów regulatora PID by³y: $K_{p}=\num{0.5}\quad T_{i}=10\quad T_{d}=\num{0.5} $, natomiast najlepsz¹ wartoœci¹ parametru $ \lambda $ dla regulatora DMC by³o $ 1000 $.
+Parametry zaimplementowanych regulatorów PID oraz wartoœci b³êdów:
+\begin{itemize}
+	\item $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.5} \Rightarrow E = \num{1.548078e+02} $ (wykres ~\ref{zad4_pid1})
+	\item $K_{p}=\num{0.5}\quad T_{i}=10\quad T_{d}=\num{0.6} \Rightarrow E = \num{1.218494e+02} $ (wykres ~\ref{zad4_pid2})
+	\item $K_{p}=\num{0.5}\quad T_{i}=9\quad T_{d}=\num{0.6} \Rightarrow E = \num{1.155311e+02} $ (wykres ~\ref{zad4_pid3})
+\end{itemize}
+Parametry zaimplementowanych regulatorów DMC oraz wartoœci b³êdów:
+\begin{itemize}
+	\item $ \lambda = 1 \Rightarrow E = \num{7.523405e+01} $ (wykres ~\ref{zad4_dmc1})
+	\item $ \lambda = 10 \Rightarrow E = \num{8.822105e+01} $ (wykres ~\ref{zad4_dmc2})
+	\item $ \lambda = 30 \Rightarrow E = \num{9.933839e+01} $ (wykres ~\ref{zad4_dmc3})
+\end{itemize}
+
+Wszystkie regulatory DMC bardzo dobrze poradzi³y sobie z osi¹gniêciem wartoœci zadanej, w szczególnoœci ten o $ \lambda = 30 $, który, pomimo najwiêkszego b³êdu, najszybciej dochodzi³ do wartoœci zadanej i posiada³ najmniejsze przeregulowanie. Tego samego nie mo¿na powiedzieæ o regulatorach PID. Nawet najlepszy z nich (o parametrach $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.5} $) mimo osi¹gania wartoœci zadanej wczeœniej wpada³ w znaczne oscylacje. Jest to spowodowane nieliniow¹ charakterystyk¹ obiektu i mo¿e byæ poprawione poprzez zastosowanie regulatora rozmytego.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad4PID_1.pdf}
+	\caption{Regulator PID o parametrach: $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.5} $}
+	\label{zad4_pid1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad4PID_2.pdf}
+	\caption{Regulator PID o parametrach: $K_{p}=\num{0.5}\quad T_{i}=10\quad T_{d}=\num{0.6} $}
+	\label{zad4_pid2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad4PID_3.pdf}
+	\caption{Regulator PID o parametrach: $K_{p}=\num{0.5}\quad T_{i}=9\quad T_{d}=\num{0.6} $}
+	\label{zad4_pid3}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad4DMC_1.pdf}
+	\caption{Regulator DMC o parametrze $ \lambda = 1 $}
+	\label{zad4_dmc1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad4DMC_10.pdf}
+	\caption{Regulator DMC o parametrze $ \lambda = 10 $}
+	\label{zad4_dmc2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad4DMC_30.pdf}
+	\caption{Regulator DMC o parametrze $ \lambda = 30 $}
+	\label{zad4_dmc3}
+\end{figure}
+
 
 \chapter{Zad. 5}
-Zaimplementowany zosta³ rozmyty regulator PID, sk³adaj¹cy siê z $ 2 $, $ 3 $, $ 4 $ i $ 5 $ regulatorów. Regulatory rozmyte w zale¿noœci od liczby regulatorów sk³adowych mia³y parametry:
+Zaimplementowany zosta³ rozmyty regulator PID, sk³adaj¹cy siê z $ 2 $, $ 3 $, $ 4 $ i $ 5 $ regulatorów. Parametry regulatorów rozmytych w zale¿noœci od parametrów sk³adowych oraz b³êdy podczas symulacji s¹ podane poni¿ej:
 \begin{itemize}
 	\item {\color{green} 2 regulatory: \\
 	$ K_{p1}=\num{0.11}\quad T_{i1}=\num{3.5}\quad T_{d1}=\num{1.5} $ \\
-	$ K_{p2}=\num{8}\quad T_{i2}=\num{1.5}\quad T_{d2}=\num{0.1} $ }
+	$ K_{p2}=\num{8}\quad T_{i2}=\num{1.5}\quad T_{d2}=\num{0.1} $ \\
+	$ E = \num{7.465864e+01} $ (wykres ~\ref{zad5_pid2}) }
 	\item {\color{yellow} 3 regulatory: \\
 	$ K_{p1}=\num{0.11}\quad T_{i1}=\num{3.5}\quad T_{d1}=\num{1.5} $ \\
 	$ K_{p2}=\num{0.3}\quad T_{i2}=\num{7}\quad T_{d2}=\num{0.25} $ \\
-	$ K_{p3}=\num{10}\quad T_{i3}=\num{1.5}\quad T_{d3}=\num{0.1} $ }
+	$ K_{p3}=\num{10}\quad T_{i3}=\num{1.5}\quad T_{d3}=\num{0.1} $ \\
+	$ E = \num{1.045992e+02} $ (wykres ~\ref{zad5_pid3}) }
 	\item {\color{orange} 4 regulatory: \\
 	$ K_{p1}=\num{0.11}\quad T_{i1}=\num{3.5}\quad T_{d1}=\num{1.5} $ \\
 	$ K_{p2}=\num{0.4}\quad T_{i2}=\num{3.2}\quad T_{d2}=\num{1} $ \\
 	$ K_{p3}=\num{1.5}\quad T_{i3}=\num{3}\quad T_{d3}=\num{0.8} $ \\
-	$ K_{p4}=\num{10}\quad T_{i4}=\num{1.5}\quad T_{d4}=\num{0.1} $ }
+	$ K_{p4}=\num{10}\quad T_{i4}=\num{1.5}\quad T_{d4}=\num{0.1} $ \\
+	$ E = \num{1.028271e+02} $ (wykres ~\ref{zad5_pid4}) }
 	\item {\color{red} 5 regulatorów: \\
 	$ K_{p1}=\num{0.11}\quad T_{i1}=\num{3.5}\quad T_{d1}=\num{1.5} $ \\
 	$ K_{p2}=\num{0.4}\quad T_{i2}=\num{3.2}\quad T_{d2}=\num{1} $ \\
 	$ K_{p3}=\num{1.5}\quad T_{i3}=\num{3}\quad T_{d3}=\num{0.8} $ \\
-	$ K_{p4}=\num{3}\quad T_{i4}=\num{2.5}\quad T_{d4}=\num{0.6} $
-	$ K_{p5}=\num{10}\quad T_{i5}=\num{1.5}\quad T_{d5}=\num{0.1} $ }
+	$ K_{p4}=\num{3}\quad T_{i4}=\num{2.5}\quad T_{d4}=\num{0.6} $ \\
+	$ K_{p5}=\num{10}\quad T_{i5}=\num{1.5}\quad T_{d5}=\num{0.1} $ \\
+	$ E = \num{9.825637e+01} $ (wykres ~\ref{zad5_pid5}) }
 \end{itemize}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad5PID_LR2.pdf}
+	\caption{Rozmyty regulator PID, sk³adaj¹cy siê z dwóch regulatorów sk³adowych}
+	\label{zad5_pid2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad5PID_LR3.pdf}
+	\caption{Rozmyty regulator PID, sk³adaj¹cy siê z trzech regulatorów sk³adowych}
+	\label{zad5_pid3}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad5PID_LR4.pdf}
+	\caption{Rozmyty regulator PID, sk³adaj¹cy siê z czterech regulatorów sk³adowych}
+	\label{zad5_pid4}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad5PID_LR5.pdf}
+	\caption{Rozmyty regulator PID, sk³adaj¹cy siê z piêciu regulatorów sk³adowych}
+	\label{zad5_pid5}
+\end{figure}
+Rozmyty regulator PID okaza³ siê du¿o lepszy od tradycyjnego. Wszystkie regulatory osi¹ga³y wartoœæ zadan¹ w bardzo krótkim czasie. Wynika z tego, ¿e w obiektach nieliniowych du¿o korzystniej jest zastosowaæ rozmyty regulator PID zamiast tradycyjnego.
+\FloatBarrier
 
 \chapter{Zad. 6}
-Rozmyty regulator DMC, podobnie jak PID, sk³ada³ siê z $ 2 $, $ 3 $, $ 4 $ i $ 5 $ regulatorów. Regulatory rozmyte w zale¿noœci od liczby regulatorów sk³adowych mia³y parametry:
+Rozmyty regulator DMC, podobnie jak PID, sk³ada³ siê z $ 2 $, $ 3 $, $ 4 $ i $ 5 $ regulatorów. Parametry regulatorów rozmytych w zale¿noœci od parametrów sk³adowych oraz b³êdy podczas symulacji s¹ podane poni¿ej:
 \begin{itemize}
-	\item {\color{green} 2 regulatory: $ \Rightarrow \lambda = \num{0} $ }
-	\item {\color{yellow} 3 regulatory: $ \Rightarrow \lambda = \num{0} $ }
-	\item {\color{orange} 4 regulatory: $ \Rightarrow \lambda = \num{0} $ }
-	\item {\color{red} 5 regulatorów: $ \Rightarrow \lambda = \num{0} $ }
+	\item {\color{green} 2 regulatory: $ \Rightarrow \lambda_{1} = \num{20} \ \lambda_{2} = \num{0.7} \quad E = \num{6.983574e+01} $ (wykres ~\ref{zad6_dmc2})}
+	\item {\color{yellow} 3 regulatory: $ \Rightarrow \lambda_{1} = \num{20} \ \lambda_{2} = \num{10} \ \lambda_{3} = \num{0.7}  \quad E = \num{6.578143e+01} $ (wykres ~\ref{zad6_dmc3}) }
+	\item {\color{orange} 4 regulatory: $ \Rightarrow \lambda_{1} = \num{20} \ \lambda_{2} = \num{16} \ \lambda_{3} = \num{9} \ \lambda_{4} = \num{0.7} \quad E = \num{6.545036e+01} $ (wykres ~\ref{zad6_dmc4}) }
+	\item {\color{red} 5 regulatorów: $ \Rightarrow \lambda_{1} = \num{20} \ \lambda_{2} = \num{16} \ \lambda_{3} = \num{10} \ \lambda_{4} = \num{5} \ \lambda_{5} = \num{0.7}    \quad E = \num{6.474870e+01} $ (wykres ~\ref{zad6_dmc5})}
 \end{itemize}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad6DMC_lr_2.pdf}
+	\caption{Rozmyty regulator DMC, sk³adaj¹cy siê z dwóch regulatorów sk³adowych}
+	\label{zad6_dmc2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad6DMC_lr_3.pdf}
+	\caption{Rozmyty regulator DMC, sk³adaj¹cy siê z trzech regulatorów sk³adowych}
+	\label{zad6_dmc3}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad6DMC_lr_4.pdf}
+	\caption{Rozmyty regulator DMC, sk³adaj¹cy siê z czterech regulatorów sk³adowych}
+	\label{zad6_dmc4}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad6DMC_lr_5.pdf}
+	\caption{Rozmyty regulator DMC, sk³adaj¹cy siê z piêciu regulatorów sk³adowych}
+	\label{zad6_dmc5}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad. 7}
+Sprawdzone zosta³y równie¿ regulatory DMC o innych wartoœciach parametru $ \lambda $. Parametry regulatorów rozmytych w zale¿noœci od parametrów sk³adowych oraz b³êdy podczas symulacji s¹ podane poni¿ej:
+\begin{itemize}
+	\item {\color{green} 2 regulatory: $ \Rightarrow \lambda_{1} = \num{18} \ \lambda_{2} = \num{0.9} \quad E = \num{6.937087e+01} $ (wykres ~\ref{zad7_dmc2})}
+	\item {\color{yellow} 3 regulatory: $ \Rightarrow \lambda_{1} = \num{18} \ \lambda_{2} = \num{12} \ \lambda_{3} = \num{0.9}  \quad E = \num{6.548492e+01} $ (wykres ~\ref{zad7_dmc3}) }
+	\item {\color{orange} 4 regulatory: $ \Rightarrow \lambda_{1} = \num{17} \ \lambda_{2} = \num{16} \ \lambda_{3} = \num{9} \ \lambda_{4} = \num{1} \quad E = \num{6.503162e+01} $ (wykres ~\ref{zad7_dmc4}) }
+	\item {\color{red} 5 regulatorów: $ \Rightarrow \lambda_{1} = \num{16} \ \lambda_{2} = \num{16} \ \lambda_{3} = \num{10} \ \lambda_{4} = \num{5} \ \lambda_{5} = \num{1.5}    \quad E = \num{6.437018e+01} $ (wykres ~\ref{zad7_dmc5})}
+\end{itemize}
+Jak widaæ, zmiana parametrów $ \lambda_{1}, \lambda_{2}, \lambda_{3}, \lambda_{4} $ oraz $ \lambda_{5} $ poprawi³a, choæ nieznacznie, wartoœæ wskaŸnika jakoœci regulacji.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad7DMC_lr_2.pdf}
+	\caption{Poprawiony ozmyty regulator DMC, sk³adaj¹cy siê z dwóch regulatorów sk³adowych}
+	\label{zad7_dmc2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad7DMC_lr_3.pdf}
+	\caption{Poprawiony ozmyty regulator DMC, sk³adaj¹cy siê z trzech regulatorów sk³adowych}
+	\label{zad7_dmc3}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad7DMC_lr_4.pdf}
+	\caption{Poprawiony ozmyty regulator DMC, sk³adaj¹cy siê z czterech regulatorów sk³adowych}
+	\label{zad7_dmc4}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../pdfy/zad7DMC_lr_5.pdf}
+	\caption{Poprawiony rozmyty regulator DMC, sk³adaj¹cy siê z piêciu regulatorów sk³adowych}
+	\label{zad7_dmc5}
+\end{figure}
 
 \end{document}
 

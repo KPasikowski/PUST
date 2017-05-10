@@ -61,9 +61,9 @@ for m = 1 : numOfControllers
        for j=1:Nu
           if (i>=j)
              M(i,j)=s(i-j+1);
-          end;
-       end;
-    end;
+          end
+       end
+    end
 
     MP=zeros(N,D-1);
     for i=1:N
@@ -72,9 +72,9 @@ for m = 1 : numOfControllers
              MP(i,j)=s(i+j)-s(j);
           else
              MP(i,j)=s(D)-s(j);
-          end;      
-       end;
-    end;
+          end      
+       end
+    end
 
     % Obliczanie parametr?w regulatora
     I=eye(Nu);
