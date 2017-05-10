@@ -8,14 +8,14 @@ mkDirectory(dirPathTxt);
 D = 200;
 N = D;
 Nu = D;
-lambdas = [10 10 0 0 0 ; 10 10 10 0 0 ; 10 10 10 10 0 ; 10 10 10 10 10];
-d = [12 2 3 4];
-c = [-0.7 6 4 10];
+lambdas = [18 0.9 0 0 0 ; 18 12 0.9 0 0 ; 17 16 9 1 0 ; 16 16 10 5 1.5];
+d = [7 0 0 0 ; 7 12 0 0 ; 7 9 10 0; 7 8 8 12];
+c = [-0.6 0 0 0 ; -0.6 -0.2 0 0 ; -0.6 -0.9 -0.1 0 ; -1 -0.2 -0.1 -0.1];
 Es = zeros(1, 4);
 
 for i = 1 : 4
     
-    [y, u, E, yzad] = policzDMCzad6(D, N, Nu, lambdas(i, 1 : i+1), d, c, Kk);
+    [y, u, E, yzad] = policzDMCzad6(D, N, Nu, lambdas(i, 1 : i+1), d(i, 1 : i), c(i, 1 : i), Kk);
     
     txtToSave = '_lambdas_';
     for k = 1 : i + 1
@@ -37,6 +37,7 @@ for i = 1 : 4
     savefig([dirPathFigures '/sterowanie_wyjscie_PID_lr_' num2str(+1) '.fig']);
     
     Es(i) = E;
+    E
 
 end
 
