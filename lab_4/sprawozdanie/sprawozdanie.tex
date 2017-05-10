@@ -128,13 +128,11 @@ Mo¿liwoœæ sterowania i pomiaru w komunikacji ze stanowiskiem zosta³a sprawdzona 
 \chapter{Zad. 2}
 Skoki sterowania wynosi³y odpowiednio:
 \begin{itemize}
-	\item {\color{blue} $ \Delta u = 5 $}
 	\item {\color{red} $ \Delta u = 10 $}
-	\item {\color{green} $ \Delta u = -5 $}
-	\item {\color{lime} $ \Delta u = -10 $}
-	\item {\color{cyan} $ \Delta u = 21 $}
-	\item {\color{magenta} $ \Delta u = 41 $}
-	\item {\color{teal} $ \Delta u = 51 $}
+	\item {\color{blue} $ \Delta u = -10 $}
+	\item {\color{green} $ \Delta u = 21 $}
+	\item {\color{purple} $ \Delta u = 41 $}
+	\item {\color{brown} $ \Delta u = 51 $}
 \end{itemize}
 Odpowiedzi skokowe widaæ na wykresie ~\ref{zad2_odpskok}
 \begin{figure}[b]
@@ -394,7 +392,7 @@ E = (yzadVec - y)*(yzadVec - y)';
 \end{lstlisting}
 
 \chapter{Zad. 5}
-Regulator PID zosta³ przetestowany poprzez zmianê wartoœci zadanej z punktu pracy do $ \ang{50}C $ a nastêpnie do $ \ang{30}C $. Parametry regulatora wynosi³y $ K = 6 $, $ T_{i} = 65 $, $ T_{d} = \num{1.25} $ a wyniki eksperymentu z nim widaæ na rysunku ~\ref{zad5_pid}. Regulator DMC o parametrze $ \lambda = 5 $ zosta³ przetestowany dla skoku wartoœci zadanej do $ \ang{37}C $, co widaæ na rysunku ~\ref{zad5_dmc}. Oba regulatory co prawda osi¹gnê³y wartoœci zadane , jednak nieliniowy charakter obiektu utrudni³ im zadanie. Rozwi¹zaniem tego problemu mo¿e byæ zast¹pienie regulatorów tradycyjnych rozmytymi.
+Regulator PID zosta³ przetestowany poprzez zmianê wartoœci zadanej z punktu pracy do $ \ang{50}C $ a nastêpnie do $ \ang{30}C $. Parametry regulatora wynosi³y $ K = 6 $, $ T_{i} = 65 $, $ T_{d} = \num{1.25} $ a wyniki eksperymentu z nim widaæ na rysunku ~\ref{zad5_pid}. Regulator DMC o parametrze $ \lambda = 5 $ zosta³ przetestowany dla skoku wartoœci zadanej do $ \ang{37}C $, co widaæ na rysunku ~\ref{zad5_dmc}. Oba regulatory co prawda osi¹gnê³y wartoœci zadane, nie by³o równie¿ przeregulowania, jednak nieliniowy charakter obiektu utrudni³ im zadanie. Rozwi¹zaniem tego problemu mo¿e byæ zast¹pienie regulatorów tradycyjnych rozmytymi.
 \begin{figure}[b]
 	\centering
 	\includegraphics[scale=1]{../wykresy/zad5_PID.pdf}
@@ -426,7 +424,7 @@ Rozmyty regulator PID zosta³ przetestowany dla wiêkszej iloœci zmian wartoœci za
 \FloatBarrier
 
 \chapter{Zad. 7}
-Rozmyty regulator DMC równie¿ sk³ada³ siê z dwóch regulatorów. Parametr $ \lambda $ pierwszego wynosi³ $ 5 $ a drugiego $ 10 $. Zosta³ on poddany takim samym wymuszeniom jak rozmyty regulator PID, tj. wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie ~\ref{zad7_dmc}. Jakoœæ regulacji tego regulatora jest najlepsza jak dot¹d i niezaprzeczalnie pokazuje w tym przypadku wy¿szoœæ regulatora rozmytego nad tradycyjnym.
+Rozmyty regulator DMC równie¿ sk³ada³ siê z dwóch regulatorów. Parametr $ \lambda $ pierwszego wynosi³ $ 5 $ a drugiego $ 10 $. Zosta³ on poddany takim samym wymuszeniom jak rozmyty regulator PID, tj. wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie ~\ref{zad7_dmc}. Jakoœæ regulacji tego regulatora jest najlepsza jak dot¹d i niezaprzeczalnie pokazuje w tym przypadku wy¿szoœæ regulatora rozmytego nad tradycyjnym. Wartoœæ zadana osi¹gana jest szybko przy prawie zerowym przeregulowaniu i stabilnym sterowaniu.
 \begin{figure}[b]
 	\centering
 	\includegraphics[scale=1]{../wykresy/zad6_DMC2.pdf}
@@ -436,7 +434,7 @@ Rozmyty regulator DMC równie¿ sk³ada³ siê z dwóch regulatorów. Parametr $ \lambd
 \FloatBarrier
 
 \chapter{Zad. 8}
-Sprawdzony zosta³ równie¿ rozmyty regulator DMC o parametrach $ \lambda_{1} = 1 $, $ \lambda_{2} = 2 $, którego dzia³anie widaæ na wykresie ~\ref{zad8_dmc1}. Poradzi³ on sobie gorzej ni¿ ten o $ \lambda_{1} = 5 $ i $ \lambda_{2} = 10 $, porównanie obu rozmytych regulatorów DMC widaæ na wykresie ~\ref{zad8_dmc2}. Mimo nie najlepszej jakoœci regulacji wci¹¿ by³ lepszy ni¿ regulator DMC w wersji tradycyjnej. Wynika z tego, ¿e warto u¿yæ regulatora rozmytego zamiast zwyk³ego DMC, gdy sterowany obiekt ma charakterystykê nieliniow¹.
+Sprawdzony zosta³ równie¿ rozmyty regulator DMC o parametrach $ \lambda_{1} = 1 $, $ \lambda_{2} = 2 $, którego dzia³anie widaæ na wykresie ~\ref{zad8_dmc1}. Poradzi³ on sobie gorzej ni¿ ten o $ \lambda_{1} = 5 $ i $ \lambda_{2} = 10 $.Wartoœæ zadana osi¹gana by³a du¿o póŸniej oraz pojawi³o siê przeregulowanie. Porównanie obu rozmytych regulatorów DMC widaæ na wykresie ~\ref{zad8_dmc2}.  Mimo nie najlepszej jakoœci regulacji wci¹¿ by³ lepszy ni¿ regulator DMC w wersji tradycyjnej. Wynika z tego, ¿e warto u¿yæ regulatora rozmytego zamiast zwyk³ego DMC, gdy sterowany obiekt ma charakterystykê nieliniow¹.
 \begin{figure}[b]
 	\centering
 	\includegraphics[scale=1]{../wykresy/zad6_DMC.pdf}
