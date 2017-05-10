@@ -33,8 +33,8 @@ D = 200;
 N = D;
 Nu = D;
 lambdas = [10 10 0 0 0 ; 10 10 10 0 0 ; 10 10 10 10 0 ; 10 10 10 10 10];
-d = [12 2 3 4];
-c = [-0.7 6 4 10];
+d = [8 2 3 4];
+c = [-0.6 6 4 10];
 Es = zeros(1, 4);
 
 for i = 1 : 4
@@ -46,9 +46,9 @@ for i = 1 : 4
     
     figure;
     subplot(2,1,1);
-    rysujWykres((1 : length(y)), y, -1, 'k', 'y', '', 'Wyjscie y obiektu');
+    rysujWykres((1 : length(y)), y, -1, 'k', 'y', '', ['Wyjscie y obiektu, liczba regulatorow ' num2str(i+1)]);
     hold on
-    rysujWykres((1 : length(yzad)), yzad, -1, 'k', 'y', '', 'Wyjscie y obiektu');
+    rysujWykres((1 : length(yzad)), yzad, -1, 'k', 'y', '', ['Wyjscie y obiektu, liczba regulatorow ' num2str(i+1)]);
 
     subplot(2,1,2);
     rysujWykres((1 : length(u)), u, -1, 'k', 'u', '', 'Sterowanie u');

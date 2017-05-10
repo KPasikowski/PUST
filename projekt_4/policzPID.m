@@ -21,11 +21,11 @@ index = 1;
 yzads = [-1 -2.5 -1 0.06];
 yzad = yzads(index);
 yzadVec(1:Kk) = yzad;
-% u(1:11) = 0.34 ;
-% y(1:11) = 0.073 ;
+% u(1:11) = -0.34 ;
+% y(1:11) = -0.6 ;
 % e(1:11) = 0 ;
 % index = 1;
-% yzads = [0.084];
+% yzads = [-0.4];
 % yzad = yzads(index);
 % yzadVec(1:Kk) = yzad;
 

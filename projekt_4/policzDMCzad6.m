@@ -1,6 +1,6 @@
 function [ Y, U, E, yzadVec ] = policzDMCzad6( D_, N_, Nu_, lambda_, d_, c_, Kk_)
 
-numOfControllers = 2;
+numOfControllers = length(lambda_);
 D=D_;
 N=N_;
 Nu=Nu_;
@@ -16,7 +16,7 @@ Umin=-1;
 Umax=1;
 
 index = 1;
-yzads = [-1 -2.5 -1 0];
+yzads = [-1 -2.5 -1 0.06];
 yzad = yzads(index);
 yzadVec(1:Kk_) = yzad;
 Yzad = yzadVec - Ypp;

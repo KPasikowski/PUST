@@ -15,7 +15,7 @@ mkDirectory(subDirPathDMC);
 D = 200;
 N = D;
 Nu = D;
-lambdas = [1000];
+lambdas = [1 10 30];
 Es = zeros(1, length(lambdas));
 
 
@@ -25,9 +25,9 @@ for i = 1 : length(lambdas)
     lambda = lambdas(i);
     
     % testowanie i dobieranie parametr?w z zadania 6 i 7
-    [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, 200);
+%     [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, 200);
     
-%     [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, Kk);
+    [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, Kk);
     
     zapiszDoPliku([subDirPathDMC '/wyjscie_lambda_'  num2str(lambdas(i)) '.txt'], y);
     zapiszDoPliku([subDirPathDMC '/sterowanie_lambda_'  num2str(lambdas(i)) '.txt'], u);
@@ -42,7 +42,7 @@ for i = 1 : length(lambdas)
     rysujWykres((1 : length(u)), u, -1, 'k', 'u', '', 'Sterowanie u');
     hold on
     
-    Es(i) = E;
+    Es(i) = E
 
 end
 

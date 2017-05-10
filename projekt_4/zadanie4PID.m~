@@ -6,13 +6,9 @@ subDirPathPID = [dirPathTxt '/PID'];
 mkDirectory(dirPathFigures);
 mkDirectory(subDirPathPID);
 
-% Kps = [0.5];
-% Tis = [10];
-% Tds = [0.5];
-Kps = [0.11];
-Tis = [3];
-Tds = [0.];
-
+Kps = [0.5 0.3 ];
+Tis = [10 9 ];
+Tds = [0.5 0.2 ];
 
 Es = zeros(1, length(Kps));
 
@@ -20,8 +16,7 @@ Es = zeros(1, length(Kps));
 figure;
 for i = 1 : length(Kps)
     
-%     [y, u, E, yzad] = policzPID(Kps(i), Tis(i), Tds(i), Kk);
-    [y, u, E, yzad] = policzPID(Kps(i), Tis(i), Tds(i), 300);
+    [y, u, E, yzad] = policzPID(Kps(i), Tis(i), Tds(i), Kk);
 
     zapiszDoPliku([subDirPathPID '/wyjscie_Kp='  num2str(Kps(i)) '_Ti=' num2str(Tis(i)) '_Td=' num2str(Tds(i)) '.txt'], y);
     zapiszDoPliku([subDirPathPID '/sterowanie_Kp='  num2str(Kps(i)) '_Ti=' num2str(Tis(i)) '_Td=' num2str(Tds(i)) '.txt'], u);
@@ -37,7 +32,7 @@ for i = 1 : length(Kps)
     hold on
     
     Es(i) = E;
-
+    E
 end
 
 zapiszDoPliku([subDirPathPID '/wartosc_zadana.txt'], yzad);
