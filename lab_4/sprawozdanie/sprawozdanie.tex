@@ -19,6 +19,7 @@
 \usepackage{matlab-prettifier}
 \definecolor{szary}{rgb}{0.95,0.95,0.95}
 \usepackage{siunitx}
+\usepackage{placeins}
 \sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
 \SendSettingsToPgf
 %konfiguracje pakietu listings
@@ -125,7 +126,6 @@ Wydzia³ Elektroniki i Technik Informacyjnych}}\\
 Mo¿liwoœæ sterowania i pomiaru w komunikacji ze stanowiskiem zosta³a sprawdzona poprzez funkcjê readMeasurements, sendControls oraz sendNonLinearControls. Sygna³y steruj¹ce, które by³y obs³ugiwane to moc na grza³ce $G1$(wys³ana za pomoc¹ funkcji sendNonLinearControls) oraz moc wiatraka $ W1 $(wys³ana za pomoc¹ sendControls), natomiast mierzona by³a temperatura $ T1 $ w otoczeniu grza³ki $ G1 $. W punkcie pracy, tzn. dla $ (W1, G1) = (50, 29) $ pomiar temperatury $ T1 $ wyniós³ $ \ang{34}C $.
 
 \chapter{Zad. 2}
-\chapter{Zad. 2}
 Skoki sterowania wynosi³y odpowiednio:
 \begin{itemize}
 	\item {\color{blue} $ \Delta u = 5 $}
@@ -136,11 +136,23 @@ Skoki sterowania wynosi³y odpowiednio:
 	\item {\color{magenta} $ \Delta u = 41 $}
 	\item {\color{teal} $ \Delta u = 51 $}
 \end{itemize}
-Odpowiedzi skokowe widaæ na wykresach
+Odpowiedzi skokowe widaæ na wykresie ~\ref{zad2_odpskok}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad2_odpowiedzi.pdf}
+	\caption{Odpowiedzi skokowe}
+	\label{zad2_odpskok}
+\end{figure}
 
 
-
-W³aœciwoœci statycznych obiektu nie mo¿na okreœliæ jako liniowych, gdy¿ zmiana sterowania nie powoduje liniowej zmiany sygna³u wyjœciowego. Nie da siê wiêc obliczyæ wzmocnienia statycznego obiektu. Charakterystyka jest jednak (w przybli¿eniu) lokalnie liniowa, co widaæ na wykresie.
+W³aœciwoœci statycznych obiektu nie mo¿na okreœliæ jako liniowych, gdy¿ zmiana sterowania nie powoduje liniowej zmiany sygna³u wyjœciowego. Nie da siê wiêc obliczyæ wzmocnienia statycznego obiektu. Charakterystyka jest jednak (w przybli¿eniu) lokalnie liniowa, co widaæ na wykresie ~\ref{zad2_charstat}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad2_charstat.pdf}
+	\caption{Charakterystyka statyczna obiektu}
+	\label{zad2_charstat}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad.3}
 Najlepiej nadaj¹c¹ siê odpowiedzi¹ skokow¹ by³a ta, o wartoœci $ \Delta u = 21 $. Zosta³a ona przekszta³cona do tej, u¿ywanej w algorytmie DMC w nastêpuj¹cy sposób:
@@ -165,7 +177,20 @@ b_{2} &= \frac{K}{T_{1} - T_{2}}[\alpha_{1}T_{2}(1- \alpha_{2}) - \alpha_{2}T_{1
 Po przekszta³ceniu powy¿szego równania otrzymujemy równanie ró¿nicowe postaci:
 $$ y(k) = b_{1}u(k-T_{D}-1) + b_{2}u(k-T_{d}-2) - a_{1}y(k-1) - a_{2}y(k-2) $$
 
-W celu doboru parametrów modelu zosta³a u¿yta funkcja wewnêtrzna œrodowiska MATLAB: fmincon(). Parametry modelu zosta³y dobrane w taki sposób, aby b³¹d œredniokwadratowy miêdzy odpowiedzi¹ aproksymowan¹, a t¹ rzeczywist¹ by³ jak najmniejszy. W najlepszym przypadku wynosi³ on $ \num{0.0311} $. Oryginaln¹ i aproksymowan¹ odpowiedŸ skokow¹ widaæ na rysunku.
+W celu doboru parametrów modelu zosta³a u¿yta funkcja wewnêtrzna œrodowiska MATLAB: fmincon(). Parametry modelu zosta³y dobrane w taki sposób, aby b³¹d œredniokwadratowy miêdzy odpowiedzi¹ aproksymowan¹, a t¹ rzeczywist¹ by³ jak najmniejszy. Z wykresu ~\ref{zad3_E} widaæ, ¿e w najlepszym przypadku wynosi³ on $ \num{0.0311} $. Oryginaln¹ i aproksymowan¹ odpowiedŸ skokow¹ widaæ na rysunku ~\ref{zad3_odpskok}.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad3_aproks.pdf}
+	\caption{B³¹d aproksymacji odpowiedzi skokowej}
+	\label{zad3_E}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad3_odpskok.pdf}
+	\caption{Oryginalna i aproksymowana odpowiedŸ skokowa}
+	\label{zad3_odpskok}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad. 4}
 \section{PID}
@@ -369,15 +394,63 @@ E = (yzadVec - y)*(yzadVec - y)';
 \end{lstlisting}
 
 \chapter{Zad. 5}
-Regulator PID zosta³ przetestowany poprzez zmianê wartoœci zadanej z punktu pracy do $ \ang{50}C $ a nastêpnie do $ \ang{30}C $. Jak widaæ na wykresie poradzi³ sobie ca³kiem dobrze pomimo nieliniowych w³aœciwoœci obiektu. Parametry regulatora wynosi³y $ K = 6 $, $ T_{i} = 65 $, $ T_{d} = \num{1.25} $. Regulator DMC o parametrze $ \lambda = 5 $w tym przypadku poradzi³ sobie znacznie gorzej, przy zmianie wartoœci zadanej do 37 wykaza³ du¿e przeregulowanie, co widaæ na wykresie. B³¹d wynosi³ wtedy $ \num{1617.5} $.
+Regulator PID zosta³ przetestowany poprzez zmianê wartoœci zadanej z punktu pracy do $ \ang{50}C $ a nastêpnie do $ \ang{30}C $. Parametry regulatora wynosi³y $ K = 6 $, $ T_{i} = 65 $, $ T_{d} = \num{1.25} $ a wyniki eksperymentu z nim widaæ na rysunku ~\ref{zad5_pid}. Regulator DMC o parametrze $ \lambda = 5 $ zosta³ przetestowany dla skoku wartoœci zadanej do $ \ang{37}C $, co widaæ na rysunku ~\ref{zad5_dmc}. Oba regulatory co prawda osi¹gnê³y wartoœci zadane , jednak nieliniowy charakter obiektu utrudni³ im zadanie. Rozwi¹zaniem tego problemu mo¿e byæ zast¹pienie regulatorów tradycyjnych rozmytymi.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad5_PID.pdf}
+	\caption{Tradycyjny regulator PID}
+	\label{zad5_pid}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad5_DMC.pdf}
+	\caption{Tradycyjny regulator DMC}
+	\label{zad5_dmc}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad. 6}
-Rozmyty regulator PID zosta³ przetestowany dla wiêkszej iloœci zmian wartoœci zadanej ni¿ zwyk³y, sk³ada³ siê on z dwóch regulatorów, gdzie pierwszy mia³ parametry: $ K = 8 $, $ T_{i} = 50 $, $ T_{d} = \num{0.8} $, natomiast drugi: $ K = 25 $, $ T_{i} = 40 $, $ T_{d} = \num{1.1} $. Rozpoczyna³ on w punkcie pracy a wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie.
+Rozmyty regulator PID zosta³ przetestowany dla wiêkszej iloœci zmian wartoœci zadanej ni¿ zwyk³y(szybsza regulacja pozwoli³a na wiêcej skoków), sk³ada³ siê on z dwóch regulatorów, gdzie pierwszy mia³ parametry: $ K = 8 $, $ T_{i} = 50 $, $ T_{d} = \num{0.8} $, natomiast drugi: $ K = 25 $, $ T_{i} = 40 $, $ T_{d} = \num{1.1} $. Rozpoczyna³ on w punkcie pracy a wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie ~\ref{zad6_pid1}. Przetestowany zosta³ te¿ regulator o parametrach: $ K_{1} = 9 $, $ T_{i1} = 40 $, $ T_{d1} = \num{0.8}, K_{2} = 21 $, $ T_{i2} = 36 $, $ T_{d2} = \num{1} $. Jak widaæ na wykresie ~\ref{zad6_pid2} nie poradzi³ on sobie lepiej ni¿ poprzedni, gdy¿ trochê wolniej dochodzi³ do wartoœci zadanej i mia³ nieznacznie wiêksze przeregulowanie, st¹d pierwszy regulator mo¿na uznaæ za lepszy. Oba regulatory rozmyte szybciej jednak osi¹ga³y wartoœæ zadan¹ ni¿ regulator tradycyjny, co œwiadczy o tym, ¿e wprowadzenie regulatora rozmytego zamiast zwyk³ego regulatora PID jest dobrym pomys³em w przypadku sterowania obiektami nieliniowymi.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad6_PID.pdf}
+	\caption{Rozmyty regulator PID o parametrach: $ K_{1} = 8 $, $ T_{i1} = 50 $, $ T_{d1} = \num{0.8}, K_{2} = 25 $, $ T_{i2} = 40 $, $ T_{d2} = \num{1.1} $}
+	\label{zad6_pid1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad6_PID2.pdf}
+	\caption{Rozmyty regulator PID o parametrach: $ K_{1} = 9 $, $ T_{i1} = 40 $, $ T_{d1} = \num{0.8}, K_{2} = 21 $, $ T_{i2} = 36 $, $ T_{d2} = \num{1} $}
+	\label{zad6_pid2}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad. 7}
-Rozmyty regulator DMC równie¿ sk³ada³ siê z dwóch regulatorów. Parametr $ \lambda $ pierwszego wynosi³ $ 5 $ a drugiego $ 10 $. Zosta³ on poddany takim samym wymuszeniom jak rozmyty regulator PID, tj. wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie.
+Rozmyty regulator DMC równie¿ sk³ada³ siê z dwóch regulatorów. Parametr $ \lambda $ pierwszego wynosi³ $ 5 $ a drugiego $ 10 $. Zosta³ on poddany takim samym wymuszeniom jak rozmyty regulator PID, tj. wartoœci zadane wynosi³y $ \ang{37}C $, $ \ang{39}C $ i $ \ang{36}C $. Wyniki eksperymentu widaæ na wykresie ~\ref{zad7_dmc}. Jakoœæ regulacji tego regulatora jest najlepsza jak dot¹d i niezaprzeczalnie pokazuje w tym przypadku wy¿szoœæ regulatora rozmytego nad tradycyjnym.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad6_DMC2.pdf}
+	\caption{Rozmyty regulator DMC o $ \lambda_{1} = 5, \lambda_{2} = 10 $}
+	\label{zad7_dmc}
+\end{figure}
+\FloatBarrier
 
 \chapter{Zad. 8}
-Sprawdzony zosta³ równie¿ rozmyty regulator DMC o parametrach $ \lambda_{1} = 1 $, $ \lambda_{2} = 2 $. Jak widaæ na wykresie poradzi³ on sobie gorzej ni¿ ten o $ \lambda_{1} = 5 $ i $ \lambda_{2} = 10 $. 
+Sprawdzony zosta³ równie¿ rozmyty regulator DMC o parametrach $ \lambda_{1} = 1 $, $ \lambda_{2} = 2 $, którego dzia³anie widaæ na wykresie ~\ref{zad8_dmc1}. Poradzi³ on sobie gorzej ni¿ ten o $ \lambda_{1} = 5 $ i $ \lambda_{2} = 10 $, porównanie obu rozmytych regulatorów DMC widaæ na wykresie ~\ref{zad8_dmc2}. Mimo nie najlepszej jakoœci regulacji wci¹¿ by³ lepszy ni¿ regulator DMC w wersji tradycyjnej. Wynika z tego, ¿e warto u¿yæ regulatora rozmytego zamiast zwyk³ego DMC, gdy sterowany obiekt ma charakterystykê nieliniow¹.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{../wykresy/zad6_DMC.pdf}
+	\caption{Rozmyty regulator DMC o $ \lambda_{1} = 1, \lambda_{2} = 2 $}
+	\label{zad8_dmc1}
+\end{figure}
+
+\begin{figure}[b]
+	\hspace{-11.5em}
+	\includegraphics[scale=1]{../wykresy/zad7.pdf}
+	\caption{Porównanie obu rozmytych regulatorów DMC}
+	\label{zad8_dmc2}
+\end{figure}
+
+
 \end{document}
 
