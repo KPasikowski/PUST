@@ -32,14 +32,15 @@ end
 D = 200;
 N = D;
 Nu = D;
-lambdas = [10 10 0 0 0 ; 10 10 10 0 0 ; 10 10 10 10 0 ; 10 10 10 10 10];
-d = [8 2 3 4];
-c = [-0.6 6 4 10];
+lambdas = [20 0.7 0 0 0 ; 20 10 0.7 0 0 ; 20 16 9 0.7 0 ; 20 16 10 5 0.7];
+% lambdas = [10 10 0 0 0 ; 10 10 10 0 0 ; 10 10 10 10 0 ; 10 10 10 10 10];
+d = [7 0 0 0 ; 7 12 0 0 ; 7 9 10 0; 7 8 8 12];
+c = [-0.6 0 0 0 ; -0.6 -0.2 0 0 ; -0.6 -0.9 -0.1 0 ; -1 -0.2 -0.1 -0.1];
 Es = zeros(1, 4);
 
 for i = 1 : 4
     
-    [y, u, E, yzad] = policzDMCzad6(D, N, Nu, lambdas(i, 1 : i+1), d, c, Kk);
+    [y, u, E, yzad] = policzDMCzad6(D, N, Nu, lambdas(i, 1 : i+1), d(i, 1 : i), c(i, 1 : i), Kk);
     
     zapiszDoPliku([dirPathTxt '/wyjscie_lr_'  num2str(i+1) '.txt'], y);
     zapiszDoPliku([dirPathTxt '/sterowanie_lr_'  num2str(i+1) '.txt'], u);
@@ -56,6 +57,7 @@ for i = 1 : 4
     savefig([dirPathFigures '/sterowanie_wyjscie_PID_lr_' num2str(i+1) '.fig']);
     
     Es(i) = E;
+    E
 
 end
 
