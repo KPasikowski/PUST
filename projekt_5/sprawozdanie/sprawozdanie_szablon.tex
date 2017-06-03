@@ -1,0 +1,585 @@
+\documentclass[a4paper,titlepage,11pt,twosides,floatssmall]{mwrep}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[OT1]{fontenc}
+\usepackage{polski}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{arrows,calc,decorations.markings,math,arrows.meta}
+\usepackage{rotating}
+\usepackage[percent]{overpic}
+\usepackage[cp1250]{inputenc}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usetikzlibrary{pgfplots.groupplots}
+\usepackage{listings}
+\usepackage{matlab-prettifier}
+\usepackage{siunitx}
+\usepackage{placeins}
+\definecolor{szary}{rgb}{0.95,0.95,0.95}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+
+%konfiguracje pakietu listings
+\lstset{
+	backgroundcolor=\color{szary},
+	frame=single,
+	breaklines=true,
+}
+\lstdefinestyle{customlatex}{
+	basicstyle=\footnotesize\ttfamily,
+	%basicstyle=\small\ttfamily,
+}
+\lstdefinestyle{customc}{
+	breaklines=true,
+	frame=tb,
+	language=C,
+	xleftmargin=0pt,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+\lstdefinestyle{custommatlab}{
+	captionpos=t,
+	breaklines=true,
+	frame=tb,
+	xleftmargin=0pt,
+	language=matlab,
+	showstringspaces=false,
+	%basicstyle=\footnotesize\ttfamily,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+%wymiar tekstu (bez ¿ywej paginy)
+\textwidth 160mm \textheight 247mm
+
+%ustawienia pakietu pgfplots
+\pgfplotsset{
+tick label style={font=\scriptsize},
+label style={font=\small},
+legend style={font=\small},
+title style={font=\small}
+}
+
+\def\figurename{Rys.}
+\def\tablename{Tab.}
+
+%konfiguracja liczby p³ywaj¹cych elementów
+\setcounter{topnumber}{0}%2
+\setcounter{bottomnumber}{3}%1
+\setcounter{totalnumber}{5}%3
+\renewcommand{\textfraction}{0.01}%0.2
+\renewcommand{\topfraction}{0.95}%0.7
+\renewcommand{\bottomfraction}{0.95}%0.3
+\renewcommand{\floatpagefraction}{0.35}%0.5
+
+\begin{document}
+\frenchspacing
+\pagestyle{uheadings}
+
+%strona tytu³owa
+\title{\bf Sprawozdanie z projektu i æwiczenia laboratoryjnego nr 3, zadanie nr 6\vskip 0.1cm}
+\author{Mateusz Koroœ, Ksawery Pasikowski, Mateusz Morusiewicz}
+\date{2017}
+
+\makeatletter
+\renewcommand{\maketitle}{\begin{titlepage}
+\begin{center}{\LARGE {\bf
+Wydzia³ Elektroniki i Technik Informacyjnych}}\\
+\vspace{0.4cm}
+{\LARGE {\bf Politechnika Warszawska}}\\
+\vspace{0.3cm}
+\end{center}
+\vspace{5cm}
+\begin{center}
+{\bf \LARGE Projektowanie uk³adów sterowania\\ (projekt grupowy) \vskip 0.1cm}
+\end{center}
+\vspace{1cm}
+\begin{center}
+{\bf \LARGE \@title}
+\end{center}
+\vspace{2cm}
+\begin{center}
+{\bf \Large \@author \par}
+\end{center}
+\vspace*{\stretch{6}}
+\begin{center}
+\bf{\large{Warszawa, \@date\vskip 0.1cm}}
+\end{center}
+\end{titlepage}
+}
+\makeatother
+
+\maketitle
+\tableofcontents
+\chapter{Zad. 1}
+Poprawnoœæ punktu pracy zosta³a udowodniona poprzez sprawdzenie, czy obiekt, bêd¹cy w punkcie pracy, pozostanie w nim, jeœli wartoœci sterowania i zak³óceñ pozostan¹ takie same. Zosta³o to wykonane za pomoc¹ komend:
+\begin{lstlisting}[style=Matlab-editor]
+y1_ust = symulacja_obiektu6y1(0, 0, 0, 0, 0, 0)
+y2_ust = symulacja_obiektu6y2(0, 0, 0, 0, 0, 0)
+\end{lstlisting}
+Co da³o wynik [0,0], co dowodzi, ¿e punktem pracy rzeczywiœcie jest punkt $u_{1}=u_{2}=y_{1}=y_{2}=0$
+
+\chapter{Zad. 2}
+Oba sterowania zosta³y wzbudzone do wartoœci:
+\begin{itemize}
+	\item {\color{green}$ \num{0.4} $}
+	\item {\color{purple}$ \num{0.8} $}
+	\item {\color{red}$ \num{-0.4} $}
+	\item {\color{blue}$ \num{-0.8} $}
+\end{itemize}
+Z charakterystyk widaæ, ¿e w³aœciwoœci statyczne procesu s¹ liniowe. W³aœciwoœci dynamiczne równie¿, st¹d mo¿emy obliczyæ wzmocnienia statyczne 4 torów:
+$$ K_{11} = \frac{\Delta y_{1}}{\Delta u_{1}} = \num{2.01} $$
+$$ K_{12} = \frac{\Delta y_{1}}{\Delta u_{2}} = \num{1.11} $$
+$$ K_{21} = \frac{\Delta y_{2}}{\Delta u_{1}} = \num{1.11} $$
+$$ K_{22} = \frac{\Delta y_{2}}{\Delta u_{2}} = \num{2.50} $$
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u1y1.pdf}
+	\caption {OdpowiedŸ skokowa $y_{1}$ na zmianê wartoœci $u_{1}$}
+	\label{odpskok_u1y1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u2y1.pdf}
+	\caption {OdpowiedŸ skokowa $y_{1}$ na zmianê wartoœci $u_{2}$}
+	\label{odpskok_u2y1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u1y2.pdf}
+	\caption {OdpowiedŸ skokowa $y_{2}$ na zmianê wartoœci $u_{1}$}
+	\label{odpskok_u1y2}
+\end{figure}	
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_u2y2.pdf}
+	\caption {OdpowiedŸ skokowa $y_{2}$ na zmianê wartoœci $u_{2}$}
+	\label{odpskok_u2y2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad2_charstat.pdf}
+	\caption {Charakterystyki statyczne procesu}
+	\label{char_stat}
+\end{figure}
+
+\chapter{Zad. 3}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad3_u1y1.pdf}
+	\caption {OdpowiedŸ skokowa u¿ywana w algorytmie DMC dla toru $u_{1}-y_{1}$}
+	\label{zad3_odpskok_u1y1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad3_u2y1.pdf}
+	\caption {OdpowiedŸ skokowa u¿ywana w algorytmie DMC dla toru $u_{2}-y_{1}$}
+	\label{zad3_odpskok_u2y1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad3_u1y2.pdf}
+	\caption {OdpowiedŸ skokowa u¿ywana w algorytmie DMC dla toru $u_{1}-y_{2}$}
+	\label{zad3_odpskok_u1y2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad3_u2y2.pdf}
+	\caption {OdpowiedŸ skokowa u¿ywana w algorytmie DMC dla toru $u_{2}-y_{2}$}
+	\label{zad3_odpskok_u2y2}
+\end{figure}
+
+\chapter{Zad. 4}
+\section{PID}
+\begin{lstlisting}[style=Matlab-editor]
+function [ y, u, E, yzad ] = policzPID( Kp1_, Ti1_, Td1_, ...
+Kp2_, Ti2_, Td2_, Kk_, config, nrZad, zakl)
+Kp1 = Kp1_;
+Ti1 = Ti1_;
+Td1 = Td1_;
+Kp2 = Kp2_;
+Ti2 = Ti2_;
+Td2 = Td2_;
+
+Kk = Kk_;
+Tp = 0.5;
+
+r2_1 = (Kp1 * Td1) / Tp ;
+r1_1 = Kp1 * ( (Tp/(2*Ti1)) - 2*(Td1/Tp) - 1 ) ;
+r0_1 = Kp1 * ( 1 + Tp/(2*Ti1) + Td1/Tp ) ;
+
+r2_2 = (Kp2 * Td2) / Tp ;
+r1_2 = Kp2 * ( (Tp/(2*Ti2)) - 2*(Td2/Tp) - 1 ) ;
+r0_2 = Kp2 * ( 1 + Tp/(2*Ti2) + Td2/Tp ) ;
+
+% warunki poczatkowe
+dist1(1 : Kk - 300) = 0;
+dist1(Kk - 299 : Kk) = 0.5;
+
+dist2(1 : Kk - 150) = 0;
+dist2(Kk - 149 : Kk) = 0.3;
+
+u1(1:11) = 0 ;
+y1(1:11) = 0 ;
+e1(1:11) = 0 ;
+u2(1:11) = 0 ;
+y2(1:11) = 0 ;
+e2(1:11) = 0 ;
+index1 = 1;
+index2 = 1;
+
+if nrZad == 5
+yzads1 = [1.05 0.8 1.1 0.9];
+yzads2 = [0.9 0.8 1.1 1];
+else
+yzads1 = [1.05 1.05 1.05 1.05];
+yzads2 = [0.9 0.9 0.9 0.9];    
+end
+
+yzad1 = yzads1(index1);
+yzad2 = yzads2(index2);
+yzadVec1(1:Kk) = yzad1;
+yzadVec2(1:Kk) = yzad2;
+
+% glowna petla symulacji
+for k = 12 : Kk
+if mod(k,200) == 0
+index1 = index1 + 1;
+if index1 > length(yzads1)
+index1 = length(yzads1);
+end
+yzad1 = yzads1(index1);
+end
+yzadVec1(k) = yzad1;
+
+if mod(k,120) == 0
+index2 = index2 + 1;
+if index2 > length(yzads2)
+index2 = length(yzads2);
+end
+yzad2 = yzads2(index2);
+end
+yzadVec2(k) = yzad2;
+y1(k)=symulacja_obiektu6y1(u1(k-6),u1(k-7),u2(k-3),...
+u2(k-4),y1(k-1),y1(k-2));
+y2(k)=symulacja_obiektu6y2(u1(k-5),u1(k-6),u2(k-6),...
+u2(k-7),y2(k-1),y2(k-2));
+
+if nrZad == 7
+y1(k) = y1(k) + dist1(k);
+y2(k) = y2(k) + dist2(k);
+end
+
+if nrZad == 6
+y1(k) = y1(k) + zakl();
+y2(k) = y2(k) + zakl();
+end
+
+
+e1(k) = yzad1 - y1(k) ;
+e2(k) = yzad2 - y2(k) ;  
+
+if config == 1
+u1(k) = r2_1 * e1(k-2) + r1_1 * e1(k-1) +...
+r0_1 * e1(k) + u1(k-1) ;
+u2(k) = r2_2 * e2(k-2) + r1_2 * e2(k-1) +...
+r0_2 * e2(k) + u2(k-1) ;
+else
+u1(k) = r2_1 * e2(k-2) + r1_1 * e2(k-1) + ...
+r0_1 * e2(k) + u1(k-1) ;
+u2(k) = r2_2 * e1(k-2) + r1_2 * e1(k-1) + ...
+r0_2 * e1(k) + u2(k-1) ;
+end
+
+end
+
+E1 = (yzadVec1 - y1) * (yzadVec1 - y1)';
+E2 = (yzadVec2 - y2) * (yzadVec2 - y2)';
+E = E1 + E2;
+
+yzad = zeros(2, Kk);
+yzad(1, :) = yzadVec1;
+yzad(2, :) = yzadVec2;
+
+y = zeros(2, Kk);
+y(1, :) = y1;
+y(2, :) = y2;
+
+u = zeros(2, Kk);
+u(1, :) = u1;
+u(2, :) = u2;
+
+end
+\end{lstlisting}
+\section{DMC}
+\begin{lstlisting}[style=Matlab-editor]
+function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_,...
+lambda, Kk_, nrZad, zakl)
+N = N_;
+Nu = Nu_;
+D=D_;
+
+Su1y1 = load('wykresy_pliki/zad3/skok_sterowania/...
+odp_skok_y1_u1_ster_0.4.txt');
+Su2y1 = load('wykresy_pliki/zad3/skok_sterowania/...
+odp_skok_y1_u2_ster_0.4.txt');
+Su1y2 = load('wykresy_pliki/zad3/skok_sterowania/...
+odp_skok_y2_u1_ster_0.4.txt');
+Su2y2 = load('wykresy_pliki/zad3/skok_sterowania/...
+odp_skok_y2_u2_ster_0.4.txt');
+s11=Su1y1(:,2);
+s12=Su2y1(:,2);
+s21=Su1y2(:,2);
+s22=Su2y2(:,2);
+
+kk=Kk_;
+dist1(1 : kk - 300) = 0;
+dist1(kk - 299 : kk) = 0.5;
+
+dist2(1 : kk - 150) = 0;
+dist2(kk - 149 : kk) = 0.3;
+
+ny=2;
+nu=2;
+E1=0;
+E2=0;
+
+if nrZad == 5
+yzads1 = [1.05 0.8 1.1 0.9];
+yzads2 = [0.9 0.8 1.1 1];
+else
+yzads1 = [1.05 1.05 1.05 1.05];
+yzads2 = [0.9 0.9 0.9 0.9];    
+end
+
+index1 = 1;
+index2 = 1;
+y=zeros(ny,kk);
+yzad=zeros(ny,kk);
+yzad1 = yzads1(index1);
+yzad2 = yzads2(index2);
+yzad(1,Kk_) = yzad1;
+yzad(2,Kk_) = yzad2;
+u=zeros(nu,kk);
+du=zeros(nu,kk);
+dUP=cell(D-1,1);
+dUP(1:D-1)={zeros(2,1)};
+M=cell(N,Nu);
+
+for i=1:N
+for j=1:Nu
+if (i>=j)
+M(i,j)={[s11(i-j+1) s12(i-j+1); s21(i-j+1) s22(i-j+1)]};
+else
+M(i,j)={zeros(nu,ny)};
+end
+end
+end
+
+MP=cell(N,D-1);
+for i=1:N
+for j=1:D-1
+if i+j<=D
+MP(i,j)={[s11(i+j)-s11(j) s12(i+j)-s12(j); ...
+s21(i+j)-s21(j) s22(i+j)-s22(j)]};
+else
+MP(i,j)={[s11(D)-s11(j) s12(D)-s12(j); ...
+s21(D)-s21(j) s22(D)-s22(j)]};
+end
+end
+end
+
+K=(cell2mat(M)'*cell2mat(M)+...
+diag(ones(1,Nu*nu)*lambda))^(-1)*cell2mat(M)';
+ku=K(1:nu,:)*cell2mat(MP);
+ke1=sum(K(1,1:2:(N*ny)));
+ke2=sum(K(1,2:2:(N*ny)));
+ke3=sum(K(2,1:2:(N*ny)));
+ke4=sum(K(2,2:2:(N*ny)));
+
+for k=10:kk
+
+if mod(k, 200) == 0
+index1 = index1 + 1;
+if index1 > length(yzads1)
+index1 = length(yzads1);
+end
+yzad1 = yzads1(index1);
+end
+yzad(1,k) = yzad1;
+
+if mod(k, 120) == 0
+index2 = index2 + 1;
+if index2 > length(yzads2)
+index2 = length(yzads2);
+end
+yzad2 = yzads2(index2);
+end
+yzad(2,k) = yzad2;
+
+
+y(1,k)=symulacja_obiektu6y1(u(1,k-6),u(1,k-7),...
+u(2,k-3),u(2,k-4),y(1,k-1),y(1,k-2));
+y(2,k)=symulacja_obiektu6y2(u(1,k-5),u(1,k-6),...
+u(2,k-6),u(2,k-7),y(2,k-1),y(2,k-2));
+
+if nrZad == 6
+y(1,k) = y(1,k) + zakl();
+y(2,k) = y(2,k) + zakl();
+end
+
+if nrZad == 7
+y(1,k) = y(1,k) + dist1(k);
+y(2,k) = y(2,k) + dist2(k);
+end
+
+du(:,k)=[ke1 ke2;ke3 ke4]*(yzad(:,k)-y(:,k))-ku*cell2mat(dUP);
+
+for i=D-1:-1:2
+dUP(i)=dUP(i-1);
+end
+
+dUP(1)={du(:,k)};
+u(:,k)=u(:,k-1)+du(:,k);
+
+end
+
+for k=1:kk
+E1= E1 + ((yzad(1,k) - y(1,k))^2);
+E2= E2 + ((yzad(2,k) - y(2,k))^2);
+end
+
+E=E1+E2;
+
+end
+
+\end{lstlisting}
+
+\chapter{Zad. 5}
+Regulatory oceniane by³y na podstawie wykresów oraz wartoœci wskaŸnika jakoœci:
+$$ E= \sum_{k=1}^{k_{konc}}\sum_{m=1}^{2}(y_{m}^{zad}(k)-y(k))^{2}$$
+Wartoœci wskaŸnika jakoœci dla regulatora:
+\begin{itemize}
+	\item PID
+		\subitem Konfiguracja zwyk³a(uchyb pierwszego wyjœcia oddzia³uje na pierwszy sygna³ steruj¹cy i analogicznie)
+			\subsubitem $K_{p}=1\quad T_{i}=15\quad T_{d}=\num{0.8} \rightarrow E=\num{39.62682}$
+			\subsubitem $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.005} \rightarrow E=\num{41.03424}$
+			\subsubitem $K_{p}=\num{0.8}\quad T_{i}=8\quad T_{d}=\num{0.007} \rightarrow E=\num{40.59062}$
+		\subitem Konfiguracja odwrotna(uchyb pierwszego wyjœcia oddzia³uje na drugi sygna³ steruj¹cy i analogicznie)
+			\subsubitem $K_{p}=1\quad T_{i}=15\quad T_{d}=\num{0.8} \rightarrow E=\num{39.62682}$
+			\subsubitem $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.005} \rightarrow E=\num{41.03424}$
+			\subsubitem $K_{p}=\num{0.8}\quad T_{i}=8\quad T_{d}=\num{0.007} \rightarrow E=\num{40.59062}$
+	\item DMC
+		\subitem $D=N=N_{u} = 200 \quad \lambda = 1\rightarrow E=\num{16.18937}$
+		\subitem $D=N=N_{u} = 200 \quad \lambda = 5\rightarrow E=\num{18.64737}$
+		\subitem $D=N=N_{u} = 200 \quad \lambda = 10\rightarrow E=\num{20.14027}$
+\end{itemize}
+Jak widaæ najlepszym regulatorem PID okaza³ siê ten o nastawach $K_{p}=1\quad T_{i}=15\quad T_{d}=\num{0.8}$, jednak okaza³ siê on gorszy od ka¿dego z regulatorów DMC. Dowodzi to tego, ¿e regulator DMC lepiej nadaje siê do regulacji obiektów wielowymiarowych, zarówno pod wzglêdem ³atwoœci implementacji jak i jakoœci regulacji. Z regulatorów DMC najlepszym jest ten o $ \lambda = 1$, o czym œwiadczy najmniejszy b³¹d jak i wykres, na którym widaæ zadowalaj¹c¹ jakoœæ dochodzenia do wartoœci zadanej przez ten regulator.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad5_P1.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{1}\quad T_{i}=\num{15}\quad T_{d}=\num{0.8}$}
+	\label{zad5_pid1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad5_P2.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.005}$}
+	\label{zad5_pid2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad5_P3.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{0.8}\quad T_{i}=8\quad T_{d}=\num{0.007}$}
+	\label{zad5_pid3}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad5_D1.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 1$}
+	\label{zad5_dmc1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad5_D2.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 5$}
+	\label{zad5_dmc2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad5_D3.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 10$}
+	\label{zad5_dmc3}
+\end{figure}
+
+\chapter{Zad. 6}
+Szumy zosta³y wygenerowane za pomoc¹ komendy:
+\begin{lstlisting}[style=Matlab-editor]
+noises = {@() 0.006*(rand() - 0.5), ...
+@() 0.02*(rand() - 0.5), @() 0.06*(rand() - 0.5)};
+\end{lstlisting}
+By³y one nastêpnie dodawane do mierzonej wartoœci wyjœcia, aby sprawdziæ dzia³anie algorytmów PID i DMC przy b³êdach pomiaru sygna³ów. Wyniki widaæ na poni¿szych wykresach. Zarówno pierwszy regulator PID jak i pierwszy regulator DMC bardzo dobrze poradzi³y sobie z zak³óceniami, co mo¿na zobaczyæ na wykresach ~\ref{zad6_pid1} i ~\ref{zad6_dmc1}. Inne regulatory mia³y spore problemy, co œwiadczy o tym, ¿e szumy pomiarowe mog¹ powa¿nie utrudniæ regulacjê, jednak da siê ograniczyæ utratê jakoœci regulacji, jeœli stosowany regulator jest wystarczaj¹co odporny.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad6_P1.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{1}\quad T_{i}=\num{15}\quad T_{d}=\num{0.8}$ przy b³êdach pomiaru sygna³ów wyjœciowych}
+	\label{zad6_pid1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad6_P2.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{0.6}\quad T_{i}=10\quad T_{d}=\num{0.005}$ przy b³êdach pomiaru sygna³ów wyjœciowych}
+	\label{zad6_pid2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad6_P3.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{0.8}\quad T_{i}=8\quad T_{d}=\num{0.007}$ przy b³êdach pomiaru sygna³ów wyjœciowych}
+	\label{zad6_pid3}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad6_D1.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 1$ przy b³êdach pomiaru sygna³ów wyjœciowych}
+	\label{zad6_dmc1}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad6_D2.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 5$ przy b³êdach pomiaru sygna³ów wyjœciowych}
+	\label{zad6_dmc2}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad6_D3.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 10$ przy b³êdach pomiaru sygna³ów wyjœciowych}
+	\label{zad6_dmc3}
+\end{figure}
+
+\chapter{Zad. 7}
+Zbadana zosta³a odpornoœæ na zak³ócenia niemierzalne dwóch regulatorów: najlepszego regulatora PID i najlepszego regulatora DMC. Zak³ócenia niemierzalne zosta³y zaimplementowane jako nag³y skok mierzonej wartoœci wyjœæ. Jak widaæ na rysunkach ~\ref{zad7_pid} i ~\ref{zad7_dmc} pierwszy skok zak³ócenia (sztuczne zwiêkszenie mierzonej wartoœci wyjœcia pierwszego o $\num{0.5}$) spowodowa³ znaczn¹ zmianê wartoœci i chwilowe zepsucie regulacji. Oba regulatory jednak da³y radê wróciæ do wartoœci zadanej a¿ do momentu drugiego skoku zak³ócenia (sztuczne zwiêkszenie mierzonej wartoœci wyjœcia drugiego o $\num{0.3}$). Jednak i tym razem oba regulatory wróci³y do wartoœci zadanej przy zak³óceniach utrzymuj¹cych siê a¿ do koñca czasu regulacji.
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad7_PID.pdf}
+	\caption {Regulator PID dla nastaw $K_{p}=\num{1}\quad T_{i}=\num{15}\quad T_{d}=\num{0.8}$ przy skokowych niemierzalnych zak³óceniach sygna³ów wyjœciowych}
+	\label{zad7_pid}
+\end{figure}
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=1]{wykresy/zad7_DMC.pdf}
+	\caption {Regulator DMC dla parametrów $D=N=N_{u} = 200 \quad \lambda = 1$ przy skokowych niemierzalnych zak³óceniach sygna³ów wyjœciowych}
+	\label{zad7_dmc}
+\end{figure}
+\end{document}
+
+
