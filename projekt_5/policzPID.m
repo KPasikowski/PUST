@@ -45,9 +45,9 @@ index2 = 1;
 index3 = 1;
 
 
-yzads1 = [0.9 0.9 0.9 0.9];
-yzads2 = [0.9 0.9 0.9 0.9];    
-yzads3 = [0.9 0.9 0.9 0.9];    
+yzads1 = [0.9 -0.5 0.3 1];
+yzads2 = [-0.5 0.5 0.2 -0.3];   
+yzads3 = [0.3 -0.2 0.1 0.6]; 
 
 yzad1 = yzads1(index1);
 yzad2 = yzads2(index2);
@@ -67,7 +67,7 @@ for k = 12 : Kk
     end
     yzadVec1(k) = yzad1;
     
-    if mod(k,120) == 0
+    if mod(k,130) == 0
         index2 = index2 + 1;
         if index2 > length(yzads2)
             index2 = length(yzads2);

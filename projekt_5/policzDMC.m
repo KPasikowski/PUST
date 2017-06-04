@@ -1,45 +1,57 @@
-function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_, lambda, Kk_, nrZad, zakl)
+function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_, lambda, Kk_)
 N = N_;
 Nu = Nu_;
 D=D_;
 
-Su1y1 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y1_u1_ster_0.4.txt');
-Su2y1 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y1_u2_ster_0.4.txt');
-Su1y2 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y2_u1_ster_0.4.txt');
-Su2y2 = load('wykresy_pliki/zad3/skok_sterowania/odp_skok_y2_u2_ster_0.4.txt');
+Su1y1 = load('wykresy_pliki/zad2/odp_skok/odpskok_y1_u_1.txt');
+Su2y1 = load('wykresy_pliki/zad2/odp_skok/odpskok_y1_u_2.txt');
+Su3y1 = load('wykresy_pliki/zad2/odp_skok/odpskok_y1_u_3.txt');
+Su4y1 = load('wykresy_pliki/zad2/odp_skok/odpskok_y1_u_4.txt');
+Su1y2 = load('wykresy_pliki/zad2/odp_skok/odpskok_y2_u_1.txt');
+Su2y2 = load('wykresy_pliki/zad2/odp_skok/odpskok_y2_u_2.txt');
+Su3y2 = load('wykresy_pliki/zad2/odp_skok/odpskok_y2_u_3.txt');
+Su4y2 = load('wykresy_pliki/zad2/odp_skok/odpskok_y2_u_4.txt');
+Su1y3 = load('wykresy_pliki/zad2/odp_skok/odpskok_y3_u_1.txt');
+Su2y3 = load('wykresy_pliki/zad2/odp_skok/odpskok_y3_u_2.txt');
+Su3y3 = load('wykresy_pliki/zad2/odp_skok/odpskok_y3_u_3.txt');
+Su4y3 = load('wykresy_pliki/zad2/odp_skok/odpskok_y3_u_4.txt');
+
 s11=Su1y1(:,2);
 s12=Su2y1(:,2);
+s13=Su3y1(:,2);
+s14=Su4y1(:,2);
 s21=Su1y2(:,2);
 s22=Su2y2(:,2);
+s23=Su3y2(:,2);
+s24=Su4y2(:,2);
+s31=Su1y3(:,2);
+s32=Su2y3(:,2);
+s33=Su3y3(:,2);
+s34=Su4y3(:,2);
 
 kk=Kk_;
-dist1(1 : kk - 300) = 0;
-dist1(kk - 299 : kk) = 0.5;
 
-dist2(1 : kk - 150) = 0;
-dist2(kk - 149 : kk) = 0.3;
-
-ny=2;
-nu=2;
+ny=3;
+nu=4;
 E1=0;
 E2=0;
+E3=0;
 
-if nrZad == 5
-    yzads1 = [1.05 0.8 1.1 0.9];
-    yzads2 = [0.9 0.8 1.1 1];
-else
-    yzads1 = [1.05 1.05 1.05 1.05];
-    yzads2 = [0.9 0.9 0.9 0.9];    
-end
+yzads1 = [1.05 0.8 1.1 0.9];
+yzads2 = [0.9 0.8 1.1 1];
+yzads3 = [0.9 0.8 1.1 1];
 
 index1 = 1;
 index2 = 1;
+index3 = 1;
 y=zeros(ny,kk);
 yzad=zeros(ny,kk);
 yzad1 = yzads1(index1);
 yzad2 = yzads2(index2);
+yzad3 = yzads3(index3);
 yzad(1,Kk_) = yzad1;
 yzad(2,Kk_) = yzad2;
+yzad(3,Kk_) = yzad3;
 u=zeros(nu,kk);
 du=zeros(nu,kk);
 dUP=cell(D-1,1);
@@ -94,19 +106,23 @@ for k=10:kk
     end
     yzad(2,k) = yzad2;
     
-    
-    y(1,k)=symulacja_obiektu6y1(u(1,k-6),u(1,k-7),u(2,k-3),u(2,k-4),y(1,k-1),y(1,k-2));
-    y(2,k)=symulacja_obiektu6y2(u(1,k-5),u(1,k-6),u(2,k-6),u(2,k-7),y(2,k-1),y(2,k-2));
-    
-    if nrZad == 6
-        y(1,k) = y(1,k) + zakl();
-        y(2,k) = y(2,k) + zakl();
+    if mod(k, 220) == 0
+        index3 = index3 + 1;
+        if index3 > length(yzads3)
+            index3 = length(yzads3);
+        end
+        yzad3 = yzads3(index3);
     end
-
-    if nrZad == 7
-        y(1,k) = y(1,k) + dist1(k);
-        y(2,k) = y(2,k) + dist2(k);
-    end
+    yzad(3,k) = yzad3;
+    
+    [y(1, k), y(2, k), y(3, k)] = symulacja_obiektu6( ...
+            u(1, k-1), u(1, k-2), u(1, k-3), u(1, k-4), ...
+            u(2, k-1), u(2, k-2), u(2, k-3), u(2, k-4), ...
+            u(3, k-1), u(3, k-2), u(3, k-3), u(3, k-4), ...
+            u(4, k-1), u(4, k-2), u(4, k-3), u(4, k-4), ...
+            y(1, k-1), y(1, k-2), y(1, k-3), y(1, k-4), ...
+            y(2, k-1), y(2, k-2), y(2, k-3), y(2, k-4), ...
+            y(3, k-1), y(3, k-2), y(3, k-3), y(3, k-4));
     
     du(:,k)=[ke1 ke2;ke3 ke4]*(yzad(:,k)-y(:,k))-ku*cell2mat(dUP);
    
@@ -120,10 +136,11 @@ for k=10:kk
 end
 
 for k=1:kk
-    E1= E1 + ((yzad(1,k) - y(1,k))^2);
-    E2= E2 + ((yzad(2,k) - y(2,k))^2);
+    E1 = E1 + ((yzad(1,k) - y(1,k))^2);
+    E2 = E2 + ((yzad(2,k) - y(2,k))^2);
+    E3 = E3 + ((yzad(3,k) - y(3,k))^2);
 end
 
-E=E1+E2;
+E=E1+E2+E3;
 
 end

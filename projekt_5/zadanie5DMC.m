@@ -1,7 +1,7 @@
 parametry;
 
-dirPathFigures = 'wykresy_figury/zad5';
-dirPathTxt = 'wykresy_pliki/zad5';
+dirPathFigures = 'wykresy_figury/zad3';
+dirPathTxt = 'wykresy_pliki/zad3';
 subDirPathDMC = [dirPathTxt '/DMC'];
 mkDirectory(dirPathFigures);
 mkDirectory(dirPathTxt);
@@ -18,12 +18,12 @@ figure;
 for i = 1 : length(lambdas)
     
     lambda = lambdas(i);
-    [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, Kk, 5, @() 0);
+    [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, Kk);
     
-    zapiszDoPliku([subDirPathDMC '/wyjscie1_lambda_'  num2str(lambdas(i)) '.txt'], y(1,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie1_lambda_'  num2str(lambdas(i)) '.txt'], u(1,:));
-    zapiszDoPliku([subDirPathDMC '/wyjscie2_lambda_'  num2str(lambdas(i)) '.txt'], y(2,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie2_lambda_'  num2str(lambdas(i)) '.txt'], u(2,:));
+    %zapiszDoPliku([subDirPathDMC '/wyjscie1_lambda_'  num2str(lambdas(i)) '.txt'], y(1,:));
+    %zapiszDoPliku([subDirPathDMC '/sterowanie1_lambda_'  num2str(lambdas(i)) '.txt'], u(1,:));
+    %zapiszDoPliku([subDirPathDMC '/wyjscie2_lambda_'  num2str(lambdas(i)) '.txt'], y(2,:));
+    %zapiszDoPliku([subDirPathDMC '/sterowanie2_lambda_'  num2str(lambdas(i)) '.txt'], u(2,:));
     
     
     subplot(4,1,1);
