@@ -1,4 +1,4 @@
-function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_, lambda, Kk_)
+function [ y, u, E, yzad ] = policzDMC(D_, N_, Nu_, lambda, psi, Kk_)
 N = N_;
 Nu = Nu_;
 D=D_;
@@ -52,39 +52,75 @@ yzad3 = yzads3(index3);
 yzad(1,Kk_) = yzad1;
 yzad(2,Kk_) = yzad2;
 yzad(3,Kk_) = yzad3;
-u=zeros(nu,kk);
-du=zeros(nu,kk);
-dUP=cell(D-1,1);
-dUP(1:D-1)={zeros(2,1)};
-M=cell(N,Nu);
+u = zeros(nu, kk);
+du = zeros(nu, kk);
+dUP = zeros((D-1)*nu, 1);
+Y = zeros(N*ny, 1);
+Yzad = zeros(N*ny, 1);
 
-for i=1:N
-   for j=1:Nu
-      if (i>=j)
-         M(i,j)={[s11(i-j+1) s12(i-j+1); s21(i-j+1) s22(i-j+1)]};
+M = cell(N,Nu);
+
+for i = 1 : N
+   for j = 1 : Nu
+      if (i >= j)
+         M(i, j)={[s11(i-j+1) s12(i-j+1) s13(i-j+1) s14(i-j+1);...
+                  s21(i-j+1) s22(i-j+1) s23(i-j+1) s24(i-j+1);...
+                  s31(i-j+1) s32(i-j+1) s33(i-j+1) s34(i-j+1)]};
       else
-          M(i,j)={zeros(nu,ny)};
+          M(i, j)={zeros(ny, nu)};
       end
    end
 end
 
-MP=cell(N,D-1);
-for i=1:N
-   for j=1:D-1
-      if i+j<=D
-         MP(i,j)={[s11(i+j)-s11(j) s12(i+j)-s12(j); s21(i+j)-s21(j) s22(i+j)-s22(j)]};
+M = cell2mat(M);
+MP = cell(N, D-1);
+
+for i = 1 : N
+   for j = 1 : D-1
+      if i + j <= D
+         MP(i, j) = {[s11(i+j)-s11(j) s12(i+j)-s12(j) s13(i+j)-s13(j) s14(i+j)-s14(j);...
+                   s21(i+j)-s21(j) s22(i+j)-s22(j) s23(i+j)-s23(j) s24(i+j)-s24(j);...
+                   s31(i+j)-s31(j) s32(i+j)-s32(j) s33(i+j)-s33(j) s34(i+j)-s34(j)]};
       else
-         MP(i,j)={[s11(D)-s11(j) s12(D)-s12(j); s21(D)-s21(j) s22(D)-s22(j)]};
+         MP(i, j) = {[s11(D)-s11(j) s12(D)-s12(j) s13(D)-s13(j) s14(D)-s14(j);...
+                   s21(D)-s21(j) s22(D)-s22(j) s23(D)-s23(j) s24(D)-s24(j);...
+                   s31(D)-s31(j) s32(D)-s32(j) s33(D)-s33(j) s34(D)-s34(j)]};
       end
    end
 end
 
-K=(cell2mat(M)'*cell2mat(M)+diag(ones(1,Nu*nu)*lambda))^(-1)*cell2mat(M)';
-ku=K(1:nu,:)*cell2mat(MP);
-ke1=sum(K(1,1:2:(N*ny)));
-ke2=sum(K(1,2:2:(N*ny)));
-ke3=sum(K(2,1:2:(N*ny)));
-ke4=sum(K(2,2:2:(N*ny)));
+MP = cell2mat(MP);
+
+LAMBDA = cell(Nu,Nu);
+
+for i = 1 : Nu
+    for j = 1 : Nu
+        if i == j
+            LAMBDA(i, j)={diag(lambda)};
+        else
+            LAMBDA(i, j)={zeros(nu, nu)};
+        end
+    end
+end
+
+LAMBDA = cell2mat(LAMBDA);
+
+PSI = cell(N,N);
+
+for i = 1 : N
+    for j = 1 : N
+        if i == j
+            PSI(i, j)={diag(psi)};
+        else
+            PSI(i, j)={zeros(ny, ny)};
+        end
+    end
+end
+
+PSI = cell2mat(PSI);
+
+K = (M'*PSI*M+LAMBDA)^(-1)*M'*PSI;
+K1 = K(1 : nu, :);
 
 for k=10:kk
     
@@ -123,15 +159,26 @@ for k=10:kk
             y(1, k-1), y(1, k-2), y(1, k-3), y(1, k-4), ...
             y(2, k-1), y(2, k-2), y(2, k-3), y(2, k-4), ...
             y(3, k-1), y(3, k-2), y(3, k-3), y(3, k-4));
+        
+    Y(1 : 3 : (N*ny)) = y(1, k);
+    Y(2 : 3 : (N*ny)) = y(2, k);
+    Y(3 : 3 : (N*ny)) = y(3, k);
     
-    du(:,k)=[ke1 ke2;ke3 ke4]*(yzad(:,k)-y(:,k))-ku*cell2mat(dUP);
-   
-    for i=D-1:-1:2
-      dUP(i)=dUP(i-1);
+    Yzad(1 : 3 : (N*ny))=yzad(1, k);
+    Yzad(2 : 3 : (N*ny))=yzad(2, k);
+    Yzad(3 : 3 : (N*ny))=yzad(3, k);
+    
+    du(:, k)=K1 * (Yzad - Y - MP * dUP);
+    
+    for i = ((D-1) * nu) : -4 : 8
+      dUP(i) = dUP(i-4);
+      dUP(i-1) = dUP(i-5);
+      dUP(i-2) = dUP(i-6);
+      dUP(i-3) = dUP(i-7);
     end
     
-   dUP(1)={du(:,k)};
-   u(:,k)=u(:,k-1)+du(:,k);
+    dUP(1:4)=du(:,k);
+    u(:, k)=u(:, k-1) + du(:, k);
    
 end
 
