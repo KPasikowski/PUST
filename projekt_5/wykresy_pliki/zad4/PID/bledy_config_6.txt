@@ -1,0 +1,6 @@
+    1   Inf
+    2   Inf
+    3   NaN
+    4   Inf
+    5   NaN
+    6 3.141949e+123

@@ -1,0 +1,6 @@
+    1   Inf
+    2   Inf
+    3   NaN
+    4   Inf
+    5   NaN
+    6 7.576719e+01

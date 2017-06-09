@@ -115,15 +115,7 @@ for k = 12 : Kk
         u1(k) = r2_1 * e2(k-2) + r1_1 * e2(k-1) + r0_1 * e2(k) + u1(k-1) ;
         u2(k) = r2_2 * e3(k-2) + r1_2 * e3(k-1) + r0_2 * e3(k) + u2(k-1) ;
         u4(k) = r2_3 * e1(k-2) + r1_3 * e1(k-1) + r0_3 * e1(k) + u4(k-1) ;
-    elseif option == 5
-        u1(k) = r2_1 * e3(k-2) + r1_1 * e3(k-1) + r0_1 * e3(k) + u1(k-1) ;
-        u2(k) = r2_2 * e1(k-2) + r1_2 * e1(k-1) + r0_2 * e1(k) + u2(k-1) ;
-        u4(k) = r2_3 * e2(k-2) + r1_3 * e2(k-1) + r0_3 * e2(k) + u4(k-1) ;
-    elseif option == 6
-        u1(k) = r2_1 * e3(k-2) + r1_1 * e3(k-1) + r0_1 * e3(k) + u1(k-1) ;
-        u2(k) = r2_2 * e2(k-2) + r1_2 * e2(k-1) + r0_2 * e2(k) + u2(k-1) ;
-        u4(k) = r2_3 * e3(k-2) + r1_3 * e3(k-1) + r0_3 * e3(k) + u4(k-1) ;
-    end
+    elseif option
         
 end
 
