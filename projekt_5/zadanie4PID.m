@@ -32,12 +32,12 @@ for option = 1 : 6
 
         [y, u, E, yzad] = policzPID(Kp1s(option, i), Ti1s(option, i), Td1s(option, i), Kp2s(option, i), Ti2s(option, i), Td2s(option, i), Kp3s(option, i), Ti3s(option, i), Td3s(option, i), Kk, option);
 
-        zapiszDoPliku([subDirPathPID '/wyjscie1_Kp1='  num2str(Kp1s(option, i)) '_Ti1=' num2str(Ti1s(option, i)) '_Td1=' num2str(Td1s(option, i)) '_Kp2=' num2str(Kp2s(option, i)) '_Ti2=' num2str(Ti2s(option, i)) '_Td2=' num2str(Td2s(option, i)) '_Kp3=' num2str(Kp3s(option, i)) '_Ti3=' num2str(Ti3s(option, i)) '_Td3=' num2str(Td3s(option, i)) '_config_' num2str(option) '.txt'], y(1,:));
-        zapiszDoPliku([subDirPathPID '/sterowanie1_Kp1='  num2str(Kp1s(option, i)) '_Ti1=' num2str(Ti1s(option, i)) '_Td1=' num2str(Td1s(option, i)) '_Kp2=' num2str(Kp2s(option, i)) '_Ti2=' num2str(Ti2s(option, i)) 'Td2=' num2str(Td2s(option, i)) '_Kp3=' num2str(Kp3s(option, i)) '_Ti3=' num2str(Ti3s(option, i)) '_Td3=' num2str(Td3s(option, i)) '.txt'], u(1,:));
-        zapiszDoPliku([subDirPathPID '/wyjscie2__Kp1='  num2str(Kp1s(option, i)) '_Ti1=' num2str(Ti1s(option, i)) '_Td1=' num2str(Td1s(option, i)) '_Kp2=' num2str(Kp2s(option, i)) '_Ti2=' num2str(Ti2s(option, i)) 'Td2=' num2str(Td2s(option, i)) '_Kp3=' num2str(Kp3s(option, i)) '_Ti3=' num2str(Ti3s(option, i)) '_Td3=' num2str(Td3s(option, i)) '.txt'], y(2,:));
-        zapiszDoPliku([subDirPathPID '/sterowanie2__Kp1='  num2str(Kp1s(option, i)) '_Ti1=' num2str(Ti1s(option, i)) '_Td1=' num2str(Td1s(option, i)) '_Kp2=' num2str(Kp2s(option, i)) '_Ti2=' num2str(Ti2s(option, i)) 'Td2=' num2str(Td2s(option, i)) '_Kp3=' num2str(Kp3s(option, i)) '_Ti3=' num2str(Ti3s(option, i)) '_Td3=' num2str(Td3s(option, i)) '.txt'], u(2,:));
-        zapiszDoPliku([subDirPathPID '/wyjscie3__Kp1='  num2str(Kp1s(option, i)) '_Ti1=' num2str(Ti1s(option, i)) '_Td1=' num2str(Td1s(option, i)) '_Kp2=' num2str(Kp2s(option, i)) '_Ti2=' num2str(Ti2s(option, i)) 'Td2=' num2str(Td2s(option, i)) '_Kp3=' num2str(Kp3s(option, i)) '_Ti3=' num2str(Ti3s(option, i)) '_Td3=' num2str(Td3s(option, i)) '.txt'], y(3,:));
-        zapiszDoPliku([subDirPathPID '/sterowanie4__Kp1='  num2str(Kp1s(option, i)) '_Ti1=' num2str(Ti1s(option, i)) '_Td1=' num2str(Td1s(option, i)) '_Kp2=' num2str(Kp2s(option, i)) '_Ti2=' num2str(Ti2s(option, i)) 'Td2=' num2str(Td2s(option, i)) '_Kp3=' num2str(Kp3s(option, i)) '_Ti3=' num2str(Ti3s(option, i)) '_Td3=' num2str(Td3s(option, i)) '.txt'], u(3,:));
+        zapiszDoPliku([subDirPathPID '/wyjscie1_' num2str(option) '_' num2str(i) '.txt'], y(1,:));
+        zapiszDoPliku([subDirPathPID '/sterowanie1_' num2str(option) '_' num2str(i) '.txt'], u(1,:));
+        zapiszDoPliku([subDirPathPID '/wyjscie2_'  num2str(option) '_' num2str(i) '.txt'], y(2,:));
+        zapiszDoPliku([subDirPathPID '/sterowanie2_' num2str(option) '_' num2str(i) '.txt'], u(2,:));
+        zapiszDoPliku([subDirPathPID '/wyjscie3_' num2str(option) '_' num2str(i) '.txt'], y(3,:));
+        zapiszDoPliku([subDirPathPID '/sterowanie4_' num2str(option) '_' num2str(i) '.txt'], u(3,:));
 
         subplot(6,1,1);
         rysujWykres((1 : length(y(1,:))), y(1,:), 'k', 'y1', 'Wyjscie y1 obiektu');

@@ -21,13 +21,13 @@ for i = 1 : length(lambdas(:,1))
     lambda = lambdas(i, :);
     [y, u, E, yzad] = policzDMCZad6(D, N, Nu, lambda, psi, Kk);
     
-    zapiszDoPliku([subDirPathDMC '/wyjscie1_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], y(1,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie1_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(1,:));
-    zapiszDoPliku([subDirPathDMC '/wyjscie2_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], y(2,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie2_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(2,:));
-    zapiszDoPliku([subDirPathDMC '/wyjscie3_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], y(3,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie3_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(3,:));    
-    zapiszDoPliku([subDirPathDMC '/sterowanie4_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(4,:));    
+    zapiszDoPliku([subDirPathDMC '/wyjscie1_' num2str(i) '.txt'], y(1,:));
+    zapiszDoPliku([subDirPathDMC '/sterowanie1_' num2str(i) '.txt'], u(1,:));
+    zapiszDoPliku([subDirPathDMC '/wyjscie2_' num2str(i) '.txt'], y(2,:));
+    zapiszDoPliku([subDirPathDMC '/sterowanie2_' num2str(i) '.txt'], u(2,:));
+    zapiszDoPliku([subDirPathDMC '/wyjscie3_' num2str(i) '.txt'], y(3,:));
+    zapiszDoPliku([subDirPathDMC '/sterowanie3_' num2str(i) '.txt'], u(3,:));    
+    zapiszDoPliku([subDirPathDMC '/sterowanie4_' num2str(i) '.txt'], u(4,:));    
     
     
     subplot(6,1,1);
