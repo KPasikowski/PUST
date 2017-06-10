@@ -1,0 +1,539 @@
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage{pgffor}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+    per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+    tick label style={font=\tiny},
+    label style={font=\footnotesize},
+    legend style={font=\footnotesize},
+    title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_dmc_1}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie1_1.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana1.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie2_1.txt};
+\addplot[const plot,color=blue,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana2.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie3_1.txt};
+\addplot[const plot,color=green,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana3.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad}$,$y_{2}(t)$,$y_{2 zad}$,$y_{3}(t)$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie1_1.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie2_1.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie3_1.txt};
+\legend{$u_{1}(t)$,$u_{2}(t)$,$u_{4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_dmc_2}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie1_2.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana1.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie2_2.txt};
+\addplot[const plot,color=blue,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana2.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie3_2.txt};
+\addplot[const plot,color=green,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana3.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad}$,$y_{2}(t)$,$y_{2 zad}$,$y_{3}(t)$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie1_2.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie2_2.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie3_2.txt};
+\legend{$u_{1}(t)$,$u_{2}(t)$,$u_{4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_dmc_3}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie1_3.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana1.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie2_3.txt};
+\addplot[const plot,color=blue,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana2.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie3_3.txt};
+\addplot[const plot,color=green,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana3.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad}$,$y_{2}(t)$,$y_{2 zad}$,$y_{3}(t)$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie1_3.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie2_3.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie3_3.txt};
+\legend{$u_{1}(t)$,$u_{2}(t)$,$u_{4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_1_1}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie1_1.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie1_1.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana1.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad4}$,$y_{1 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie1_1.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie1_1.txt};
+
+\legend{$u_{1}(t)$,$u_{1 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_1_2}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie1_2.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie1_2.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana1.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad4}$,$y_{1 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie1_2.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie1_2.txt};
+
+\legend{$u_{1}(t)$,$u_{1 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_1_3}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie1_3.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie1_3.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana1.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad4}$,$y_{1 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie1_3.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie1_3.txt};
+
+\legend{$u_{1}(t)$,$u_{1 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+
+% wej 2
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_2_1}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie2_1.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie2_1.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana2.txt};
+
+\legend{$y_{2}(t)$,$y_{2 zad4}$,$y_{2 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie2_1.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie2_1.txt};
+
+\legend{$u_{2}(t)$,$u_{2 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_2_2}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie2_2.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie2_2.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana2.txt};
+
+\legend{$y_{2}(t)$,$y_{2 zad4}$,$y_{2 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie2_2.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie2_2.txt};
+
+\legend{$u_{2}(t)$,$u_{2 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_2_3}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie2_3.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie2_3.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana2.txt};
+
+\legend{$y_{2}(t)$,$y_{2 zad4}$,$y_{2 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie2_3.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie2_3.txt};
+
+\legend{$u_{2}(t)$,$u_{2 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+% wej 3
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_3_1}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie3_1.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie3_1.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana3.txt};
+
+\legend{$y_{3}(t)$,$y_{3 zad4}$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie3_1.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie3_1.txt};
+
+\legend{$u_{3}(t)$,$u_{3 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_3_2}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie3_2.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie3_2.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana3.txt};
+
+\legend{$y_{3}(t)$,$y_{3 zad4}$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie3_2.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie3_2.txt};
+
+\legend{$u_{3}(t)$,$u_{3 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad6_por_3_3}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=0,ymax=2,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/wyjscie3_3.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/wyjscie3_3.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad6/DMC/zadana3.txt};
+
+\legend{$y_{3}(t)$,$y_{3 zad4}$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-0.5,ymax=1.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad6/DMC/sterowanie3_3.txt};
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/DMC/sterowanie3_3.txt};
+
+\legend{$u_{3}(t)$,$u_{3 zad4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+
+
+
+\end{document}

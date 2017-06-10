@@ -1,0 +1,170 @@
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage{pgffor}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+    per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+    tick label style={font=\tiny},
+    label style={font=\footnotesize},
+    legend style={font=\footnotesize},
+    title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4_pid_6_1}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2.5,ymax=2.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad4/PID/wyjscie1_6_1.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana1_config_6.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/PID/wyjscie2_6_1.txt};
+\addplot[const plot,color=blue,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana2_config_6.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad4/PID/wyjscie3_6_1.txt};
+\addplot[const plot,color=green,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana3_config_6.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad}$,$y_{2}(t)$,$y_{2 zad}$,$y_{3}(t)$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2.5,ymax=2.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad4/PID/sterowanie1_6_1.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/PID/sterowanie2_6_1.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad4/PID/sterowanie4_6_1.txt};
+\legend{$u_{1}(t)$,$u_{2}(t)$,$u_{4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4_pid_6_2}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2.5,ymax=2.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad4/PID/wyjscie1_6_2.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana1_config_6.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/PID/wyjscie2_6_2.txt};
+\addplot[const plot,color=blue,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana2_config_6.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad4/PID/wyjscie3_6_2.txt};
+\addplot[const plot,color=green,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana3_config_6.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad}$,$y_{2}(t)$,$y_{2 zad}$,$y_{3}(t)$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2.5,ymax=2.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad4/PID/sterowanie1_6_2.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/PID/sterowanie2_6_2.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad4/PID/sterowanie4_6_2.txt};
+\legend{$u_{1}(t)$,$u_{2}(t)$,$u_{4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad4_pid_6_3}
+\begin{tikzpicture}
+
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2.5,ymax=2.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$y(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad4/PID/wyjscie1_6_3.txt};
+\addplot[const plot,color=red,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana1_config_6.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/PID/wyjscie2_6_3.txt};
+\addplot[const plot,color=blue,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana2_config_6.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad4/PID/wyjscie3_6_3.txt};
+\addplot[const plot,color=green,densely dashed] file {../wykresy_pliki/zad4/PID/wartosc_zadana3_config_6.txt};
+
+\legend{$y_{1}(t)$,$y_{1 zad}$,$y_{2}(t)$,$y_{2 zad}$,$y_{3}(t)$,$y_{3 zad}$}
+
+\nextgroupplot
+[xmin=1,xmax=800,ymin=-2.5,ymax=2.5,
+xtick={0,100,...,800},
+ytick={-10,-9,...,10},
+ylabel={$u(t)$},
+xlabel={$t$}]
+
+\addplot[const plot,color=red,semithick] file {../wykresy_pliki/zad4/PID/sterowanie1_6_3.txt};
+
+\addplot[const plot,color=blue,semithick] file {../wykresy_pliki/zad4/PID/sterowanie2_6_3.txt};
+
+\addplot[const plot,color=green,semithick] file {../wykresy_pliki/zad4/PID/sterowanie4_6_3.txt};
+\legend{$u_{1}(t)$,$u_{2}(t)$,$u_{4}(t)$}
+
+
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+\end{document}
