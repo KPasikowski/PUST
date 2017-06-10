@@ -1,26 +1,26 @@
 parametry;
 
 dirPathFigures = 'wykresy_figury/zad4';
-%dirPathFiguresConf = [dirPathFigures '/config_podstawowy'];
-%dirPathFiguresConf = [dirPathFigures '/config_odwrotny'];
+    %dirPathFiguresConf = [dirPathFigures '/config_podstawowy'];
+    %dirPathFiguresConf = [dirPathFigures '/config_odwrotny'];
 dirPathTxt = 'wykresy_pliki/zad4';
 subDirPathPID = [dirPathTxt '/PID'];
-%subDirPathPIDConf = [subDirPathPID '/config_podstawowy'];
-%subDirPathPIDConf = [subDirPathPID '/config_odwrotny'];
+    %subDirPathPIDConf = [subDirPathPID '/config_podstawowy'];
+    %subDirPathPIDConf = [subDirPathPID '/config_odwrotny'];
 mkDirectory(subDirPathPID);
-%mkDirectory(subDirPathPIDConf);
-%mkDirectory(dirPathFiguresConf);
+    %mkDirectory(subDirPathPIDConf);
+    %mkDirectory(dirPathFiguresConf);
 
-Kp1s = [1 0.6 0.8 ;  1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8];
-Kp2s = [3 0.6 0.8 ; 3 0.6 0.8 ; 3 0.6 0.8 ; 3 0.6 0.8 ; 3 0.6 0.8 ; 3 0.6 0.8];
-Kp3s = [1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8 ; 1 0.6 0.8];
+Kp1s = [1 0.9 0.8 ;  1 1.2 0.8 ; 0.03 0.05 0.01 ; 0.2 0.25 0.15 ; 1 1.1 1.1 ; 2 2.3 1.7 ];
+Kp2s = [1.6 1.5 1.4 ; 0.01 0.015 0.008 ; 0.5 0.7 0.3 ; 1 1.2 0.8 ; 0.3 0.3 0.3 ; 1.6 1.6 1.4 ];
+Kp3s = [1 0.9 0.8 ; 0.01 0.015 0.008 ; 1 1.2 0.8 ; 0.01 0.015 0.007 ; 1 1 1 ; 0.01 0.01 0.008 ];
 
-Ti1s = [15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8];
-Ti2s = [15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8];
-Ti3s = [15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8 ; 15 10 8];
-Td1s = [0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007];
-Td2s = [0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007];
-Td3s = [0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007 ; 0.8 0.005 0.007];
+Ti1s = [20 20 20 ; 20 20 20 ; 200 200 200 ; 20 20 20 ; 20 20 20 ; 3 3 3 ];
+Ti2s = [20 20 20 ; 20 20 20 ; 20 20 20 ; 20 20 20 ; 20 20 20 ; 20 20 20 ];
+Ti3s = [15 15 15 ; 15 15 15 ; 15 15 15 ; 15 15 15 ; 15 15 15 ; 15 15 15 ];
+Td1s = [0.1 0.1 0.07 ; 0.1 0.1 0.1 ; 0.01 0.01 0.01 ; 0.01 0.01 0.01 ; 0.1 0.1 0.1 ; 0.2 0.2 0.2 ];
+Td2s = [1 1 0.9 ; 0.1 0.1 0.1 ; 0.1 0.1 0.1 ; 1 1 1 ; 1 1 1 ; 1 1 1 ];
+Td3s = [0.8 0.8 0.7 ; 0.1 0.1 0.1 ; 0.8 0.8 0.8 ; 0.2 0.2 0.2  ; 0.8 0.8 0.8 ; 0.01 0.01 0.01 ];
 
 Es = zeros(1, length(Kp1s));
 
@@ -77,7 +77,7 @@ for option = 1 : 6
     zapiszDoPliku([subDirPathPID '/wartosc_zadana2_config_' num2str(option) '.txt'], yzad(2,:));
     zapiszDoPliku([subDirPathPID '/wartosc_zadana3_config_' num2str(option) '.txt'], yzad(3,:));
 
-    %savefig([dirPathFiguresConf '/sterowanie_wyjscie_PID.fig']);
+            %savefig([dirPathFiguresConf '/sterowanie_wyjscie_PID.fig']);
     zapiszDoPliku([subDirPathPID '/bledy_config_' num2str(option) '.txt'], Es);
     
 end
