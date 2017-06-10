@@ -20,10 +20,10 @@ for i = 1 : length(lambdas)
     lambda = lambdas(i);
     [y, u, E, yzad] = policzDMC(D, N, Nu, lambda, Kk, 5, @() 0);
     
-    zapiszDoPliku([subDirPathDMC '/wyjscie1_lambda_'  num2str(lambdas(i)) '.txt'], y(1,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie1_lambda_'  num2str(lambdas(i)) '.txt'], u(1,:));
-    zapiszDoPliku([subDirPathDMC '/wyjscie2_lambda_'  num2str(lambdas(i)) '.txt'], y(2,:));
-    zapiszDoPliku([subDirPathDMC '/sterowanie2_lambda_'  num2str(lambdas(i)) '.txt'], u(2,:));
+    %zapiszDoPliku([subDirPathDMC '/wyjscie1_lambda_'  num2str(lambdas(i)) '.txt'], y(1,:));
+    %zapiszDoPliku([subDirPathDMC '/sterowanie1_lambda_'  num2str(lambdas(i)) '.txt'], u(1,:));
+    %zapiszDoPliku([subDirPathDMC '/wyjscie2_lambda_'  num2str(lambdas(i)) '.txt'], y(2,:));
+    %zapiszDoPliku([subDirPathDMC '/sterowanie2_lambda_'  num2str(lambdas(i)) '.txt'], u(2,:));
     
     
     subplot(4,1,1);
@@ -50,9 +50,9 @@ for i = 1 : length(lambdas)
 
 end
 
-zapiszDoPliku([subDirPathDMC '/wartosc_zadana1_lambda_'  num2str(lambdas(i)) '.txt'], yzad(1,:));
-zapiszDoPliku([subDirPathDMC '/wartosc_zadana2_lambda_'  num2str(lambdas(i)) '.txt'], yzad(2,:));
+%zapiszDoPliku([subDirPathDMC '/wartosc_zadana1_lambda_'  num2str(lambdas(i)) '.txt'], yzad(1,:));
+%zapiszDoPliku([subDirPathDMC '/wartosc_zadana2_lambda_'  num2str(lambdas(i)) '.txt'], yzad(2,:));
 
 
-savefig([dirPathFigures '/sterowanie_wyjscie.fig']);
-zapiszDoPliku([subDirPathDMC '/bledy.txt'], Es);
+%savefig([dirPathFigures '/sterowanie_wyjscie.fig']);
+%zapiszDoPliku([subDirPathDMC '/bledy.txt'], Es);

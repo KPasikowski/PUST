@@ -27,6 +27,7 @@ for i = 1 : length(lambdas(:,1))
     zapiszDoPliku([subDirPathDMC '/sterowanie2_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(2,:));
     zapiszDoPliku([subDirPathDMC '/wyjscie3_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], y(3,:));
     zapiszDoPliku([subDirPathDMC '/sterowanie3_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(3,:));    
+    zapiszDoPliku([subDirPathDMC '/sterowanie4_lambda_'  num2str(lambdas(i, 1)) '_' num2str(lambdas(i, 2)) '_' num2str(lambdas(i, 3)) '_' num2str(lambdas(i, 4)) '.txt'], u(4,:));    
     
     
     subplot(6,1,1);
