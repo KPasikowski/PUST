@@ -1,0 +1,65 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},
+	per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\SendSettingsToPgf
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.11}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\textwidth 160mm \textheight 247mm
+
+\pgfplotsset{width=\figurewidth,compat=1.11}
+\pgfplotsset{
+	tick label style={font=\tiny},
+	label style={font=\footnotesize},
+	legend style={font=\footnotesize},
+	title style={font=\footnotesize}
+}
+
+
+\newcommand{\szer}{16cm}
+\newcommand{\wys}{5.6cm}
+\newcommand{\odstepionowy}{1.2cm}
+
+
+\begin{document}
+
+\tikzsetnextfilename{}
+
+\begin{figure}[PID]
+\tikzsetnextfilename{zad3_pid}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=1 by 2,vertical sep=\odstepionowy},
+width=\szer,height=\wys]
+%%1
+\nextgroupplot
+[xmin=1,xmax=1250,ymin=3500,ymax=5000,
+xtick={0,100,...,1300},
+ytick={0,500,...,5000},
+ylabel={$T(t)$},
+xlabel={$t$}]
+\addplot[const plot,color=red,semithick] file {../PID_Y1.txt};
+\addplot[const plot,color=red,densely dashed,domain=0:1250,samples=2] {4000};
+\addplot[const plot,color=blue,semithick] file {../PID_Y2.txt};
+\addplot[const plot,color=blue,densely dashed,domain=0:1250,samples=2] {4200};
+\legend{$T1(t)$, $T1_{zad}(t)$, $T3(t)$, $T3_{zad}(t)$}
+
+\nextgroupplot
+[xmin=1,xmax=1250,ymin=0,ymax=1000,
+xtick={0,100,...,1300},
+ytick={0,100,...,1000},
+ylabel={$G(t)$},
+xlabel={$t$}]
+\addplot[const plot,color=red,semithick] file {../PID_U1.txt};
+\addplot[const plot,color=blue,semithick] file {../PID_U2.txt};
+\legend{$G1(t)$, $G2(t)$}
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\end{document}
