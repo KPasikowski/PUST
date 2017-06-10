@@ -125,21 +125,21 @@ Wydział Elektroniki i Technik Informacyjnych}}\\
 
 
 \chapter{Zad. 1}
-Możliwość sterowania i pomiaru w komunikacji ze stanowiskiem została sprawdzona poprzez funkcję readMeasurements, sendControls oraz sendNonLinearControls. Sygnały sterujące, które były obsługiwane to moce na grzałkach $G1$ i $G2$ (wysłana za pomocą funkcji sendNonLinearControls) oraz moce wiatraków $ W1 $ i $ W2 $(wysłana za pomocą sendControls), natomiast mierzone były temperatury $ T1 $ i $ T3 $ w otoczeniach grzałek odpowiednio $ G1 $ i $ G2 $. W punkcie pracy, tzn. dla $ (W1, W2, G1, G2) = (50, 50, 29, 34) $ pomiary temperatur wyniosły $(T1, T3) = (36, 38)$.
+Możliwość sterowania i pomiaru w komunikacji ze stanowiskiem została sprawdzona poprzez wysyłanie sygnałów sterujących $D114$ oraz $D115$ ze sterownika na obiekt. Sygnały sterujące, które były obsługiwane to moce na grzałkach $G1$ i $G2$ oraz moce wiatraków $ W1 $ i $ W2 $, natomiast mierzone były temperatury $ T1 $ i $ T3 $ w otoczeniach grzałek odpowiednio $ G1 $ i $ G2 $. W punkcie pracy, tzn. dla $ (W1, W2, G1, G2) = (50, 50, 29, 34) $ pomiary temperatur wyniosły $(T1, T3) = (36, 38)$.
 \begingroup
 \renewcommand{\cleardoublepage}{}
 \renewcommand{\clearpage}{}
 
 
 \chapter{Zad. 2}
-Na sterowniku został zaimplementowany mechanizm zabezpieczający przed uszkodzeniem stanowiska. Został on napisany w języku ST i był stosowany ze wszystkimi regulatorami.
+Na sterowniku został zaimplementowany mechanizm zabezpieczający przed uszkodzeniem stanowiska. Został on napisany w języku ST i był stosowany ze wszystkimi regulatorami. Polegał on na wyłączaniu grzałki, sąsiadującej z czujnikiem, którego temperatura wskazywała pomiar powyżej $ \ang{150}C $.
 
 
 \endgroup
 
 \chapter{Zad. 3}
 
-Na sterowniku został zaimplementowany reguator PID, w języku ST. Kod jest dostępny w pliku programu gxworks3. Zostały dobrane następujące nastawy: $K = 6$, $Ti = 65$, $Td = 1.25$. Wykres pokazuje działanie regulatora dla skoku wartości zadanych $T1_{zad} = 40, T3_{zad} = 42$. Regulator PID stosunkowo szybko dochodzi do wartości zadanej ($11 minut$) oraz ma akceptowalne przeregulowanie ($3°C$).
+Na sterowniku został zaimplementowany reguator PID, w języku ST. Kod jest dostępny w pliku programu gxworks3. Zostały dobrane następujące nastawy: $K = 6$, $Ti = 65$, $Td = 1.25$. Wykres pokazuje działanie regulatora dla skoku wartości zadanych $T1_{zad} = 40, T3_{zad} = 42$. Regulator PID stosunkowo szybko dochodzi do wartości zadanej ($11$ minut) oraz ma akceptowalne przeregulowanie $ \ang{3}C $. Wartości na osi, reprezentującej temperaturę są pomnożone przez sto, co jest spowodowane sposobem zwracania wartości przez sterownik.
 
 \begin{figure}[]
 	\centering
@@ -150,7 +150,7 @@ Na sterowniku został zaimplementowany reguator PID, w języku ST. Kod jest dost
 
 \chapter{Zad. 4}
 
-Algorytm DMC w wersji oszczędnej obliczeniowo został zaimplementowany na sterowniku. Kod jest dostępny, tak jak w przypadku regulatora PID, w pliku programu gxworks3. Pobrane zostały dwie odpowiedzi skokowe, ponieważ odpowiedzi są symetryczne. Pobrane zostały odpowiedzi skokowe torów $T1(G1)$ oraz $T3(G1)$. Odpowiedź skokowa $T3(G2)$ jest identyczna jak odpowiedź skokowa $T1(G1)$, a odpowiedź skokowa $T1(G2)$ jest identyczna jak odpowiedź skokowa $T3(G1)$. Regulator DMC bardzo powoli dochodzi do wartości zadanej, jest to prawdopodobnie spowodowane zbyt dużą niedokładnością w reprezentacji liczb w sterowniku.
+Algorytm DMC w wersji oszczędnej obliczeniowo został zaimplementowany na sterowniku. Kod jest dostępny, tak jak w przypadku regulatora PID, w pliku programu gxworks3. Pobrane zostały dwie odpowiedzi skokowe, ponieważ odpowiedzi są symetryczne($ T1(G1) = T3(G2) $ oraz $ T1(G2) = T3(G1) $). Pobrane zostały odpowiedzi skokowe torów $T1(G1)$ oraz $T3(G1)$.  Regulator DMC bardzo powoli dochodzi do wartości zadanej, jest to prawdopodobnie spowodowane zbyt dużą niedokładnością w reprezentacji liczb w sterowniku. Najlepszy znaleziony regulator DMC posiadał parametry: $N=N_{u}=D=100, \ \lambda = 10$.
 
 \begin{figure}[]
 	\centering
@@ -170,7 +170,7 @@ Algorytm DMC w wersji oszczędnej obliczeniowo został zaimplementowany na stero
 
 \chapter{Zad. 5}
 
-Na panelu operatora zostały wyświetlone wartości mierzone, zadane oraz sterowanie. Dodatkowo, na panelu została wyświetlona grafika prezentująca obiekt. Wszystkie wartości są aktualizowane podczas pracy obiektu. Wyświetlone zostały też wartości parametrów dla regulatora PID. Sygnały mierzone oraz sterowanie są prezentowane w dwóch postaciach: jako wartość liczbowa oraz jako wypełnienie prostokąta kolorem.
+Na panelu operatora zostały wyświetlone wartości mierzone, zadane oraz sterowanie. Dodatkowo, została wyświetlona grafika reprezentująca obiekt. Wszystkie wartości są aktualizowane podczas pracy obiektu. Sygnały mierzone oraz sterowanie są prezentowane w dwóch postaciach: jako wartość liczbowa oraz jako wypełnienie prostokąta kolorem.
 
 \begin{figure}[]
 	\centering
@@ -182,7 +182,7 @@ Na panelu operatora zostały wyświetlone wartości mierzone, zadane oraz sterow
 
 \chapter{Zad. 6}
 
-Został przygotowany automat stanów, na podstawie którego modyfikowane miały być wartości zadane. Sam automat został zaimplementowany w języku ST na sterowniku. Naciskanie odpowiednich przycisków powodowało przechodzenie pomiędzy poszczególnymi stanami automatu. Nie został on połączony z wartością zadaną procesu.
+Został przygotowany automat stanów, na podstawie którego modyfikowane miały być wartości zadane. Sam automat został zaimplementowany w języku ST na sterowniku. Naciskanie odpowiednich przycisków powodowało przechodzenie pomiędzy poszczególnymi stanami automatu.
 
 \begin{figure}[]
 	\centering
@@ -194,7 +194,7 @@ Został przygotowany automat stanów, na podstawie którego modyfikowane miały 
 
 \chapter{Zad. 7}
 
-Sterownik został skonfigurowany. Pracowaliśmy na stanowisku "TRAS" (śmigła). Wejście analogowe zostało odpowiednio skonfigurowane (dwukanałowy szybki licznik enkodera dla osi poziomej). Zostało również skonfigurowane wyjście PWM. Dla wyjścia PWM zakres został wybrany zgodnie z instrukcją: K200. Proces, który regulowaliśmy to wychylenie pionowe śmigieł.
+Sterownik został skonfigurowany prawidłowo, czego dowodem jest prawidłowe działanie stanowiska. Pracowaliśmy na stanowisku "TRAS" (śmigła). Wejście analogowe zostało odpowiednio skonfigurowane (dwukanałowy szybki licznik enkodera dla osi poziomej). Zostało również skonfigurowane wyjście PWM. Dla wyjścia PWM zakres został wybrany zgodnie z instrukcją: K200. Proces, który regulowaliśmy to wychylenie pionowe śmigieł.
 
 \begingroup
 \renewcommand{\cleardoublepage}{}
@@ -202,12 +202,12 @@ Sterownik został skonfigurowany. Pracowaliśmy na stanowisku "TRAS" (śmigła).
 
 \chapter{Zad. 8}
 
-Mechanizm zabezpieczający przed uszkodzeniem stanowiska został zaimplementowany jako ograniczenie na maksymalną wartość wypełnienia PWM. Nie zostały zaimplementowane ograniczenia na temperaturę stanowiska.
+Mechanizm zabezpieczający przed uszkodzeniem stanowiska został zaimplementowany jako ograniczenie na maksymalną wartość wypełnienia PWM. Nie zostały zaimplementowane ograniczenia na wychylenie śmigieł.
 
 
 \chapter{Zad. 9}
 
-Została wyznaczona charakterystyka statyczna. Na osi odciętych znajduje się wypełnienie PWM w sterowniku. Jest to część wypełnienia dla $5 kHz$, z negatywnym efektem. Wypełnienie PWM sygnału do stanowiska Inteco jest odwrotnie proporcjonalne do wypełnienia w sterowniku. Zakres PWM w sterowniku to $1 - 200$, gdzie $1$ to wartość maksymalna (100\% wypełnienia), a $200$ to wartość minimalna (0\% wypełnienia). Na osi rzędnych są wartości wyjścia enodera znajdującego się na osi poziomej (wskazuje on wychylenie w pionie). Wartości te są odwrotnie proporcjonalnie do wysokości, na jakiej znajduje się śmigło pracujące w osi pionowej. Wartość $-941$ to maksymalne wychelenie do góry tego śmigła (znajduje się ono w górze dla maksymalnego wypełnienia sygnału PWM sterujacego tym śmigłem), a wartość $-137$ to wartość minimalnego wychylenia.\\
+Została wyznaczona charakterystyka statyczna. Na osi odciętych znajduje się wypełnienie PWM w sterowniku. Jest to część wypełnienia dla $5 kHz$, z negatywnym efektem. Wypełnienie PWM sygnału do stanowiska Inteco jest odwrotnie proporcjonalne do wypełnienia w sterowniku. Zakres PWM w sterowniku to $1 - 200$, gdzie $1$ to wartość maksymalna ($100\%$ wypełnienia), a $200$ to wartość minimalna ($0\%$ wypełnienia). Na osi rzędnych są wartości wyjścia enkodera znajdującego się na osi poziomej (wskazuje on wychylenie w pionie). Wartości te są odwrotnie proporcjonalnie do wysokości, na jakiej znajduje się śmigło pracujące w osi pionowej. Wartość $-941$ to maksymalne wychylenie do góry tego śmigła (znajduje się ono w górze dla maksymalnego wypełnienia sygnału PWM sterujacego tym śmigłem), a wartość $-137$ to wartość minimalnego wychylenia.\\
 Charakterystyka wskazuje, że do wypełniania ok. $-100$ ($50\%$) śmigło znajduje się w pozycji maksymalnego wychylenia. Charakterystyka jest silnie nieliniowa, ale ma w przybliżeniu liniowe przedziały: $<1,100)$ i $<100,200>$.
 
 
@@ -234,7 +234,7 @@ Regulator PID został dostosowany do pracy ze stanowiskiem Inteco. Jedyne zmiany
 
 \chapter{Zad. 11}
 
-Działanie wbudowanego regulatora PID okazało się lepsze, niż implementowanego przez nas. Te same nastawy regulatora w połączeniu z dużo krótszym okresem sterowania ($100 milisekund$) dały nam bardzo dobry regulator. Parametry zastosowane w funkcji PID to wypełnienie sygnału PWM (MV), wartość zadana (SV) oraz pomiar z enkodera(PV). Nie został sprawdzony wpływ ograniczeń na działanie obu wersji regulatora. Prawdopodobnie zmniejszenie maksymalnego wypełnienia PWM do wartości ok. 55\% wprowadziłoby poprawę pracy regulatora z powodu niwelacji nieliniowości obiektu.
+Działanie wbudowanego regulatora PID okazało się lepsze, niż implementowanego przez nas. Te same nastawy regulatora w połączeniu z dużo krótszym okresem sterowania ($100 milisekund$) dały nam bardzo dobry regulator. Argumenty podane dla funkcji PID to wypełnienie sygnału PWM (MV), wartość zadana (SV) oraz pomiar z enkodera(PV). Nie został sprawdzony wpływ ograniczeń na działanie obu wersji regulatora. Prawdopodobnie zmniejszenie maksymalnego wypełnienia PWM do wartości ok. 55\% wprowadziłoby poprawę pracy regulatora z powodu niwelacji nieliniowości obiektu.
 
 \begin{figure}[]
 	\centering
@@ -247,7 +247,7 @@ Działanie wbudowanego regulatora PID okazało się lepsze, niż implementowaneg
 
 \chapter{Zad. 12 i 13}
 
-Dostosowano graf przejść automatu stanów oraz wizualizację procesu. Automat stanów nie został połączony z wartością zadaną.
+Dostosowano graf przejść automatu stanów oraz wizualizację procesu. Każdy stan reprezentuje inną wartość zadaną(wychylenie śmigła).
 
 Na panelu operatora zostały wyświetlone wartość mierzona (enkoder), zadana oraz sterowanie (wartość PWM w sterowniku). Tak jak w przypadku obiektu grzejąco-chłodzącego, została stworzona grafika prezentująca proces.
 
